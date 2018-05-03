@@ -1,0 +1,373 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>首页</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="/statics/style/itembass.css?05" />
+    <link href="/statics/style/common.css" rel="stylesheet" />
+    <link href="/statics/style/swiper-3.3.1.min.css" rel="stylesheet" />
+    <style type="text/css">
+        #bannercontent img {
+            width: 100%;
+        }
+
+        .swiper-slide p {
+            padding: 0;
+            text-align: center;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: #D63929 !important;
+        }
+
+        .swiper-pagination-bullet {
+            background-color: #fff;
+            opacity: 1;
+        }
+
+        .platetitle {
+            font-size: 16px;
+            color: #696969;
+            line-height: 20px;
+            vertical-align: middle;
+            padding: 0 6px;
+            font-weight: bolder;
+        }
+
+
+        .text-center {
+            text-align: center;
+        }
+
+        .line {
+            padding: 0 5px;
+            line-height: 20px;
+            color: #000;
+            width: 60px;
+            display: inline-block;
+            text-align: center;
+            border-bottom: none;
+            vertical-align: middle;
+        }
+
+        .width-50 {
+            width: 50%;
+            overflow: hidden;
+        }
+
+        .width-25 {
+            overflow: hidden;
+        }
+        .shop-img-top{
+        	margin-bottom: 10px;
+        }
+        .border-bottom{
+        	border-bottom: 1px solid #c6c6c6;
+        }
+        .border-left{
+        	border-left: 1px solid #c6c6c6;
+        }
+        .top-menu-icon{
+        	background-size: 28px 28px;
+		    cursor: pointer;
+		    height: 28px;
+		    width: 28px;
+		    display: inline-block;
+        }
+        .margin-bottom3{
+        	margin-bottom: 3px;
+        }
+    </style>
+
+    <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/statics/jquery/extend/jquery-extend.js"></script>
+    <script src="/statics/layer/layer.js"></script>
+    <script src="/statics/layer/extend/laytpl.js"></script>
+    <script src="/statics/scripts/common.js?V4"></script>
+    <script src="/statics/scripts/swiper-3.3.1.min.js"></script>
+    <script src="/statics/scripts/dynamicload.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="/statics/scripts/wx-share.js"></script>
+    <script src="/statics/scripts/homepage.js?v11"></script>
+</head>
+<body style="background-color: #FAFAFA;">
+    <div class="jph">
+        <section id="mask_main" style="display: none">
+            <div class="com-relative index-banner">
+                <div class="swiper-container swiper-banner">
+                    <div class="swiper-wrapper" id="bannercontent">
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination pagination-banner" style="display: block;text-align: right"></div>
+                </div>
+                <div class="com-absolute firstpage-absout" style="display: none">
+                    <div class="com-font-size-12 clearfix">
+                        <div class="fl firstpage-width ct" style="width: 11%">
+                            <a href="mycode.html">
+                                <i class="tuiguang tuiguang-icon"></i>
+                                <p class="color-white">推广</p>
+                            </a>
+                        </div>
+                        <div class="fl firstpage-text display-box best-main-right" style="width: 78%">
+                            <div class="fl display-box serch-sh"><i class="home-serch-icon textbox-icon001 firstpage-search-icon fl"></i></div>
+                            <div class="fl display-box serch-kuh" onclick="opensearch()"><input type="text" id="search" name="serch" placeholder="请输入需要搜索的商品" disabled="disabled" class="firstpage-inputtext" /></div>
+                        </div>
+                        <div class="fl firstpage-width ct" style="width: 11%">
+                            <a href="massagelist.html">
+                                <i class="xiaoxi xiaoxi-icon" id="message_ico"></i>
+                                <p class=" color-white ">消息</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--main-->
+            <div class="clearfix " style="margin: 0;padding: 15px 0;background-color: #fff;">
+                <div class="homefunction coupon-head-module  clearfix" style="display: none">
+                    <ul id="topMenu">
+                    </ul>
+                   	<script type="text/html" id="tmp-topMenu">
+						<li>
+							<a href="{{d.linkUrl}}">
+                                <p class="shop-bottom-img-top shop-img-top"><i class="top-menu-icon" style="background-image:url('{{d.url}}')"></i></p>
+                                <p>{{d.icoName}}</p>
+                            </a>
+                		</li>
+            		</script>
+                </div>
+
+            </div>
+            <div id="maincontent" style="padding-bottom: 40px"></div>
+            <!--bottom-->
+            <div class="shop-bottom">
+                <div class="shop-bottom-menu com-font-size-10 color-nine">
+                    <div class="fl shop-bottom-size">
+                        <a href="javascript:void(0)" class="color-nine">
+                            <p class="shop-bottom-icon"><i class="bottom-my-active bottom-my-icon"></i></p>
+                            <p class="bottom-font-color">首页</p>
+                        </a>
+                    </div>
+                    <div class="fl shop-bottom-size">
+                        <a href="classification.html" target="_self" class="color-nine">
+                            <p class="shop-bottom-icon"><i class="bottom-lei bottom-lei-icon"></i></p>
+                            <p>分类</p>
+                        </a>
+                    </div>
+                    <!--<div class="fl shop-bottom-size">
+                        <a href="cloudshop.html" class="color-nine" target="_self">
+                            <p class="shop-bottom-icon"><i class="bottom-cart bottom-cart-icon"></i></p>
+                            <p>云商城</p>
+                        </a>
+                    </div>-->
+                    <div class="fl shop-bottom-size">
+                        <a href="cart.html" class="color-nine" target="_self">
+                            <p class="shop-bottom-icon"><i class="bottom-myy bottom-myy-icon"></i><i id="cartTotalItemNum" class="i_car_num">0</i></p>
+                            <p>购物车</p>
+                        </a>
+                    </div>
+                    <div class="fl shop-bottom-size">
+                        <a href="mypage.html" class="color-nine" target="_self">
+                            <p class="shop-bottom-icon"><i class="bottom-owo bottom-owo-icon"></i></p>
+                            <p>我的</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="templet1" style="display: none">
+                <div class=" platepointer ">
+                    <div class="mypage-head-name ">
+                        <div class=" text-center">
+                            <!-- <hr class="line" /> -->
+                            <span class="platetitle">标题</span>
+                            <!-- <hr class="line" /> -->
+                        </div>
+                    </div>
+                    <div class=" lr-hint platecontent" style="text-align: center" data-datainfo="11">
+                    </div>
+                </div>
+            </div>
+            <div id="templet2" style="display: none">
+                <div class="clearfix   platepointer">
+                    <div class="mypage-head-name   ">
+                        <div class=" text-center">
+                            <!-- <hr class="line" /> -->
+                            <span class="platetitle">标题</span>
+                            <!-- <hr class="line" /> -->
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="platecontent">
+                            <li class="fl display-box home-main-width  font-center lr-hint width-50 margin-bottom3"></li>
+                            <li class="fl display-box home-main-width  font-center lr-hint width-50 margin-bottom3"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="templet3" style="display: none">
+                <div class=" clearfix platepointer ">
+                    <div class="mypage-head-name    ">
+                        <div class=" text-center">
+                            <!-- <hr class="line" /> -->
+                            <span class="platetitle">标题</span>
+                            <!-- <hr class="line" /> -->
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="platecontent">
+                            <li class="fl display-box home-main-width  font-center lr-hint width-50 border-bottom" ></li>
+                            <li class="fl display-box home-main-width   font-center width-50 border-left border-bottom">
+                                <p class=" lr-hint width-25 border-bottom">
+                                </p>
+                                <p class=" lr-hint width-25">
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="templet4" style="display: none">
+                <div class=" clearfix platepointer">
+                    <div class="mypage-head-name   ">
+                        <div class=" text-center">
+                            <!-- <hr class="line" /> -->
+                            <span class="platetitle">标题</span>
+                            <!-- <hr class="line" /> -->
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="platecontent">
+                            <li class="fl display-box home-main-width  lr-hint width-50"></li>
+                            <li class="fl display-box home-main-width  width-50">
+                                <div class=" lr-hint width-25">
+                                </div>
+                                <div class="width-25">
+                                    <p class="fl display-box home-main-width mamain-li-left lr-hint width-25" style="width: 50%;padding-top: 1px; ">
+                                    </p>
+                                    <p class="fl display-box home-main-width lr-hint width-25" style="width: 50%;padding-top: 1px; ">
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="templet5" style="display: none">
+                <div class=" clearfix platepointer ">
+                    <div class="mypage-head-name    ">
+                        <div class=" text-center">
+                            <!-- <hr class="line" /> -->
+                            <span class="platetitle">标题</span>
+                            <!-- <hr class="line" /> -->
+                        </div>
+                    </div>
+                    <div class="clearfix ">
+                        <ul class="platecontent">
+                            <li class="fl display-box home-main-width  lr-hint width-50 "></li>
+                            <li class="fl display-box home-main-width clearfix width-50">
+                                <ul>
+                                    <li class="fl display-box home-main-width lr-hint width-25" style="width: 50%; overflow: hidden"></li>
+                                    <li class="fl display-box home-main-width lr-hint width-25" style="width: 50%; overflow: hidden"></li>
+                                    <li class="fl display-box home-main-width lr-hint width-25" style="width: 50%;overflow: hidden"></li>
+                                    <li class="fl display-box home-main-width lr-hint width-25" style="width: 50%;overflow: hidden"></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="templet6" style="display: none">
+                <div class=" platepointer ">
+                    <div class="mypage-head-name  text-center">
+                        <!-- <hr class="line" /> -->
+                        <span class="platetitle">标题</span>
+                        <!-- <hr class="line" /> -->
+                    </div>
+                    <div class="MYWITH clearfix shop-buttom">
+                        <div class="swiper-container swiper-product">
+                            <div class="swiper-wrapper platecontent">
+                            </div>
+                            <div class="swiper-pagination product-pagination" style="display: none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="templet7" style="display: none">
+                <div class="Recommend clearfix  platepointer ">
+                    <div class="mypage-head-name text-center">
+                        <!-- <hr class="line" /> -->
+                        <span class="platetitle">标题</span>
+                        <!-- <hr class="line" /> -->
+                    </div>
+                    <div class="mypage-head-name clearfix" style="padding: 4px;">
+                        <ul class="platecontent">
+                            <li class="fl" style="height: 210px; width: 50%;">
+                                <div>
+                                    <p class="ct lr-hint" style="height: 160px">
+                                    </p>
+                                    <p class="Recommend-p-pad">商品名称</p>
+                                    <p class="color-peach" style="padding-left:4px">￥零售价<span>￥市场价</span></p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="templet8" style="display: none">
+                <div class= platepointer ">
+                    <div class="mypage-head-name text-center">
+                        <!-- <hr class="line" /> -->
+                        <span class="platetitle">标题</span>
+                        <!-- <hr class="line" /> -->
+                    </div>
+                    <div class="lr-hint platecontent" style="text-align: center" data-datainfo="11">
+
+                    </div>
+                </div>
+            </div>
+            <script type="text/html" id="tmp-banner">
+                <div class="swiper-slide" onclick="openbanner(this)" data-objectid="{{d.objectId}}" data-showtype="{{d.showType}}" data-linkurl="{{d.linkUrl}}"><img src="{{d.imageUrl}}" /></div>
+            </script>
+            <script type="text/html" id="tmp-activity">
+                {{# for(var i = 0, len = d.length; i < len; i++){ }}
+                <div class="clearfix com-relative" onclick="openactivity(this)" data-activityid="{{d[i].activity.id}}" data-productid="{{d[i].activity.productId}}" data-activityproductnum="{{d[i].activity.activityProductNum}}" data-productpriceid="{{d[i].activity.productPriceId}}" data-activitytype="{{d[i].activity.activityType}}">
+                    {{# if(d[i].activity.activityState!=2){ }}
+                    <div style=" background-color #000; height 100%; opacity 0.2; position absolute; width 100%;z-index 2">
+                    </div>
+                    {{# } }}
+                    <div class="">
+                        <img src="{{d[i].activity.imageUrl}}" style="width: 100%" />
+                    </div>
+                    <div class=" com-absolute" style="text-align: center; right: 0px; width: 56%; top: 0px; z-index: 9; line-height: 36px; border-radius: 18px 0px 0px 18px; background-color: rgb(223, 61, 62); opacity: 0.9; font-size: 16px; color: rgb(13, 13, 13);">
+                        <p class="com-font-size-20 " style="line-height: 37px;display: none">{{d[i].activity.title}}</p>
+                        <p class="timer" data-isbegin="{{d[i].activity.activityState}}" data-lastdate="{{d[i].activity.activityTime}}"></p>
+                    </div>
+                </div>
+                {{# } }}
+            </script>
+        </section>
+        <!-- <section id="mask_layer" style="display: none">
+            <div>
+                <img style="width: 30%; display: inline" src="/statics/img/image/icon.svg">
+                <p>
+                    如要把应用程序加至主屏幕,请点击<img style="width: 8%; display: inline" src="/statics/img/image/action-icon-ios7.png">, 然后点击<strong>
+                        <img style="width: 12%; display: inline" src="/statics/img/image/addHome.png">添加到主屏幕
+                    </strong>
+                </p>
+                <img style="width: 100%; display: inline" src="/statics/img/image/botton.png" class="button">
+            </div>
+        </section> -->
+        <!--<div style="position: fixed; top: 50px; z-index: 100;margin:0 10px">
+            <div id="orderTip">
+                
+            </div>
+        </div>-->
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="HandheldFriendly" content="True">
+		<meta name="MobileOptimized" content="320">
+		<meta http-equiv="cleartype" content="on">
+		<meta name="apple-touch-fullscreen" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<title>充值</title>
+		<link rel="stylesheet" href="/statics/wufustatic/style/recharge.css" />
+		<link rel="stylesheet" href="/statics/wufustatic/style/global.css" />
+	</head>
+
+	<body>
+		<div class="jph">
+			<div class="global_head">
+			</div>
+			<div class="global_head_firinput">
+				<div style="float: left; margin-left: 1.1rem; margin-top: 1.3rem;">
+					<div class="global_name">金额</div>
+				</div>
+				<div style="float: left; margin-left: 1.5rem; width: 80%;">
+					<input type="text" placeholder="建议转入一百以上的金额" class="global_import" />
+				</div>
+			</div>
+			<div class="recharge-head-middle">
+				<div style="height: 12px;"></div>
+				请选择支付方式
+			</div>
+			<div style="width: 100%; height: 5rem;display: flex;">
+				<img src="/statics/wufustatic/images/8_weixin.png" style="margin:1.25rem 2.93% 1.25rem 2.67%;" />
+				<div style="font-size: 1.5rem; color: #333;display: inline-block;margin: auto 0;">微信支付</div>
+				<img src="/statics/wufustatic/images/0_1gouxuan.png" class="recharge-head-img" id="caocao_pic"  onClick="change_pic()"/>
+			</div>
+			<!--<div style="width: 100%; height: 5rem;">
+				<div style="float: left; margin-left: 1.1rem; margin-top: 15px;"><img src="/statics/wufustatic/images/8_weixin.png" /></div>
+				<div style="font-size: 1.5rem; color: #333; width: 30%; float: left; margin-left: 1.1rem; margin-top:24px;">微信支付</div>
+				<div style="float: right; margin-right: 1.1rem;margin-top: 18px;"><img src="/statics/wufustatic/images/0_1gouxuan.png"></div>
+			</div>-->
+			<div class="recharge-head-middle-zhi">
+				<div class="recharge-head-jin"><img src="/statics/wufustatic/images/7_tishi.png" style="height: 1.3rem;"></div>&nbsp; <span>本次最多可充值五千元</span>
+			</div>
+			<div style="height: 1.5rem;"></div>
+			<div style="text-align: center;">
+				<button><div class="recharge-opacity">确认充值</div></button>
+			</div>
+		</div>
+		<script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+         <script src="/statics/scripts/common.js"></script>
+		<script src="/statics/wufustatic/scripts/recharge.js"></script>
+	</body>
+
+</html>

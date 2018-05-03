@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>优惠买单</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link href="/statics/style/common.css" rel="stylesheet" />
+    <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/statics/jquery/extend/jquery-extend.js"></script>
+    <script src="/statics/layer/layer.js"></script>
+    <script src="/statics/scripts/common.js"></script>
+    <script src="/statics/layer/extend/laytpl.js"></script>
+    <script src="/statics/scripts/quickpay-orderconfim.js?1"></script>
+</head>
+<body id="quickpayorderconfim">
+    <div class="jph">
+        <input id="json" type="hidden" />
+        <div class="clearfix head">
+            <div class="logo">
+                <img id="imgLogo" src="" />
+            </div>
+            <div id="shopName" class="shop-title"></div>
+        </div>
+        <ul class="conpon-type">
+            <li class="ct" style="width: auto;">请选择优惠买单方式</li>
+            <!-- 买单立减 -->
+            <li class="clearfix first hide">
+                <i class="choose choose-icon pay-right-ico"></i>
+                <div class="pay-left-text">随机立减<span id="tiaojian" class="red hide">(满10元随机立减)</span></div>
+            </li>
+            <!-- 满额立减 -->
+            <li class="clearfix hide">
+                <i class="choose choose-icon pay-right-ico"></i>
+                <span class="pay-left-text">满额立减</span>
+            </li>
+            <!-- 折扣买单 -->
+            <li class="clearfix hide">
+                <i class="choose choose-icon pay-right-ico"></i>
+                <span class="pay-left-text">折扣买单</span>
+            </li>
+            <!-- 优惠买单 -->
+            <li class="clearfix last hide" style="border-bottom: 1px solid #ccc">
+                <i class="choose choose-icon pay-right-ico"></i>
+                <span class="pay-left-text">优惠券买单</span>
+            </li>
+            <li class="clearfix hide" id="conpon-list">
+                <div class="conpon-title" style="border-bottom: 1px solid #ccc; margin-left: 10px; padding-right: 20px">
+                    <i class="sort-down sort-icon fr"></i>
+                    <span>请选择优惠券</span>
+                </div>
+                <ul id="list">
+                    <script type="text/html" id="tmp-list">
+                        <li class="clearfix conpon-item" data-json='{{$.jsonToString(d)}}'>
+                            <div class="left">
+                                <div class="conpon-logo">
+                                    <img src="{{d.shopBossImage}}"/>
+                                </div>
+                                <div class="conpon-shop">{{d.shopName}}</div>
+                                <div class="conpon-range">{{d.couponTypeValue}}</div>
+                            </div>
+                            <div class="right">
+                                <div class="right-padding">
+                                    <div class="red">￥<span class="conpon-money">{{d.couponMoney}}</span></div>
+                                    <div class="conpon-role">{{d.couponName}}&nbsp;&nbsp;{{d.orderMoney>0?'满'+d.orderMoney:'' }}立减{{d.couponMoney}}元</div>
+                                    <div class="conpon-data">{{formatDate(d.beginTime)}}-{{formatDate(d.endTime)}}</div>
+                                </div>
+                            </div>
+                        </li>
+                    </script>
+                </ul>
+            </li>
+            <li class="clearfix  first">
+                <span class="pay-right-text red"><span id="conponAmount">0.00</span>元</span>
+                <span class="pay-left-text">优惠金额</span>
+            </li>
+            <li class="clearfix last">
+                <span class="pay-right-text">
+                    <span id="payAmount">0.00</span>元
+                </span>
+                <span class="pay-left-text">实付金额</span>
+            </li>
+        </ul>
+        <div class="bg-line"></div>
+        <ul class="paytype">
+            <li class="title" style="width: auto;">请选择支付方式&nbsp;&nbsp;&nbsp;</li>
+            <!-- 账户支付 -->
+            <li class="clearfix">
+                <i id="accoutPay" class="choose choose-icon pay-right-ico"></i>
+                <span class="pay-right-text">
+                    ￥<span id="cashAmount">0.00</span>
+                </span>
+                <i class="wallet wallet-icon pay-left-ico"></i>
+                <div class="pay-left-text">可用余额</div>
+            </li>
+            <!-- 微信支付 -->
+            <li class="clearfix">
+                <i class="choose choose-icon pay-right-ico" id="wxPay"></i>
+                <i class="wx wx-icon pay-left-ico"></i>
+                <span class="pay-left-text">微信支付</span>
+            </li>
+            <!-- 支付宝支付 -->
+            <li class="clearfix">
+                <i class="choose choose-icon pay-right-ico" id="zfbPay"></i>
+                <i class="zfb  zfb-icon pay-left-ico"></i>
+                <span class="pay-left-text">支付宝支付</span>
+            </li>
+        </ul>
+        <div class="bottom">
+            <button type="button" id="submit" class="quickpayorderconfim-submit">
+                立即支付
+            </button>
+        </div>
+    </div>
+</body>
+</html>

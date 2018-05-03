@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>优惠买单列表</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <style type="text/css">
+        .orderinfo_item { background-color: #fff; padding: 10px;margin-bottom: 10px; }
+        .orderinfo_padding { padding: 6px 10px; }
+        .orderinfo_img { border-radius: 4px; width: 60px; height: 60px; display: inline-block; float: left; }
+        .orderinfo_nickname { line-height: 20px; margin-left: 10px; height: 60px; float: left; position: relative; }
+        .orderinfo_nickname p{ position: absolute; bottom: 0; width: 120px; }
+        .orderinfo_account { float: right; line-height: 60px; font-size: 16px; }
+    </style>
+</head>
+<body style="background-color: #F5F5F5">
+    <div class="jph">
+        <div id="head" class="com-fixed com-head">
+            <div>
+                <ul style="text-align: center">
+
+                    <li class="display-box   ct">
+                        <a class="com-head-title"><span>优惠买单列表</span></a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="over-head"></div>
+        <div id="orderlist" class="clearfix" style="padding: 10px 0px;">
+           
+        </div>
+        <p id="back-to-top" style="display: none;">
+            <a href="#top">
+                <img src="/statics/img/image/pd_to_top.png" />
+            </a>
+        </p>
+
+        <div id="nodata" class="hide" style="margin: 0 auto; text-align: center; padding: 60px 0;">
+            <img src="/statics/img/image/no_data.png" alt="无数据"/>
+            <p>啊哦！好像没有检测到数据哟！</p>
+        </div>
+        <!--<div style="position: fixed; top: 0px; z-index: 100; margin: 46px 10%;">
+            <div id="orderTip">
+
+            </div>
+        </div>-->
+        <script type="text/html" id="tmp-list">
+            <div class="orderinfo_item">
+                <div style="padding: 10px; border-bottom: 1px solid #ccc">
+                    <span>订单编号：{{d.orderId}}</span>
+                    <span class="fr">{{d.payStateValue}}</span>
+                </div>
+                <div style="color: #bababa " class="orderinfo_padding">
+                    <span>下单时间</span>
+                    <span class="fr">{{formatDate(d.createTime,true)}}</span>
+                </div>
+                <div class="orderinfo_padding">
+                    <span>订单总额</span>
+                    <span class="fr">{{d.totalAmount}}</span>
+                </div>
+                <div class="orderinfo_padding">
+                    <span>优惠方式</span>
+                    <span class="fr">{{d.orderTypeValue}}</span>
+                </div>
+                <div style="  border-bottom: 1px solid #ccc" class="orderinfo_padding">
+                    <span>优惠金额</span>
+                    <span class="fr" style="color: #cc3333">{{d.discountAmount}}</span>
+                </div>
+                <div class="clearfix">
+                    <div style="padding: 10px 10px 0px 10px;" class="clearfix">
+                        <img src="{{d.shopLogo}}" class="orderinfo_img" />
+                        <div class="orderinfo_nickname"><p>{{d.shopName}}</p></div>
+                        <div class="orderinfo_account">实付金额：{{d.payAmount}}</div>
+                    </div>
+                </div>
+            </div>
+
+        </script>
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/common.js?v1"></script>
+        <script src="/statics/scripts/quick-orderlist.js"></script>
+
+    </div>
+</body>
+</html>

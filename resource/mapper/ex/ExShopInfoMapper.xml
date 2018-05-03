@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xinmeng.api.dao.ex.ExShopInfoDao">
+	
+	<resultMap id="BaseResultMap" type="cn.xinmeng.web.shop.entity.vo.ShopInfoVo">
+    	<id column="id" jdbcType="INTEGER" property="id" />
+	   	<result column="shop_name" jdbcType="VARCHAR" property="shopName" />
+	   	<result column="shop_description" jdbcType="VARCHAR" property="shopDescription" />
+	   	<result column="shop_phone" jdbcType="VARCHAR" property="shopPhone" />
+	   	<result column="province_id" jdbcType="INTEGER" property="provinceId" />
+	   	<result column="city_id" jdbcType="INTEGER" property="cityId" />
+	   	<result column="district_id" jdbcType="INTEGER" property="districtId" />
+	   	<result column="shop_address" jdbcType="VARCHAR" property="shopAddress" />
+	   	<result column="short_url" jdbcType="VARCHAR" property="shortUrl" />
+	   	<result column="qr_code" jdbcType="VARCHAR" property="qrCode" />
+	   	<result column="longitude" jdbcType="DOUBLE" property="longitude" />
+	   	<result column="latitude" jdbcType="DOUBLE" property="latitude" />
+	   	<result column="distance" jdbcType="DOUBLE" property="distance" />
+	   	<result column="logo" jdbcType="VARCHAR" property="logo" />
+	   	<!-- <association property="logo" javaType="java.lang.String" column="id" select="selectLogoByShopId"/> -->
+	   	<collection property="categoryList" ofType="java.lang.String" column="id" select="selectCategoryNamesByShopId"/>
+	   	<collection property="productInfoList" ofType="cn.xinmeng.web.shop.entity.vo.ProductInfoVo" column="id" select="cn.xinmeng.api.dao.ex.ExProductInfoDao.selectProductInfosByShopId"/>
+	</resultMap>
+   
+	<sql id="Base_Column_List">
+    	id,
+    	(select count(*) from o_order o where o.shop_id = s_shop_info.id) saleCount,
+	    shop_name shopName,
+	    shop_description shopDescription,
+	    shop_phone shopPhone,
+	    province_id provinceId,
+	    city_id cityId,
+	    district_id districtId,
+	    shop_address shopAddress,
+	    short_url shortUrl,
+	    shop_logo logo,
+	    qr_code qrCode,
+	    longitude,
+	    latitude
+	</sql>
+	
+	<select id="selectShopInfoVoList" parameterType="map" resultMap="BaseResultMap">
+		select  
+			<include refid="Base_Column_List"/>
+			<choose>
+				<when test="entity.longitude != null and entity.latitude != null">,fn_distance(#{ entity.latitude,jdbcType=DOUBLE },#{ entity.longitude,jdbcType=DOUBLE },latitude,longitude)</when>
+				<otherwise>,0</otherwise>
+			</choose> distance
+		from s_shop_info
+		where state =2
+		<if test="entity.shopName != null and entity.shopName != ''">
+			and shop_name like CONCAT('%',#{ entity.shopName,jdbcType=VARCHAR },'%')
+		</if>
+		<if test="entity.currentShopId != null and entity.currentShopId != 0">
+			and id !=#{ entity.currentShopId,jdbcType=INTEGER }
+		</if>
+		<if test="entity.longitude != null and entity.latitude != null">
+			and fn_distance(#{ entity.latitude,jdbcType=DOUBLE },#{ entity.longitude,jdbcType=DOUBLE },latitude,longitude) &lt; #{entity.distance,jdbcType=INTEGER}
+		</if> 
+		order by
+		<choose>
+			<when test="entity.sortType == 0">distance,</when>
+			<when test="entity.sortType == 1">distance,</when>
+			<when test="entity.sortType == 2">saleCount desc,</when>
+			<when test="entity.sortType == 3">create_time desc,</when>
+			<otherwise>distance,</otherwise>
+		</choose>id
+	</select>
+	
+	<select id="selectShopInfoVoListCount" parameterType="map" resultType="java.lang.Integer">
+		select count(*) from s_shop_info
+		where state =2
+		<if test="entity.shopName != null and entity.shopName != ''">
+			and shop_name like CONCAT('%',#{ entity.shopName,jdbcType=VARCHAR },'%')
+		</if>
+		<if test="entity.currentShopId != null and entity.currentShopId != 0">
+			and id !=#{ entity.currentShopId,jdbcType=INTEGER }
+		</if>
+		<if test="entity.longitude != null and entity.latitude != null">
+			and fn_distance(#{ entity.latitude,jdbcType=DOUBLE },#{ entity.longitude,jdbcType=DOUBLE },latitude,longitude) &lt; #{entity.distance,jdbcType=INTEGER}
+		</if> 
+	</select>
+	
+	<select id="selectLogoByShopId" parameterType="map" resultType="java.lang.String">
+		select image_url from s_shop_image 
+		where image_type=1 and state=2 and shop_id=#{shopId,jdbcType=INTEGER}
+		order by sort desc limit 1
+	</select>
+	
+	<select id="selectCategoryNamesByShopId" parameterType="map" resultType="java.lang.String">
+		select category_name from s_shop_category c
+		inner join s_shop_category_config s on c.id=s.category_id and s.shop_id=#{shopId,jdbcType=INTEGER}
+		where state=2
+		order by sort desc
+	</select>
+</mapper>

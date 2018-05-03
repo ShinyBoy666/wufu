@@ -1,0 +1,33 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+xmlns:beans="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+       <http auto-config="true" use-expressions="true">
+          <logout invalidate-session="true" logout-success-url="/index.jsp"  logout-url="/logout" delete-cookies="true"/> 
+        	<intercept-url pattern="/api/test.htm"  access="hasRole('ROLE_USER')" />
+        	<intercept-url pattern="/druid/*"  access="hasRole('ROLE_ADMIN')" />
+        	<http-basic/>
+    	</http>
+    	
+    	<authentication-manager alias="authenticationManager">   
+		    <authentication-provider>  
+		      
+		     <user-service>   
+			      <user authorities="ROLE_USER" name="user" password="user110"/>  
+			      <user authorities="ROLE_ADMIN" name="admin" password="admin110"/>    
+		     </user-service>  
+		                  
+		    </authentication-provider>   
+		</authentication-manager>  
+    	<!-- <authentication-manager>
+	        <authentication-provider>
+	            <user-service>
+	                <user name="service" password="service110" authorities="SERVICE_USER" />
+	                <user name="admin" password="admin110" authorities="ROLE_USER" />
+	            </user-service>
+	        </authentication-provider>
+	    </authentication-manager> -->
+</beans:beans>          

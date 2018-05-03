@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>活动介绍</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="/statics/style/itembass.css?vqq00003" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <style type="text/css">
+        body { background-color: #C3214A; color: #fff; }
+        a, button { color: #fff; }
+        .orderinfo_item { background-color: #CF4D6F; padding: 5px 10px; margin-bottom: 10px; -ms-border-radius: 8px; border-radius: 8px; }
+
+            .orderinfo_item .remark { width: 76%; overflow: hidden; padding-top: 4px; line-height: 20px; height: 25px; padding-left: 10px; padding-left: 10px; text-overflow: ellipsis; /*以省略号...显示*/ white-space: nowrap; /*强制不换行*/ margin-top: 5px; }
+        .orderinfo_padding { padding: 6px 10px; }
+        .orderinfo_img { -ms-border-radius: 4px; border-radius: 4px; width: 40px; height: 40px; display: inline-block; float: left; background: url('/statics/img/image/monkey.png') 5px -8px no-repeat; -ms-background-size: 35px 60px; background-size: 35px 60px; }
+
+        .orderinfo_nickname { margin-left: 10px; float: left; position: relative; width: 76%; margin-top: 6px; }
+            .orderinfo_nickname .shopname { float: left; width: 45%; line-height: 20px; height: 20px; overflow: hidden; text-overflow: ellipsis; /*以省略号...显示*/ white-space: nowrap; /*强制不换行*/ }
+            .orderinfo_nickname .shopaddress { float: right; width: 50%; line-height: 20px; height: 20px; overflow: hidden; text-overflow: ellipsis; /*以省略号...显示*/ white-space: nowrap; /*强制不换行*/ }
+        .home-icon { cursor: pointer; padding: 10px; background: url("/statics/img/icon/shop.png") no-repeat scroll center center; display: inline-block; -ms-background-size: 20px 20px; background-size: 20px 20px; float: left; }
+        .address-icon { cursor: pointer; height: 18px; padding-top: 0; vertical-align: middle; width: 14px; background: #000000 url("/statics/img/icon/address_ico.png") no-repeat scroll center center; background: rgba(0, 0, 0, 0) url("/statics/img/icon/address_ico.png") no-repeat scroll center center; display: inline-block; -ms-background-size: 14px 18px; background-size: 14px 18px; }
+
+        .search-block { margin: 10px; height: 30px;
+                         -ms-border-radius: 4px; 
+                         border-radius: 4px; overflow: hidden; padding-left: 8px; border: #fff solid 1px; background-color: #CF4D6F; }
+            .search-block input { width: 80%; float: left; height: 30px; background-color: #CF4D6F; color: #fff; }
+            .search-block button { width: 20%; float: left; height: 100%; 
+                                   display: block; color: #cc3333; background: #fff;
+                                   padding: 4px 0 0 6px; text-align: left; }
+            .search-block .ico-search {
+                background: url('/statics/img/icon/search.png') #fff no-repeat;
+                -ms-background-size: 15px 15px;
+                background-size: 15px 15px;
+                display: block; 
+                padding: 8px;
+                float: left;
+            }
+
+        .icon-join { padding: 4px 6px; border: 1px solid #fff; float: right; -ms-border-radius: 4px; border-radius: 4px; }
+        /*iphone5*/
+        @media screen and (max-width:374px) {
+            .orderinfo_item { font-size: 14px; }
+                .orderinfo_item .remark { font-size: 12px; }
+                .search-block  button{ font-size: 14px;padding-top: 2px; }
+            .search-block .ico-search {-ms-background-size: 15px 15px;background-size: 15px 15px;}
+            .join-title{font-size:14px}
+        }
+        /*iphone6*/
+        @media screen and (min-width:375px) and (max-width:413px) {
+            .orderinfo_item { font-size: 16px; }
+                .orderinfo_item .remark { font-size: 14px;}
+                .search-block  button{ font-size: 16px; padding-top: 0px; }
+            .search-block .ico-search {-ms-background-size: 16px 16px;background-size: 16px 16px;}
+            .join-title{font-size:16px}
+        }
+        /*iphone6+*/
+        @media screen and (min-width:414px) and (max-width:440px) {
+            .orderinfo_item { font-size: 16px; }
+                .orderinfo_item .remark { font-size: 14px; }
+                .search-block  button{ font-size: 16px; }
+            .search-block .ico-search {-ms-background-size: 16px 16px;background-size: 16px 16px;}
+            .join-title{font-size:18px}
+        }
+        /*其他更大*/
+        @media screen and (min-width:441px) {
+            .orderinfo_item { font-size: 18px; }
+                .orderinfo_item .remark { font-size: 16px; }
+                .search-block  button{ font-size: 18px; }
+            .search-block .ico-search {-ms-background-size: 18px 18px;background-size: 18px 18px;}
+            .join-title{font-size:18px}
+        }
+    </style>
+</head>
+<body>
+    <div class="jph">
+        <div class="search-block clearfix">
+            <input id="txtKeyword" type="text" />
+            <button type="button" onclick="loadInfo(1)"><i class="ico-search"></i>
+                <span style="float: left; display: block; line-height: 16px;">搜索</span></button>
+        </div>
+        <div id="orderlist" class="clearfix" style="padding: 10px; font-size: 14px;">
+
+            <div class="orderinfo_item">
+                <div style="padding: 10px; border-bottom: 1px solid #ccc;line-height:18px" class="clearfix">
+                    <a class="icon-join" href="quickpay-shopapply.html">我要加入</a>
+                    <i class="home-icon" onclick="showhide(1, this)"></i>
+                    <span class="join-title" style="float: left; padding: 4px 0 0 4px;">加入优惠买单的店家</span>
+                </div>
+                <div id="randomList">
+                </div>
+            </div>
+        </div>
+        <p id="back-to-top" style="display: none;">
+            <a href="#top">
+                <img src="/statics/img/image/pd_to_top.png" />
+            </a>
+        </p>
+        <div id="nodata" class="hide" style="margin: 0 auto; text-align: center; padding: 60px 0;">
+            <img src="/statics/img/image/no_data.png" alt="无数据"/>
+            <p>啊哦！好像没有检测到数据哟！</p>
+        </div>
+        <!--<div style="position: fixed; top: 42px; z-index: 100; margin: 0 10px;">
+            <div id="orderTip">
+
+            </div>
+        </div>-->
+        <input id="hidrandomList" type="hidden" value="1" />
+        <input id="hidfullreduceList" type="hidden" value="1" />
+        <input id="hidsaleList" type="hidden" value="1" />
+        <input id="hidcouponList" type="hidden" value="1" />
+        <script type="text/html" id="tmp-randomList">
+            <div style="padding-top: 10px" class="clearfix" onclick="goshopdetail({{d.shopId }})">
+                <div style="width: 20%;">
+                    <img src="{{d.shopLogo}}" class="orderinfo_img" />
+                </div>
+                <div class="orderinfo_nickname" style="">
+                    <div class="shopname">{{d.shopName}}</div>
+                    <div class="shopaddress">
+                        <i class="address-icon"></i> {{d.shopAddress}}
+                    </div>
+                </div>
+                <div class="remark">
+                    {{d.remark}}
+                </div>
+            </div>
+        </script>
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js?v1"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/common.js?v1"></script>
+        <script src="/statics/scripts/quickpay-search.js"></script>
+    </div>
+</body>
+</html>

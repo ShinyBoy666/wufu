@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	default-lazy-init="true">
+	
+	<!-- 客户端 -->
+	<bean id="shop_service_config"  class="org.springframework.beans.factory.config.MapFactoryBean">
+		<property name="sourceMap">
+			<map>
+				<!-- 错误日志 -->
+				<entry key="errorlog"  value="cn.xinmeng.web.shop.impl.log.SErrorLogComponent" />
+				
+				<!-- 会员注册 -->
+				<entry key="1000"  value="cn.xinmeng.web.shop.impl.user.S1000Component" />
+				<!-- 会员登录 -->
+				<entry key="1001"  value="cn.xinmeng.web.shop.impl.user.S1001Component" />
+				<!-- 修改密码 -->
+				<entry key="1002"  value="cn.xinmeng.web.shop.impl.user.S1002Component" />
+				<!-- token登录 -->
+				<entry key="1003"  value="cn.xinmeng.web.shop.impl.user.S1003Component" />
+				<!-- 手机验证码登录 -->
+				<entry key="1004"  value="cn.xinmeng.web.shop.impl.user.S1004Component" />
+				<!-- 验证用户名是否存在-->
+				<entry key="1005"  value="cn.xinmeng.web.shop.impl.user.S1005Component" />
+				
+				<!-- 商品列表 -->
+				<entry key="1006"  value="cn.xinmeng.web.shop.impl.product.S1006Component" /> 
+				<!-- 商品详情  -->
+				<entry key="1007"  value="cn.xinmeng.web.shop.impl.product.S1007Component" />
+				<!-- 购物车商品新增 -->
+				<entry key="1008"  value="cn.xinmeng.web.shop.impl.cart.S1008Component" />
+				<!-- 购物车商品修改 -->
+				<entry key="1009"  value="cn.xinmeng.web.shop.impl.cart.S1009Component" />
+				<!-- 购物车商品删除 -->
+				<entry key="1010"  value="cn.xinmeng.web.shop.impl.cart.S1010Component" />
+				<!-- 购物车列表 -->
+				<entry key="1011"  value="cn.xinmeng.web.shop.impl.cart.S1011Component" />
+				<!-- 购物车数量 -->
+				<entry key="1012"  value="cn.xinmeng.web.shop.impl.cart.S1012Component" />
+				
+				<!-- 常用地址新增 -->
+				<entry key="1013"  value="cn.xinmeng.web.shop.impl.address.S1013Component" />
+				<!-- 常用地址修改 -->
+				<entry key="1014"  value="cn.xinmeng.web.shop.impl.address.S1014Component" />
+				<!-- 常用地址列表 -->
+				<entry key="1015"  value="cn.xinmeng.web.shop.impl.address.S1015Component" />
+				<!-- 常用地址设置默认 -->
+				<entry key="1016"  value="cn.xinmeng.web.shop.impl.address.S1016Component" />
+				<!-- 常用地址删除 -->
+				<entry key="1017"  value="cn.xinmeng.web.shop.impl.address.S1017Component" />
+				
+				<!-- 订单查询 -->
+				<entry key="1018"  value="cn.xinmeng.web.shop.impl.order.S1018Component" />
+				<!-- 订单查看 -->
+				<entry key="1019"  value="cn.xinmeng.web.shop.impl.order.S1019Component" />
+				<!-- 订单操作（确认收货/取消订单/订单删除） -->
+				<entry key="1020"  value="cn.xinmeng.web.shop.impl.order.S1020Component" />
+				<!-- 创建订单 -->
+				<entry key="1021"  value="cn.xinmeng.web.shop.impl.order.S1021Component" />
+				<!-- 快速下单 TODO -->
+				<entry key="1022"  value="cn.xinmeng.web.shop.impl.order.S1022Component" />
+				<!-- 再次支付 -->
+				<entry key="1023"  value="cn.xinmeng.web.shop.impl.pay.S1023Component" />
+				<!-- 账户明细 -->
+				<entry key="1024"  value="cn.xinmeng.web.shop.impl.pay.S1024Component" />
+				
+				<!-- 图片上传 -->
+				<entry key="1025"  value="cn.xinmeng.web.shop.impl.customer.S1025Component" />
+				<!-- 修改个人资料 -->
+				<entry key="1026"  value="cn.xinmeng.web.shop.impl.customer.S1026Component" />
+				<!-- 客户反馈新增 -->
+				<entry key="1027"  value="cn.xinmeng.web.shop.impl.customer.S1027Component" />
+				<!-- 我的钱包信息 -->
+				<entry key="1028"  value="cn.xinmeng.web.shop.impl.customer.S1028Component" />
+				<!-- 充值 -->
+				<entry key="1029"  value="cn.xinmeng.web.shop.impl.customer.S1029Component" />
+				<!-- 提现 -->
+				<entry key="1030"  value="cn.xinmeng.web.shop.impl.customer.S1030Component" />
+				<!-- 我的优惠券列表 -->
+				<entry key="1031"  value="cn.xinmeng.web.shop.impl.customer.S1031Component" />
+				<!-- 领取优惠券（添加） -->
+				<entry key="1032"  value="cn.xinmeng.web.shop.impl.customer.S1032Component" />
+				<!-- 确认订单：查询店铺，邮费，优惠券，是否需要发货，实名制（跟1044一样，只是传入参数不一样） -->
+				<entry key="1033"  value="cn.xinmeng.web.shop.impl.customer.S1033Component" />
+				<!-- 店铺可领取优惠券列表 -->
+				<entry key="1034"  value="cn.xinmeng.web.shop.impl.customer.S1034Component" />
+				<!-- 是否能够发送短信验证吗 -->
+				<entry key="1035"  value="cn.xinmeng.web.shop.impl.user.S1035Component" />
+				
+				<!-- 附近店铺  -->
+				<entry key="1036"  value="cn.xinmeng.web.shop.impl.shop.S1036Component" />
+				<!-- 首页  -->
+				<entry key="1037"  value="cn.xinmeng.web.shop.impl.shop.S1037Component" />
+				<!-- 优惠买单 店铺列表  -->
+				<entry key="1038"  value="cn.xinmeng.web.shop.impl.market.S1038Component" />
+				<!-- 商品分类列表  -->
+				<entry key="1039"  value="cn.xinmeng.web.shop.impl.product.S1039Component" />
+				<!-- 关注商品列表  -->
+				<entry key="1040"  value="cn.xinmeng.web.shop.impl.product.S1040Component" />
+				<!-- 客户收藏/取消收藏  -->
+				<entry key="1041"  value="cn.xinmeng.web.shop.impl.customer.S1041Component" />
+				<!-- 商品图文详情  -->
+				<entry key="1042"  value="cn.xinmeng.web.shop.impl.product.S1042Component" />
+				<!-- 发送短信验证码 -->
+				<entry key="1043"  value="cn.xinmeng.web.shop.impl.user.S1043Component" />
+				<!-- 确认订单：查询店铺，邮费，优惠券，是否需要发货，实名制（跟1033一样，只是传入参数不一样） -->
+				<entry key="1044" value="cn.xinmeng.web.shop.impl.order.S1044Component"/>
+				<!-- 推广 -->
+				<entry key="1045" value="cn.xinmeng.web.shop.impl.customer.S1045Component"/>
+				<!-- 邀请好友列表 -->
+				<entry key="1046" value="cn.xinmeng.web.shop.impl.customer.S1046Component"/>
+				<!-- 绑定支付宝信息 -->
+				<entry key="1047" value="cn.xinmeng.web.shop.impl.customer.S1047Component"/>
+				<!-- 验证码修改密码 -->
+				<entry key="1048" value="cn.xinmeng.web.shop.impl.user.S1048Component"/>
+				<!-- app版本 -->
+				<entry key="1049" value="cn.xinmeng.web.shop.impl.user.S1049Component"/>
+				<!-- 查询一级商品分类下的所有分类  -->
+				<entry key="1050"  value="cn.xinmeng.web.shop.impl.product.S1050Component" />
+				<!-- 查询支付宝信息 -->
+				<entry key="1051" value="cn.xinmeng.web.shop.impl.customer.S1051Component"/>
+				<!-- 查询消息 -->
+				<entry key="1052" value="cn.xinmeng.web.shop.impl.customer.S1052Component"/>
+				<!-- 兑换优惠券 -->
+				<entry key="1053" value="cn.xinmeng.web.shop.impl.customer.S1053Component"/>
+				<!-- 查询店铺所有商品分类  -->
+				<entry key="1054" value="cn.xinmeng.web.shop.impl.product.S1054Component"/>
+				<!-- 根据模块id查询商品信息  -->
+				<entry key="1055" value="cn.xinmeng.web.shop.impl.product.S1055Component"/>
+				<!-- 查询常用地址  -->
+				<entry key="1056" value="cn.xinmeng.web.shop.impl.address.S1056Component"/>
+				<!-- 查询区域  -->
+				<entry key="1057" value="cn.xinmeng.web.shop.impl.address.S1057Component"/>
+				
+				<!-- 查询订单确认页面 -->
+				<entry key="1058" value="cn.xinmeng.web.shop.impl.order.S1058Component"/>
+				<!-- 客户反馈新增，wap -->
+				<entry key="1059"  value="cn.xinmeng.web.shop.impl.customer.S1059Component" />
+				<!-- 常用地址新增（wap） -->
+				<entry key="1060"  value="cn.xinmeng.web.shop.impl.address.S1060Component" />
+				<!-- 轮播图  -->
+				<entry key="1061"  value="cn.xinmeng.web.shop.impl.shop.S1061Component" />
+				<!-- 云商城商品  -->
+				<entry key="1062"  value="cn.xinmeng.web.shop.impl.product.S1062Component" /> 
+				<!-- 附近店铺首页  -->
+				<entry key="1063"  value="cn.xinmeng.web.shop.impl.shop.S1063Component" /> 
+				<!-- 发送短信内容 -->
+				<entry key="1064"  value="cn.xinmeng.web.shop.impl.base.S1064Component" />
+				<!-- 不是会员能否余额提现，支付 -->
+				<entry key="1065"  value="cn.xinmeng.web.shop.impl.base.S1065Component" />
+				<!-- 查询店铺信息 -->
+				<entry key="1066"  value="cn.xinmeng.web.shop.impl.shop.S1066Component" />
+				<!-- 会员充值 -->
+				<entry key="1067"  value="cn.xinmeng.web.shop.impl.customer.S1067Component" />
+				<!-- 更新个推id TODO -->
+				<entry key="1068"  value="cn.xinmeng.web.shop.impl.base.S1068Component" />
+				
+				<!-- 秒杀活动详情 -->
+				<entry key="1069"  value="cn.xinmeng.web.shop.impl.market.S1069Component" />
+				<!-- 秒杀活动商品列表 -->
+				<entry key="1070"  value="cn.xinmeng.web.shop.impl.market.S1070Component" />
+				<!-- 秒杀订单确认页 -->
+				<entry key="1071"  value="cn.xinmeng.web.shop.impl.market.S1071Component" />
+				<!-- 活动下架，删除redis缓存 -->
+				<entry key="1072"  value="cn.xinmeng.web.shop.impl.redis.S1072Component" />
+				<!-- 地址修改，删除redis缓存 -->
+				<entry key="1073"  value="cn.xinmeng.web.shop.impl.redis.S1073Component" />
+				<!-- 首页模版下架，删除redis缓存 -->
+				<entry key="1074"  value="cn.xinmeng.web.shop.impl.redis.S1074Component" />
+				<!-- 秒杀活动商品列表(跟1070一样，wap) -->
+				<entry key="1075"  value="cn.xinmeng.web.shop.impl.market.S1075Component" />
+				<!-- 微信 生成JS-SDK权限验证的签名 -->
+				<entry key="1076"  value="cn.xinmeng.web.shop.impl.base.S1076Component" />
+				<!-- 代理商申请添加 -->
+				<entry key="1077"  value="cn.xinmeng.web.shop.impl.base.S1077Component" />
+				<!-- 店铺申请添加 -->
+				<entry key="1078"  value="cn.xinmeng.web.shop.impl.base.S1078Component" />
+				<!-- 获取产品信息 -->
+				<entry key="1079"  value="cn.xinmeng.web.shop.impl.base.S1079Component" />
+				<!-- 广告 -->
+				<entry key="1080"  value="cn.xinmeng.web.shop.impl.base.S1080Component" />
+				<!-- 提现列表 -->
+				<entry key="1081"  value="cn.xinmeng.web.shop.impl.base.S1081Component" />
+				<!-- 更新微信账户信息-->
+				<entry key="1082"  value="cn.xinmeng.web.shop.impl.customer.S1082Component" />
+				<!-- openid绑定手机号码 -->
+				<entry key="1083"  value="cn.xinmeng.web.shop.impl.user.S1083Component" />
+				<!-- 优惠买单，订单列表 -->
+				<entry key="1084"  value="cn.xinmeng.web.shop.impl.quickorder.S1084Component" />
+				<!-- 优惠券配额接口 -->
+				<entry key="1091"  value="cn.xinmeng.web.shop.impl.market.S1091Component" />
+				<!-- 优惠买单，获取商户支持的优惠支付方式 -->
+				<entry key="1092"  value="cn.xinmeng.web.shop.impl.quickorder.S1092Component" />
+				<!-- 优惠买单，创建订单 -->
+				<entry key="1093"  value="cn.xinmeng.web.shop.impl.quickorder.S1093Component" />
+				<!-- 根据支付单号查询订单 -->
+				<entry key="1094"  value="cn.xinmeng.web.shop.impl.pay.S1094Component" />
+				<!-- 查询微信账户信息-->
+				<entry key="1095"  value="cn.xinmeng.web.shop.impl.customer.S1095Component" />
+				<!-- 优惠买单 活动详情 -->
+				<entry key="1096"  value="cn.xinmeng.web.shop.impl.market.S1096Component" />
+				<!-- 优惠买单 付款后查询优惠券-->
+				<entry key="1097"  value="cn.xinmeng.web.shop.impl.market.S1097Component" />
+				<!-- 优惠买单 优惠劵列表 -->
+				<entry key="1098"  value="cn.xinmeng.web.shop.impl.market.S1098Component" />
+				<!-- 优惠买单 领取优惠劵 -->
+				<entry key="1099"  value="cn.xinmeng.web.shop.impl.market.S1099Component" />
+				<!-- 微信获取session_key -->
+				<entry key="1100"  value="cn.xinmeng.web.shop.impl.base.S1100Component" />
+				<!-- 我的团队 -->
+				<entry key="1101"  value="cn.xinmeng.web.shop.impl.customer.S1101Component" />
+				<!-- 团队列表 -->
+				<entry key="1102"  value="cn.xinmeng.web.shop.impl.customer.S1102Component" />
+				
+				
+				<!-- 常见问题 -->
+				<entry key="1117"  value="cn.xinmeng.web.shop.impl.base.S1117Component" />
+				<!-- 增值服务费用-->
+				<entry key="1120"  value="cn.xinmeng.web.shop.impl.find.S1120Component" />
+				
+				
+				<!-- 贡献积分查询 -->
+				<entry key="1121" value="cn.xinmeng.web.shop.impl.customer.S1121Component"/>
+			</map>
+		</property>
+	</bean>
+</beans>	

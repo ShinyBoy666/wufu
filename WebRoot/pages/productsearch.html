@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>商品列表</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="/statics/style/itembass.css?vqq00001" />
+    <link href="/statics/style/common.css" rel="stylesheet" />
+    <link href="/statics/style/productsearch.css" rel="stylesheet" />
+    <style type="text/css">
+        .product_temp .width-eight {
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+		.shop-bottom-img-top{
+			color: #ff004d;
+			font-size: 16px;
+		}
+		.color-block {
+            height: 36px;
+            line-height: 18px;
+            overflow: hidden;
+            color: #979797
+        }
+    </style>
+</head>
+<body style="background-color: #FAFAFA">
+    <div class="jph">
+        <div id="head" class="com-fixed search-head">
+            <div class="searchfy clearfix">
+                <div class="fl near-return-width" onclick="javascript: history.back();"><i class="code-ret near-return-icon"></i></div>
+                <div class="fl textbox display-box " style="width: 75%">
+                    <div class="fl display-box serch-sh"><i class="home-serch-icon textbox-icon001 fl"></i></div>
+                    <div class="fl display-box serch-kuh"><input type="text" id="search" name="serch" placeholder="请输入需要搜索的商品" class="classify-inputtext" /></div>
+                </div>
+                <div class="fr near-return-width" style="margin-right: 10px;"><i onclick="changeShowType(this)" class="search-much-list search-much-icon mg-large-left"></i></div>
+            </div>
+        </div>
+        <!--head end-->
+        <div class="classify-margin-top"></div>
+        <!--main-->
+        <div class="project-bottom-height clearfix">
+            <!--菜单导航栏-->
+            <div class="PROsearch  clearfix" style="background-color: #fff;position: fixed;width: 100%;max-width: 640px;">
+                <ul>
+                    <li class="active" onclick="searchsort(1)"><a href="javascript:void(0)">销量<i class="sort-down-active sort-icon"></i></a></li>
+                    <li onclick="searchsort(2)"><a href="javascript:void(0)">价格<i class="sort-down sort-icon"></i></a></li>
+                </ul>
+            </div>
+            <!--列表循环-->
+            <div id="list_products" style="padding-top: 40px;">
+
+            </div>
+        </div>
+        <p id="back-to-top" style="display: none;">
+            <a href="#top">
+                <img src="/statics/img/image/pd_to_top.png" />
+            </a>
+        </p>
+        <script type="text/html" id="tmp-list-products">
+            <div class="product_temp" data-pid="{{d.productId}}" onclick="opendetails(this)">
+                <div class="forget-li-bottpm">
+                    <div class="mypage-head-name clearfix" style="background-color: #fff">
+                        <div class="fl display-box com-title-over  product-list-img-overflow" style="overflow: hidden">
+                            <img src="{{d.imageUrl}}" onload="imgOnload(this,{{d.$index}})"/>
+                        </div>
+                        <div class="fl display-box width-eight">
+                            <ul>
+                                <li class="color-block">
+									{{#  if (d.isNew != null && d.isNew == 2){ }}
+										<img height="12px" src="/statics/img/icon/new.png" style="margin-right:5px;"/>
+									{{# }   }}
+									{{#  if ((d.hot != null && d.hot == 2) && !(d.isNew != null && d.isNew == 2)){ }}
+										<img height="12px" src="/statics/img/icon/hot.png" style="margin-right:5px;"/>
+									{{# }   }}
+									{{d.productName}}
+								</li>
+                                <li class="color-peach shop-bottom-img-top">￥{{d.retailPrice.toFixed(2)}}<span style="float:right;color:#b2b2b2;font-size:12px;">销量：{{d.buyCount+d.buyVirtualCount}}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <input id="hidshowtype" type="hidden" value="0" />
+        <input id="hidsort" type="hidden" value="0" />
+        <input id="hidcategoryid" type="hidden" value="0" />
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/scripts/dynamicload.js"></script>
+        <script src="/statics/scripts/productsearch.js"></script>
+    </div>
+</body>
+</html>

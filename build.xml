@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="wufu" default="build" basedir="/data/svn/" >
+
+	<property name="build.project" value="wufu"/>
+	<property name="build.lib" value="/data/svn/lib"/>
+	<property name="build.webroot" value="${build.project}/WebRoot"/>
+	<property name="build.src" value="${build.project}/src"/>
+	<property name="build.resource" value="${build.project}/resource"/>
+	<property name="build.properties" value="${build.project}/properties"/>
+	
+	<property name="publish.dir" value="/data/publish/war/wufu"/>
+	<property name="publish.class" value="${publish.dir}/WEB-INF/classes"/>
+	<property name="publish.lib" value="${publish.dir}/WEB-INF/lib"/>
+	
+	
+   <!-- 设置类路径 -->
+    <path id="compile.classpath">
+        <fileset dir="${build.lib}">
+               <exclude name="**/.svn"/>
+               <exclude name="test/"/>
+          </fileset>    
+    </path>
+
+	
+  <target name="build"  description="Build this project" depends="clean,compile,resource">
+  </target>
+ 
+	
+  <target name="clean" description="Remove all generated files.">
+    <delete dir="${publish.dir}"/>
+  </target>
+
+    <target name="resource">
+        <copy todir="${publish.dir}" >
+            <fileset dir="${build.webroot}"></fileset>
+        </copy>
+        <copy todir="${publish.class}" >
+            <fileset dir="${build.resource}"></fileset>
+        </copy>
+        <copy todir="${publish.class}" >
+            <fileset dir="${build.properties}"></fileset>
+        </copy>
+        <copy todir="${publish.lib}" >
+            <fileset dir="${build.lib}"></fileset>
+        </copy>
+    </target>
+ 
+  <target name="compile">
+     <mkdir dir="${publish.class}"/>
+    <javac debug="true" debuglevel="source,lines,vars" encoding="utf-8" srcdir="${build.src}" 
+    	bootclasspath="${java.home}/lib/rt.jar；${java.home}/lib/jce.jar" 
+    	classpathref="compile.classpath" 
+    	includeantruntime="false" 
+    	destdir="${publish.class}"/>
+  </target>
+ 
+</project>

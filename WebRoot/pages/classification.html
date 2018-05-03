@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>分类</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="/statics/style/itembass.css?v6" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <style type="text/css">
+        .swiper-container {
+            overflow: visible;
+        }
+
+        .swiper-slide {
+            height: 50px !important;
+            margin-bottom: 0 !important;
+            border-bottom: 1px solid #ccc;
+            text-align: center;
+        }
+
+        .div_category {
+            overflow: auto;
+            overflow-x: hidden;
+        }
+
+        #FirstCategory {
+            overflow: auto;
+        }
+    </style>
+</head>
+<body scroll=no>
+    <div class="jph">
+        <!--page head-->
+        <div id="head" class="com-fixed search-head">
+            <div class="classify">
+                <div class="textbox display-box corrent-address-right">
+                    <div class="fl display-box serch-sh"><i class="home-serch-icon textbox-icon001 fl"></i></div>
+                    <div class="fl display-box serch-kuh" onclick="opensearch()"><input type="text" id="search" name="serch" placeholder="搜索全部商品" class="classify-inputtext" disabled="disabled"/></div>
+                </div>
+            </div>
+        </div>
+        <!--main-->
+        <!--head end-->
+        <div class="classify-margin-top"></div>
+        <!--main-->
+        <div class=" clearfix">
+            <div class="fl display-box product-popup-li shop-buttom BestLI" id="first_div">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper" id="FirstCategory">
+
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination" style="display: none"></div>
+                </div>
+            </div>
+            <div id="SecondCategory" style="height:auto;">
+
+            </div>
+        </div>
+        <!--bottom-->
+        <div class="shop-bottom">
+            <div class="shop-bottom-menu com-font-size-10 color-nine">
+                <div class="fl shop-bottom-size">
+                    <a href="homepage.html" class="color-nine">
+                        <p class="shop-bottom-icon"><i class="bottom-my bottom-my-icon"></i></p>
+                        <p>首页</p>
+                    </a>
+                </div>
+                <div class="fl shop-bottom-size">
+                    <a href="classification.html" class="color-nine">
+                        <p class="shop-bottom-icon"><i class="bottom-lei-active bottom-lei-icon"></i></p>
+                        <p class="bottom-font-color">分类</p>
+                    </a>
+                </div>
+                <!--<div class="fl shop-bottom-size">
+                    <a href="cloudshop.html" class="color-nine">
+                        <p class="shop-bottom-icon"><i class="bottom-cart bottom-cart-icon"></i></p>
+                        <p>云商城</p>
+                    </a>
+                </div>-->
+                <div class="fl shop-bottom-size">
+                    <a href="cart.html" class="color-nine">
+                        <p class="shop-bottom-icon"><i class="bottom-myy bottom-myy-icon"></i><i id="cartTotalItemNum" class="i_car_num">0</i></p>
+                        <p>购物车</p>
+                    </a>
+                </div>
+                <div class="fl shop-bottom-size">
+                    <a href="mypage.html" class="color-nine">
+                        <p class="shop-bottom-icon"><i class="bottom-owo bottom-owo-icon"></i></p>
+                        <p>我的</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <input id="hidCategory_id" type="hidden" value="0" />
+        <script type="text/html" id="tmp-list">
+            {{# var firstid=$("#hidCategory_id").val();   if(d.id==firstid){}}
+            <div class="swiper-slide "><div class="menu active" onclick="checkcategory(this);" data-id="{{d.id}}"><a href="javascript:void(0);" data-id="{{d.id}}">{{d.categoryName}}</a></div></div>
+            {{# }else { }}
+            <div class="swiper-slide"><div class="menu " onclick="checkcategory(this);" data-id="{{d.id}}"><a href="javascript:void(0);" data-id="{{d.id}}">{{d.categoryName}}</a></div></div>
+            {{# } }}
+        </script>
+        <script type="text/html" id="tmp-list-detail">
+            <div id="div_{{d.id}}" style="display: none" class="fl display-box best-main-right beatMain div_category">
+                {{# for(var i = 0, len = d.list.length; i < len; i++){ }}
+                <div class="clearfix">
+                    <div class=" bestmain-padding-top " style="padding-left: 15px;"> {{d.list[i].categoryName}}</div>
+                    <div>
+                        <ul>
+                            {{# for(var h = 0, len1 = d.list[i].list.length; h < len1; h++){ }}
+                            <li class="fl display-box order-width" data-category="{{d.list[i].list[h].id}}" onclick="searchcategory(this)" style="overflow: hidden">
+                                <div>
+                                    <p><img src="{{d.list[i].list[h].ico}}" /></p>
+                                    <p>{{d.list[i].list[h].categoryName}}</p>
+                                </div>
+                            </li>
+                            {{# } }}
+                        </ul>
+                    </div>
+                </div>
+
+                {{# } }}
+            </div>
+        </script>
+        <script type="text/html" id="tmp-list-detail-2">
+            <div id="div_{{d.id}}" style="display: none" class="fl display-box best-main-right beatMain div_category">
+                <div class="clearfix">
+                    <div>
+                        <ul>
+                            {{# for(var i = 0, len = d.list.length; i < len; i++){ }}
+                            <li class="fl display-box order-width" data-category="{{d.list[i].id}}" onclick="searchcategory(this)" style="overflow: hidden">
+                                <div>
+                                    <p><img src="{{d.list[i].ico}}" /></p>
+                                    <p>{{d.list[i].categoryName}}</p>
+                                </div>
+                            </li>
+                            {{# } }}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <script type="text/html" id="tmp-list-detail-1">
+            <div style="width: 100%;" class="fl display-box best-main-right beatMain div_category">
+                <div class="clearfix">
+                    <div>
+                        <ul>
+                            {{# for(var i = 0, len = d.length; i < len; i++){ }}
+                            <li class="fl display-box order-width" data-category="{{d[i].id}}" onclick="searchcategory(this)" style="overflow: hidden">
+                                <div>
+                                    <p><img src="{{d[i].ico}}" /></p>
+                                    <p>{{d[i].categoryName}}</p>
+                                </div>
+                            </li>
+                            {{# } }}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/scripts/classification.js?v4"></script>
+    </div>
+</body>
+
+</html>

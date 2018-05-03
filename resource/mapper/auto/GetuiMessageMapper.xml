@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xinmeng.api.dao.auto.GetuiMessageDao">
+  <resultMap id="BaseResultMap" type="cn.xinmeng.api.entity.auto.GetuiMessage">
+	    <id column="id" jdbcType="INTEGER" property="id" />
+	   <result column="title" jdbcType="VARCHAR" property="title" />
+	   <result column="description" jdbcType="VARCHAR" property="description" />
+	   <result column="show_type" jdbcType="INTEGER" property="showType" />
+	   <result column="send_type" jdbcType="INTEGER" property="sendType" />
+	   <result column="url_link" jdbcType="VARCHAR" property="urlLink" />
+	   <result column="receive_type" jdbcType="INTEGER" property="receiveType" />
+	   <result column="receive_object" jdbcType="VARCHAR" property="receiveObject" />
+	   <result column="whether_send" jdbcType="INTEGER" property="whetherSend" />
+	   <result column="send_time" jdbcType="TIMESTAMP" property="sendTime" />
+	   <result column="send_status" jdbcType="INTEGER" property="sendStatus" />
+	   <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	   <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+	   <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+	   <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+   </resultMap>
+  
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+  <sql id="Base_Column_List">
+    id,
+    title,
+    description,
+    show_type,
+    send_type,
+    url_link,
+    receive_type,
+    receive_object,
+    whether_send,
+    send_time,
+    send_status,
+    create_time,
+    create_user,
+    update_time,
+    update_user
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="int" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from s_getui_message  where  id = #{id,jdbcType=INTEGER} 
+  </select>
+  
+  <select id="selectByExample" parameterType="cn.xinmeng.api.entity.auto.example.GetuiMessageExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <choose>
+	  	<when test="fieldList != null and fieldList != '' "> ${fieldList} </when>
+	  	<otherwise> <include refid="Base_Column_List" /> </otherwise>
+  	</choose>
+    from  s_getui_message
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+   <delete id="deleteByPrimaryKey" parameterType="cn.xinmeng.api.entity.auto.example.GetuiMessageExample">
+     delete from  s_getui_message where  id = #{id,jdbcType=INTEGER} 
+   </delete>
+  
+  <delete id="deleteByExample" parameterType="cn.xinmeng.api.entity.auto.example.GetuiMessageExample">
+    delete from  s_getui_message
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  
+  <insert id="insert" parameterType="cn.xinmeng.api.entity.auto.GetuiMessage" useGeneratedKeys="true" keyProperty="id">
+    insert into s_getui_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="showType != null">
+        show_type,
+      </if>
+      <if test="sendType != null">
+        send_type,
+      </if>
+      <if test="urlLink != null">
+        url_link,
+      </if>
+      <if test="receiveType != null">
+        receive_type,
+      </if>
+      <if test="receiveObject != null">
+        receive_object,
+      </if>
+      <if test="whetherSend != null">
+        whether_send,
+      </if>
+      <if test="sendTime != null">
+        send_time,
+      </if>
+      <if test="sendStatus != null">
+        send_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+    </trim>
+    
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+    
+      <if test="id != null">
+        #{ id,jdbcType=INTEGER },
+      </if>
+      <if test="title != null">
+        #{ title,jdbcType=VARCHAR },
+      </if>
+      <if test="description != null">
+        #{ description,jdbcType=VARCHAR },
+      </if>
+      <if test="showType != null">
+        #{ showType,jdbcType=INTEGER },
+      </if>
+      <if test="sendType != null">
+        #{ sendType,jdbcType=INTEGER },
+      </if>
+      <if test="urlLink != null">
+        #{ urlLink,jdbcType=VARCHAR },
+      </if>
+      <if test="receiveType != null">
+        #{ receiveType,jdbcType=INTEGER },
+      </if>
+      <if test="receiveObject != null">
+        #{ receiveObject,jdbcType=VARCHAR },
+      </if>
+      <if test="whetherSend != null">
+        #{ whetherSend,jdbcType=INTEGER },
+      </if>
+      <if test="sendTime != null">
+        #{ sendTime,jdbcType=TIMESTAMP },
+      </if>
+      <if test="sendStatus != null">
+        #{ sendStatus,jdbcType=INTEGER },
+      </if>
+      <if test="createTime != null">
+        #{ createTime,jdbcType=TIMESTAMP },
+      </if>
+      <if test="createUser != null">
+        #{ createUser,jdbcType=VARCHAR },
+      </if>
+      <if test="updateTime != null">
+        #{ updateTime,jdbcType=TIMESTAMP },
+      </if>
+      <if test="updateUser != null">
+        #{ updateUser,jdbcType=VARCHAR },
+      </if>
+    </trim>
+  </insert>
+  
+  <insert id="insertBatch" parameterType="java.util.List">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">  
+        SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into s_getui_message 
+    (
+      title,
+      description,
+      show_type,
+      send_type,
+      url_link,
+      receive_type,
+      receive_object,
+      whether_send,
+      send_time,
+      send_status,
+      create_time,
+      create_user,
+      update_time,
+      update_user
+    )
+    values
+    <foreach collection="list" item="item" index="index" separator="," >  
+    (
+     #{ item.title,jdbcType=VARCHAR },
+     #{ item.description,jdbcType=VARCHAR },
+     #{ item.showType,jdbcType=INTEGER },
+     #{ item.sendType,jdbcType=INTEGER },
+     #{ item.urlLink,jdbcType=VARCHAR },
+     #{ item.receiveType,jdbcType=INTEGER },
+     #{ item.receiveObject,jdbcType=VARCHAR },
+     #{ item.whetherSend,jdbcType=INTEGER },
+     #{ item.sendTime,jdbcType=TIMESTAMP },
+     #{ item.sendStatus,jdbcType=INTEGER },
+     #{ item.createTime,jdbcType=TIMESTAMP },
+     #{ item.createUser,jdbcType=VARCHAR },
+     #{ item.updateTime,jdbcType=TIMESTAMP },
+     #{ item.updateUser,jdbcType=VARCHAR }
+    )  
+    </foreach>  
+  </insert>
+  
+  <select id="countByExample" parameterType="cn.xinmeng.api.entity.auto.example.GetuiMessageExample" resultType="java.lang.Integer">
+    select count(*) from s_getui_message
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  
+  <update id="updateByExample" parameterType="map">
+    update s_getui_message set 
+	      title = #{record.title,jdbcType=VARCHAR},
+	      description = #{record.description,jdbcType=VARCHAR},
+	      show_type = #{record.showType,jdbcType=INTEGER},
+	      send_type = #{record.sendType,jdbcType=INTEGER},
+	      url_link = #{record.urlLink,jdbcType=VARCHAR},
+	      receive_type = #{record.receiveType,jdbcType=INTEGER},
+	      receive_object = #{record.receiveObject,jdbcType=VARCHAR},
+	      whether_send = #{record.whetherSend,jdbcType=INTEGER},
+	      send_time = #{record.sendTime,jdbcType=TIMESTAMP},
+	      send_status = #{record.sendStatus,jdbcType=INTEGER},
+	      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+	      create_user = #{record.createUser,jdbcType=VARCHAR},
+	      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+	      update_user = #{record.updateUser,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  <update id="updateByExampleSelective" parameterType="map">
+    update s_getui_message 
+    <set> 
+	      <if test="record.title != null">
+	        title = #{record.title,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.description != null">
+	        description = #{record.description,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.showType != null">
+	        show_type = #{record.showType,jdbcType=INTEGER},
+	      </if>
+	      <if test="record.sendType != null">
+	        send_type = #{record.sendType,jdbcType=INTEGER},
+	      </if>
+	      <if test="record.urlLink != null">
+	        url_link = #{record.urlLink,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.receiveType != null">
+	        receive_type = #{record.receiveType,jdbcType=INTEGER},
+	      </if>
+	      <if test="record.receiveObject != null">
+	        receive_object = #{record.receiveObject,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.whetherSend != null">
+	        whether_send = #{record.whetherSend,jdbcType=INTEGER},
+	      </if>
+	      <if test="record.sendTime != null">
+	        send_time = #{record.sendTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="record.sendStatus != null">
+	        send_status = #{record.sendStatus,jdbcType=INTEGER},
+	      </if>
+	      <if test="record.createTime != null">
+	        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="record.createUser != null">
+	        create_user = #{record.createUser,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.updateTime != null">
+	        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="record.updateUser != null">
+	        update_user = #{record.updateUser,jdbcType=VARCHAR},
+	      </if>
+	</set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  <update id="updateSelectiveByPrimaryKey" parameterType="cn.xinmeng.api.entity.auto.GetuiMessage">
+    update s_getui_message 
+    <set> 
+	      <if test="title != null">
+	        title = #{title,jdbcType=VARCHAR},
+	      </if>
+	      <if test="description != null">
+	        description = #{description,jdbcType=VARCHAR},
+	      </if>
+	      <if test="showType != null">
+	        show_type = #{showType,jdbcType=INTEGER},
+	      </if>
+	      <if test="sendType != null">
+	        send_type = #{sendType,jdbcType=INTEGER},
+	      </if>
+	      <if test="urlLink != null">
+	        url_link = #{urlLink,jdbcType=VARCHAR},
+	      </if>
+	      <if test="receiveType != null">
+	        receive_type = #{receiveType,jdbcType=INTEGER},
+	      </if>
+	      <if test="receiveObject != null">
+	        receive_object = #{receiveObject,jdbcType=VARCHAR},
+	      </if>
+	      <if test="whetherSend != null">
+	        whether_send = #{whetherSend,jdbcType=INTEGER},
+	      </if>
+	      <if test="sendTime != null">
+	        send_time = #{sendTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="sendStatus != null">
+	        send_status = #{sendStatus,jdbcType=INTEGER},
+	      </if>
+	      <if test="createTime != null">
+	        create_time = #{createTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="createUser != null">
+	        create_user = #{createUser,jdbcType=VARCHAR},
+	      </if>
+	      <if test="updateTime != null">
+	        update_time = #{updateTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="updateUser != null">
+	        update_user = #{updateUser,jdbcType=VARCHAR},
+	      </if>
+	</set>
+	where  id = #{id,jdbcType=INTEGER} 
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="cn.xinmeng.api.entity.auto.GetuiMessage">
+    update s_getui_message set
+        title = #{title,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        show_type = #{showType,jdbcType=INTEGER},
+        send_type = #{sendType,jdbcType=INTEGER},
+        url_link = #{urlLink,jdbcType=VARCHAR},
+        receive_type = #{receiveType,jdbcType=INTEGER},
+        receive_object = #{receiveObject,jdbcType=VARCHAR},
+        whether_send = #{whetherSend,jdbcType=INTEGER},
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+        send_status = #{sendStatus,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        create_user = #{createUser,jdbcType=VARCHAR},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_user = #{updateUser,jdbcType=VARCHAR}
+    where  id = #{id,jdbcType=INTEGER} 
+  </update>
+</mapper>

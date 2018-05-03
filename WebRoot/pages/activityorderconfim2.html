@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>确认订单</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css"/>
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <link href="/statics/style/productdetail.css?v1" rel="stylesheet" />
+</head>
+<body>
+    <!--page head-->
+    <input type="hidden" id="data" />
+    <!--main-->
+    <div id="address">
+        <script type="text/html" id="tmp-address">
+            <div class="list-bg" data-id="{{d.address_id}}" onclick="addressList(this)">
+                <p class="color-block">{{d.recipient_name}}<span class="com-head-left">{{d.recipient_phone}}</span></p>
+                <p class="com-font-size-14" style="line-height: 20px">{{d.address}}</p>
+            </div>
+        </script>
+        <script type="text/html" id="tmp-noAddress">
+            <div class="list-bg" data-id="{{d.address_id}}" onclick="addAddress(1)" style="text-align: center;line-height: 60px">
+                点击添加地址信息
+            </div>
+        </script>
+        <div class="list-bg ccc">
+            <p class="color-block ccc">收件人<span class="com-head-left ccc">手机号</span></p>
+            <p class="com-font-size-14">地址</p>
+        </div>
+    </div>
+    <div class="products-center"></div>
+    <!--产品详情价格-->
+    <div id="product">
+        <div class="friend-main-servce cl best ccc" style="text-align: center;line-height: 50px">
+            正在加载商品信息……
+        </div>
+        <script type="text/html" id="tmp-product">
+            <div class="friend-main-servce cl best procItem"
+                 data-id="{{d.id}}" data-num="{{d.ProductNumber}}">
+                <div class="display-box serch-ttwo fl" style="width: 80%">
+                    <div class="mypage-head-name">
+                        <div class="fl" >
+                            <img src="{{d.image_url}}?160_160" width="44" height="45" />
+                        </div>
+                        <div class="fl my-left-new" style="width: 65%">
+                            <p class="color-block account-xianzhi">{{d.product_name}}</p>
+                            <p class="com-font-size-14 account-xianzhi">{{d.sku}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="display-box serch-one fl list-second" style="width: 19%">
+                    <div class="mypage-head-n rg cash-cheng">
+                        <span class="color-block">￥{{d.retail_price}}</span>
+                    </div>
+                    <div class="mypage-head- rg">
+                        <span class="com-font-size-14">×{{d.product_number}}</span>
+                    </div>
+                </div>
+            </div>
+        </script>
+    </div>
+    <div class="products-center"></div>
+    <div class="mypage-head-name Order">
+        <ul id="price">
+            <li><font>订单总额:</font><span class="fr"></span></li>
+            <li class="hide">运费:<span class="fr"></span></li>
+            <li>优惠:<span class="fr"></span></li>
+        </ul>
+        <script type="text/html" id="tmp-price">
+            <li><font>订单总额:</font><span class="fr">￥{{d.total_amount}}</span></li>
+            <li class="hide">运费:<span class="fr">￥{{d.postage}}</span></li>
+            <li>活动优惠:<span class="fr">￥{{d.discount}}</span></li>
+            <li style="font-weight: bold">待支付:<span class="fr">￥{{d.pay_amount}}</span></li>
+        </script>
+    </div>
+    <div class="products-center"></div>
+    <!--使用优惠券-->
+    <div class="mypage-head-name clearfix" style="padding: 10px;display:none">
+        <div class="display-box home-main-width fl">
+            <i class="confim-quan confim-quan-icon" style="padding-top : 5px;"></i><span class="confim-quan-v com-head-left" style="padding-top: 5px;display: inline-block ">使用优惠券</span>
+        </div>
+        <div class="display-box home-main-width fr">
+            <div id="coupon" class="rg">
+                <script type="text/html" id="tmp-coupon">
+                    <span class="confim-quan-v" style="padding-top: 5px;display: inline-block ">{{d.coupon_name}}</span>
+                    <i id="couponId" class="current bottom-rg-icon com-head-left comfim-rg-dd" date-coupon="{{d.coupon_id}}"></i>
+                </script>
+                <span class="confim-quan-v" style="padding-top: 5px;display: inline-block ">暂无优惠券</span>
+                <i class="current bottom-rg-icon com-head-left comfim-rg-dd"></i>
+            </div>
+        </div>
+    </div>
+    <div class="com-center-pad address-second">
+        <div class="ct mypage-head-name" style="border-bottom: 1px solid #ccc; margin-top: 15px; ">请选择支付方式</div>
+        <div onclick="chooseAcountPay(this)">
+            <!-- 账户支付 -->
+            <div class="home-wind paytype clearfix">
+                <i id="accountChoose" class="choose1 choose1-icon pay-right-ico"></i>
+                <span id="accountAmount" class="confim-quan-v pay-right-text">￥0.00</span>
+                <i class="wallet wallet-icon pay-left-ico"></i>
+                <div class="pay-left-text">可用余额</div>
+            </div>
+            <!-- 微信支付 -->
+            <div class="home-wind clearfix paytype">
+                <i class="choose choose-icon pay-right-ico" id="weChat"></i>
+                <i class="wx wx-icon pay-left-ico"></i>
+                <span class="confim-quan-v pay-left-text">微信支付</span>
+            </div>
+        </div>
+    </div>
+    <!--bottom-->
+    <div class="confim-bottom">
+        <div class="">
+            <div class="fl  display-box serch-ttwo">
+                <div class="color-pink  com-head-left">
+                    <span><i class="choose1 choose1-icon"><img src="/Statics/img/icon/tan.png" width="100%" /> </i></span>
+                    <span>微信应付:￥<span id="totalAmount">0.00</span></span>
+                </div>
+            </div>
+            <div class="display-box fl serch-one">
+                <div class="com-head-right rg">
+                    <button id="gotoPay" type="button" class="bind-button bind-button-bg color-white com-font-size-14" onclick="pay()">去付款</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="addressPopo" style="display: none; background: #F2F2F2; padding-bottom: 10px; max-width: 640px;margin: 0 auto">
+        <div id="addressList">
+            <script type="text/html" id="tmp-addressList">
+                <div class="address-main address-three clearfix" style="margin-top: 10px">
+                    <div class="address-input mypage-head-name i-line clearfix" onclick="choose('{{d.id}}')">
+                        <div>
+                            <div class="fl display-box current-redio">
+                                {{# if(d.is_default==1){ }}
+                                <i class="choose1 choose1-icon"></i>
+                                {{# }else{ }}
+                                <i class="choose choose-icon"></i>
+                                {{# } }}
+                            </div>
+                            <div class="fl display-box corrent-address-right com-font-size-14">
+                                <p>
+                                    <span class="f">{{ d.recipient_name }}&nbsp;{{ d.recipient_phone }}</span>
+                                </p>
+                                <p style="line-height: 20px">
+                                    <span class="color-pink">[{{ d.address_type }}]</span>{{ d.address }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </script>
+        </div>
+
+        <div class="com-fixed product-shopCat product-shopCat_productDetails productdetail" style="max-width: 640px; margin: 0 auto; padding: 6px">
+            <div class="display-box fl product-button" style="width: 48%;">
+                <button type="button" class="bind-button product-cart-button" onclick="layer.closeAll()">
+                    关闭
+                </button>
+            </div>
+            <div class="display-box fr product-button" style="width: 48%;" onclick="addAddress(1)">
+                <button type="button" class="bind-button bind-button-bg color-white" onclick="tobuy()">新增</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/statics/layer/layer.js"></script>
+    <script src="/statics/jquery/extend/jquery-extend.js"></script>
+    <script src="/statics/scripts/common.js"></script>
+    <script src="/statics/layer/extend/laytpl.js"></script>
+    <script src="/statics/scripts/activityorderconfim.js"></script>
+</body>
+</html>

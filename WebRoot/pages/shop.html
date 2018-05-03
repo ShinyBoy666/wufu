@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>店铺首页</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <link rel="stylesheet" href="/statics/style/productsearch.css" />
+    <link href="/statics/style/swiper-3.3.1.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .color-block {
+            height: 40px;
+            line-height: 20px;
+            overflow: hidden;
+        }
+
+        .product_temp .width-eight {
+            padding-left: 8px;
+        }
+    </style>
+</head>
+<body style="background-color: #f1f1f1">
+    <div class="jph">
+        <div class="cash-li-pading" style="position: fixed;z-index: 999">
+            <i class="poject-return poject-return-icon" onclick="location.href = 'nearshop.html';"></i>
+        </div>
+        <div id="shopHead" class="shop-head"  > 
+            <img id="shopimg" src="/statics/img/image/200.png"  style="width: 100%;"/>
+            <div class="shop-logo"  >
+                <img id="shopLogo" src="/statics/img/image/logo.png" />
+            </div>
+            <div class="shop-name">
+                <span id="shopName">店铺名称</span>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <!--main-->
+        <div class="shop-tuijian">
+            <i class="time time-icon"></i>推荐商品
+        </div>
+        <div class="project-bottom-height clearfix">
+            <!--列表循环-->
+            <div id="list_products">
+                <script type="text/html" id="tmp-list-products">
+                    <div class="product_temp" data-pid="{{d.productId}}" onclick="opendetails(this)">
+                        <div class="forget-li-bottpm">
+                            <div class="mypage-head-name clearfix" style="background-color: #fff">
+                                <div class="fl display-box com-title-over">
+                                    <a href="productdetail.html?pid={{d.productId}}"><img src="{{d.imageUrl}}" /></a>
+                                </div>
+                                <div class="fl display-box" style="padding:1px">
+                                    <ul>
+                                        <li class="color-block text-overflow-hidden"><a href="productdetail.html?pid={{d.produtId}}">{{d.productName}}</a></li>
+                                        <li class="color-peach shop-bottom-img-top">￥{{d.retailPrice}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+            </div>
+        </div>
+        <div id="back-to-top">
+            <img src="/statics/img/image/pd_to_top.png" alt="置顶" />
+        </div>
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/swiper-3.3.1.min.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/scripts/shop.js"></script>
+    </div>
+</body>
+</html>

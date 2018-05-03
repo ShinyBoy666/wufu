@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>订单详情</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link href="/statics/style/common.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="jph">
+        <!--page head-->
+        <div id="head" class="com-fixed com-head">
+            <div>
+                <ul>
+                    <li class="display-box fl com-title-over">
+                        <div class="com-head-left">
+                            <button type="button" class="com-head-title" onclick="location.href='orderlist.html?f='+get('f')">
+                                <i class="code-ret code-ret-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="display-box fl com-title-center ct">
+                        <a class="com-head-title"><span>订单详情</span></a>
+                    </li>
+                    <li class="display-box fr com-title-over rg">
+                        <span class="com-head-right" id="house-rule">
+                            <button type="button" class="com-head-title">
+                                <!--<span class="com-font-size-16" style="font-weight: 400;">确定</span>-->
+                            </button>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="over-head"></div>
+        <div>
+            <div class="order-title">
+                <div class="confim-main-servce order-head-inn clearfix">
+                    <div class="fl color-block">订单号：<span id="orderId"></span></div>
+                    <div class="fr">
+                        <a class="massage-color" id="btnState"></a>
+                    </div>
+                </div>
+                <div class="code-money color-block">
+                    <i class="carer-icon"></i>感谢你在<span class="shopName"></span>购物，欢迎您再次光临！
+                </div>
+            </div>
+            <div class="order-center-ms"></div>
+            <div id="address" class="mypage-head-name color-block">
+                <script id="tmp-address" type="text/html">
+                    <p class="order-lineheight com-order-left"><span class="com-head-right">{{d.recipientName}}</span>{{d.recipientPhone}}</p>
+                    <p class="order-lineheight"><i class="order-dizhi"></i>{{isNull(d.recipientProvinceName+d.recipientCityName+d.recipientDistrictName)+isNull(d.recipientAddress)}}</p>
+                </script>
+                <p class="order-lineheight com-order-left"><span class="com-head-right">收件人</span>电话号码</p>
+                <p class="order-lineheight"><i class="order-dizhi"></i>收件地址</p>
+            </div>
+            <div class="order-center-ms"></div>
+            <div class="DETAIL">
+                <div style="line-height:35px;border-bottom:1px solid #ddd;color:#000033">
+                    <i class="house-icon" style="width:15px;height:15px;margin: 0 15px 0 10px">
+                        <img id="shopLogo" src="" />
+                    </i><span class="shopName">店铺名称</span><!--<i class="right-ret order-ret-icon"></i>-->
+                </div>
+                <ul id="list" class="product-number3">
+                    <script type="text/html" id="tmp-list">
+                        <li data-id="{{d.productId}}">
+                            <div class="clearfix">
+                                <div class="fl display-box width-eight clearfix">
+                                    <div class="fl display-box com-title-over"><img src="{{d.imageUrl}}?160_160" /></div>
+                                    <div class="fr display-box width-eight order-title"
+                                    <p class="text-overflow-hidden com-font-size-14" style="line-height:18px;height:36px">{{d.productName}}</p>
+                                    <p  class="color-peach com-font-size-12" style="margin-top:5px;">×{{d.productNumber}} {{d.sku}}</p>
+                                </div>
+                                </div>
+                                <div class="fr display-box com-title-over rg"><span>￥{{d.productPrice}}</span></div>
+                            </div>
+                            {{# if(d.$index==2 && d.$length>3) {}}
+                            <div class="ct code-money" onclick="more(this)"><a href="#" class="color-nine">还有{{d.$length-3}}件<i class="order-much"></i></a></div>
+                            {{# } }}
+                        </li>
+                    </script>
+                </ul>
+            </div>
+            <div class="order-pad">
+                <button type="button" value="" class="order-button"><a id="serverPhone"><i class="order-kefu"></i>联系客服</a></button>
+            </div>
+            <div class="order-center-ms"></div>
+            <div id="amount" class="confim-main-servce odder ORDER">
+                <script type="text/html" id="tmp-amount">
+                    <ul>
+                        <li class="ct color-block">支付明细</li>
+                        <li><span>商品总额</span><font class="fr massage-color">￥{{d.totalAmount.toFixed(2)}}</font></li>
+                        <li><span>邮费</span><font class="fr massage-color">￥{{d.postage.toFixed(2)}}</font></li>
+                        <li><span>优惠</span><font class="fr massage-color">￥{{d.couponPayment.toFixed(2)}}</font></li>
+                    </ul>
+                </script>
+                <ul>
+                    <li class="ct color-block">支付明细</li>
+                    <li><span>商品总额</span><font class="fr massage-color">￥0.00</font></li>
+                    <li><span>邮费</span><font class="fr massage-color">￥0.00</font></li>
+                    <li><span>优惠</span><font class="fr massage-color">￥0.00</font></li>
+                </ul>
+            </div>
+            <div id="payAmount" class="mypage-head-name rg">
+                <script type="text/html" id="tmp-payAmount">
+                    <p class="com-font-size-16 order-lineheight">实付款：<span class="massage-color">￥{{d.payAmount.toFixed(2)}}</span></p>
+                    <p class="order-lineheight">下单时间：{{formatDate(d.createTime,1)}}</p>
+                </script>
+                <p class="com-font-size-16 order-lineheight">实付款：<span class="massage-color">￥0.00</span></p>
+                <p class="order-lineheight">下单时间:</p>
+            </div>
+            <div class="mypage-head-name order-bottom orderBottom clearfix">
+                <ul class="fr">
+                    <li style="width:100px">
+                        <button type="button" id="btnGoPay" onclick="goPay(this)" class="order-butred-buttom massage-color hide">去支付</button>
+                        <button type="button" id="btnReceipt" onclick="receipt(this)" class="order-butred-buttom massage-color hide">确认收货</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/orderdetail.js"></script>
+    </div>
+</body>
+</html>

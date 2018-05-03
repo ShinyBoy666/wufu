@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>优惠券列表</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" href="/statics/style/itembass.css?v115a11" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <link href="/statics/style/quickpay-couponlist.css?v221119991" rel="stylesheet" />
+</head>
+<body>
+    <div class="jph">
+        <section id="inner" style="width: 100%;display: none">
+            <ul class="page_nav nav_3" id="searchLine">
+                <li onclick="openSearch(0)">
+                    <a id="search_a0" href="javascript:void(0)">距离<i class="sort-down sort-icon"></i></a>
+                </li>
+                <li onclick="openSearch(1)">
+                    <a id="search_a1" href="javascript:void(0)">人气<i class="sort-down sort-icon"></i></a>
+                </li>
+                <li onclick="searchMoney()">
+                    <a id="search_a2" href="javascript:void(0)">金额<i class="sort-down sort-icon"></i></a>
+                </li>
+            </ul>
+            <div id="pover0" class="pover" style="display: none">
+                <!--<header>综合排序</header>-->
+                <ul>
+                    <li onclick="Search_pover(0)">金额</li>
+                    <li onclick="Search_pover(1)">¥1</li>
+                    <li onclick="Search_pover(5)">¥5</li>
+                    <li onclick="Search_pover(10)">¥10</li>
+                    <li onclick="Search_pover(20)">¥20</li>
+                    <li onclick="Search_pover(50)">¥50</li>
+                    <li onclick="Search_pover(100)">¥100</li>
+                </ul>
+            </div> 
+            <div style="height: 50px;" ></div>
+        </section>
+        <section class="couponlist_title">
+            <div class="title" id="couponlist_title"> 本次消费可领取0元优惠券</div>
+        </section>
+        <section id="quickpay_couponlist">
+            <ul class="conpon-list"></ul>
+            <ul class="conpon-list-collection"></ul>
+        </section>
+        <section class="shop-bottom">
+            <a class="shop-bottom-menu-more " onclick="getMoreCoupons()">
+                自己挑选
+            </a> 
+        </section>
+        <section id="login_div" style="display: none">
+            <div class="mask" onclick="maskhide()"></div>
+            <div id="CodeLogin" class="login_div">
+                <div class="logo">
+                    <img src="/statics/img/image/logo.png" style="width: 60px;height: 60px;" />
+                    <p style="color: #cc3333">舜凯云商</p>
+                </div>
+                <div style=" padding: 15px 10px; clear: both">
+                    <div class="info_div clearfix" style=" border-top: 1px solid #eee; ">
+                        <ul>
+                            <li class="li_phone_des"><span style="line-height: 30px;font-size: 16px;color: #000">手机号</span></li>
+                            <li class="li_phone_content">
+                                <input type="tel"   id="txtPhoneCode" placeholder="请输入绑定手机号" style="" />
+                            </li>
+                        </ul>
+                    </div>
+                    <div class=" info_div clearfix">
+                        <ul>
+                            <li class="li_code_des">
+                                <input type="number" name="txtCode" id="txtCode" placeholder="请输入短信验证码" />
+                            </li>
+                            <li class="li_code_content"><a id="getcode" href="javascript:void(0)" onclick="getCode()"> 获取验证码</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="padding: 0 6px;text-align: center" onclick="bindPhone()">
+                    <button type="button">确认绑定</button>
+                </div>
+            </div>
+        </section>
+        <p id="back-to-top" style="display: none;">
+            <a href="#top">
+                <img src="/statics/img/image/pd_to_top.png" />
+            </a>
+        </p>
+        <div id="nodata" class="hide" style="margin: 0 auto;text-align: center;padding: 60px 0;">
+            <img src="/statics/img/image/no_data.png" alt="无数据" />
+            <p>啊哦！好像没有检测到数据哟！</p>
+        </div>
+
+        <input type="hidden" value="1" id="hiddistance" />  <!--1由近到远0由远到近-->
+        <input type="hidden" value="0" id="hidpopularity" /><!--1由底到高0由高到底-->
+        <input type="hidden" value="0" id="hidsearchtype" /><!--0是距离 1 人气-->
+        <input type="hidden" value="0" id="hidmoney" /> 
+        <input type="hidden" value="0" id="hidtotalAmounct" /> 
+        
+        <script type="text/html" id="tmp-model">
+            <li class="conpon-item clearfix">
+                <div class="left">
+                    <div class="conpon-logo">
+                        <img src="{{d.shopBossImage}}" style="width: 100%;height: 100%;" />
+                    </div>
+                    <div class="conpon-shop">{{d.useShopName}}</div>
+                    <div class="conpon-range"> 
+                        <a class="receivecoupons" href="javascript:void(0)" data-id="{{d.id}}" data-couponnumber="{{d.couponNumber}}" data-couponreceivenumber="{{d.couponReceiveNumber}}" data-maxgetnumber="{{d.maxGetNumber}}" data-customerreceivenumber="{{d.customerReceiveNumber}}" data-useshopid="{{d.useShopId}}" data-couponmoney="{{d.couponMoney}}" style="background-color: #EE7D17" onclick="couponclick(1,this)">领优惠券</a> 
+                    </div>
+                    <div class="conpon-range"><a class="remaindes" href="javascript:void(0)">{{d.couponReceiveNumber}}人已领取</a></div>
+                </div>
+                <div class="right">
+                    <div class="red" style="padding: 6px 2px 10px 10px;line-height: 30px;height: 30px;text-align: center">
+                        <span class="conpon-money">￥{{d.couponMoney}}</span>
+                        <span class="member_coupon" style="margin-left: 4px;">{{d.couponTypeValue}}</span>
+                        <span style="float: right; color: #bbb; font-size: 12px; line-height: 32px; ">可领取{{d.maxGetNumber}}张</span>
+                    </div>
+                    <div class="conpon-role">{{d.description}}</div>
+                    <div class="conpon-data">{{d.startToEndTime}}</div>
+                </div>
+            </li>
+        </script> 
+        <script type="text/html" id="tmp-list">
+            <li class="conpon-item clearfix">
+                <div class="left">
+                    <div class="conpon-logo">
+                        <img src="{{d.shopBossImage}}" style="width: 100%;height: 100%;" />
+                    </div>
+                    <div class="conpon-shop">{{d.useShopName}}</div>
+                    <div class="conpon-range">
+                        {{# if(d.receive) { }}
+                        <a class="receivecoupons canuse" href="javascript:void(0)" data-id="{{d.id}}" data-couponnumber="{{d.couponNumber}}" data-couponreceivenumber="{{d.couponReceiveNumber}}" data-maxgetnumber="{{d.maxGetNumber}}" data-customerreceivenumber="{{d.customerReceiveNumber}}" data-useshopid="{{d.useShopId}}" data-couponmoney="{{d.couponMoney}}" data-collection="{{d.collection}}" style="background-color: #EE7D17" onclick="couponclick(3,this)">领优惠券</a>
+                        {{# }else if(!d.collection) { }} 
+                        <a class="receivecoupons" href="javascript:void(0)" data-id="{{d.id}}" style="background-color: #cc3333" onclick="couponclick(2,this)">收藏</a>
+                        {{# } else { }}
+                        <a class="receivecoupons" href="javascript:void(0)" data-id="{{d.id}}" style="background-color: #6D6D6D"  >已收藏</a>
+                        {{# }  }}
+                    </div>
+                    <div class="conpon-range"><a class="remaindes" href="javascript:void(0)">{{d.couponReceiveNumber}}人已领取</a></div>
+                </div>
+                <div class="right">
+                    <div class="red" style="padding: 6px 2px 10px 10px;line-height: 30px;height: 30px;text-align: center">
+                        <span class="conpon-money">￥{{d.couponMoney}}</span>
+                        <span class="member_coupon" style="margin-left: 4px;">{{d.couponTypeValue}}</span>
+                        <span style="float: right; color: #bbb; font-size: 12px; line-height: 32px; ">可领取{{d.maxGetNumber}}张</span>
+                    </div>
+                    <div class="conpon-role">{{d.description}}</div>
+                    <div class="conpon-data">{{d.startToEndTime}}</div>
+                </div>
+            </li>
+        </script>
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/common.js?v1"></script>
+        <script src="/statics/scripts/quickpay-couponlist.js?v1124422"></script>
+
+    </div>
+
+</body>
+</html>

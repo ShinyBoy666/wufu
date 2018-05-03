@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xinmeng.api.dao.ex.ExCouponDao">
+	
+	<!-- 查询我的所有优惠券 -->
+	<select id="searchMyCouponByShopId" resultType="cn.xinmeng.api.entity.auto.biz.CouponBiz">
+		select
+			p.shop_id 			as shopId,						<!-- 店铺编号 -->
+			p.shop_id  			as useShopId,					<!-- 劵使用店铺 -->
+			p.customer_id 		as customerId,					<!-- 用户编号 -->
+			p.coupon_code 		as couponCode,					<!-- 优惠券编码 -->
+			a.coupon_name 		as couponName,					<!-- 优惠券名称 -->
+			p.coupon_money		as	couponMoney,				<!-- 优惠券金额 -->
+			p.order_money		as	orderMoney,					<!-- 订单金额，满多少才能使用 -->
+			if(a.thrid_id = 0,if(a.second_id = 0,a.first_id,a.second_id),a.thrid_id) as categoryId,<!-- 分类id -->
+			p.begin_time 		as beginTime,						<!-- 开始时间 -->
+			p.end_time 			as endTime,							<!-- 结束时间 -->
+			p.use_time 			as useTime,							<!-- 使用时间 -->
+			p.state 			as state							<!-- 状态 -->
+			from m_coupon p INNER JOIN m_coupon_apply a on p.coupon_apply_id=a.id
+		where 
+			p.customer_id = #{customerId,jdbcType=INTEGER}
+			and p.shop_id = #{shopId,jdbcType=INTEGER}
+			and p.state = 2 and now() between p.begin_time and p.end_time
+		order by p.end_time
+	</select>
+  
+  	<!-- 查询我的所有优惠券列表 -->
+	<select id="searchMyCouponList" resultType="cn.xinmeng.api.entity.auto.biz.CouponBiz">
+		select
+			a.id		applyId,
+			a.remark   	remark,
+			a.can_use_day  canUseDay,
+			a.can_use_hour canUseHour,
+			a.coupon_receive_number couponReceiveNumber,
+			p.shop_id 			as shopId,						<!-- 店铺编号 -->
+			p.shop_id 			as useShopId,					<!-- 劵使用店铺 -->
+			p.customer_id 		as customerId,					<!-- 用户编号 -->
+			p.coupon_code 		as couponCode,					<!-- 优惠券编码 -->
+			a.coupon_name 		as couponName,					<!-- 优惠券名称 -->
+			p.coupon_money		as	couponMoney,				<!-- 优惠券金额 -->
+			p.order_money		as	orderMoney,					<!-- 订单金额，满多少才能使用 -->
+			if(a.thrid_id = 0,if(a.second_id = 0,a.first_id,a.second_id),a.thrid_id) as categoryId,<!-- 分类id -->
+			p.begin_time 		as beginTime,						<!-- 开始时间 -->
+			p.end_time 			as endTime,							<!-- 结束时间 -->
+			p.use_time 			as useTime,							<!-- 使用时间 -->
+			p.state 			as state							<!-- 状态 -->
+			from m_coupon p INNER JOIN m_coupon_apply a on p.coupon_apply_id=a.id
+		<include refid="myCouponWhere" />
+		order by p.state,p.end_time
+	</select>
+	
+ 	 <!-- 查询我的所有优惠券总数 -->
+  	<select id="searchMyCouponCount" resultType="Integer">
+		select count(*) from m_coupon p INNER JOIN m_coupon_apply a on p.coupon_apply_id=a.id
+		<include refid="myCouponWhere" />
+	</select>
+  
+  	<sql id="myCouponWhere">
+		<where>
+			and p.customer_id = #{customerId,jdbcType=INTEGER}
+			<!-- and p.shop_id = #{shopId,jdbcType=INTEGER} -->
+			and p.state in(2,3)
+			<!-- 状态 -->
+			<if test="state != null">
+				<!-- 传入状态含义： 优惠券状态1-未使用，2-已过期，3-已使用  -->
+				<!-- 数据库状态含义：1、未领用；2、已领用，3、已使用 4、无效 -->
+				<choose>
+					<when test="state == 1">and p.state = 2 and now() between p.begin_time and p.end_time</when>
+					<when test="state == 2">and p.state = 2 and p.end_time &lt; now()</when>
+					<when test="state == 3">and p.state = 3</when>
+				</choose> 
+			</if>
+		</where>
+	</sql>
+	
+	
+  	<!-- 查询店铺优惠券列表 -->
+	<select id="searchCouponApplyList" resultType="cn.xinmeng.api.entity.auto.biz.CouponApplyBiz">
+		select 
+			id						as id,						<!-- 主键  -->
+			shop_id 				as shopId,					<!-- 店铺编号申请发劵店铺 -->
+			shop_id 				as useShopId,				<!-- 劵使用店铺 -->
+			coupon_name 			as couponName,				<!-- 优惠券名称 -->
+			coupon_desc 			as couponDesc,				<!-- 优惠券描述 -->
+			coupon_type 			as couponType,				<!-- 1、纸质优惠券2、电子优惠券3、优惠卡4、现金券 -->
+			if(thrid_id = 0,if(second_id = 0,first_id,second_id),thrid_id) as categoryId,<!-- 分类id -->
+			coupon_money			as couponMoney,				<!-- 优惠券金额 -->
+			coupon_number			as couponNumber,			<!-- 优惠券数量 -->
+			coupon_receive_number	as couponReceiveNumber,	<!-- 优惠券已领用数量 -->
+			order_money 			as orderMoney,				<!-- 订单金额，满多少才能使用 -->
+			expires_model			as expiresModel,			<!-- 有效期模式 1 、固定有效期  2、领取日开始计算 -->
+			expires_days			as expiresDays,				<!-- 有效期天数 -->
+			begin_time				as beginTime,				<!-- 开始时间 -->
+			end_time				as endTime,					<!-- 结束时间 -->
+			is_create				as isCreate,				<!-- 是否预生成1 、否 2、是 -->
+			remark					as remark,					<!-- 备注 -->
+			state					as state					<!-- 状态1、无效 2、待确认 3、已拒绝 4、有效 5、已生成 -->
+		from m_coupon_apply
+		where state = 3
+		and shop_id = #{shopId,jdbcType=INTEGER}
+		<!-- and coupon_number > coupon_receive_number  -->
+		and now() between begin_time and end_time
+	</select>
+	
+	
+  	<!-- 查询店铺优惠券数量 -->
+	<select id="searchCouponApplyCount" resultType="int">
+		select 
+			count(*)
+		from m_coupon_apply
+		where state = 3
+		and shop_id = #{shopId,jdbcType=INTEGER}
+		<!-- and coupon_number > coupon_receive_number  -->
+		and now() between begin_time and end_time
+	</select>
+	
+	
+	<!-- 领取优惠券数量加1 -->
+	<update id="couponReceiveNumberAdd">
+		update m_coupon_apply set coupon_receive_number = coupon_receive_number + 1 where id = #{id,jdbcType=INTEGER} and coupon_number > coupon_receive_number
+	</update>
+	
+	<!-- 查询优惠券领取的张数 -->
+	<select id="queryCustomerHaveCount" resultType="int">
+		<!-- select 
+			count(*) 
+		from m_coupon m 
+		where m.customer_id = #{customerId,jdbcType=INTEGER}
+		and m.coupon_money = #{couponMoney,jdbcType=DOUBLE} and
+		exists(select 1 from m_coupon_apply ca where ca.id = m.coupon_apply_id 
+				and ca.coupon_number > ca.coupon_receive_number 
+				and ca.end_time > now()) -->
+		SELECT IFNULL(SUM(IF(tmp.b-tmp.c &gt; tmp.a,tmp.a,tmp.b-tmp.c)),0) FROM (
+			SELECT 
+			   ca.id,
+			   ca.coupon_number-ca.coupon_receive_number a,
+			   ca.max_get_number b,
+			   <choose>
+					<when test="customerId != null and customerId != 0"> COUNT(c.id)</when>
+					<otherwise>0</otherwise>
+				</choose> c  
+			FROM m_coupon_apply ca
+				<if test="customerId != null and customerId != 0">
+			    LEFT JOIN m_coupon c ON c.customer_id=#{customerId,jdbcType=INTEGER} AND c.coupon_apply_id=ca.id
+			    </if>
+			WHERE ca.state = 3 AND ca.coupon_number &gt; ca.coupon_receive_number AND ca.coupon_money=#{couponMoney,jdbcType=DOUBLE} AND NOW() &lt; ca.end_time
+			GROUP BY ca.id
+			HAVING  b &gt; c
+		) tmp	
+	</select>
+	
+	<!-- 优惠买单：订单确认页 -->
+	<select id="newOrderCouponApplyList" resultType="cn.xinmeng.web.shop.entity.vo.OrderCouponVo">
+		select 
+			m.id 					as id,
+			m.customer_id 			as customerId,
+			m.begin_time			as beginTime,
+			m.end_time				as endTime,
+			m.shop_id				as useShopId,
+			m.coupon_Money			as couponMoney,
+			m.order_Money			as orderMoney,
+			m.coupon_Code			as couponCode,
+			c.coupon_Name			as couponName,
+			c.max_Use_Number		as maxUseNumber,
+			c.can_Use_Day			as canUseDay,
+			c.can_Use_Hour			as canUseHour,
+			c.remark				as remark,
+			c.id					as couponApplyId,
+			s.shop_name				as shopName,
+			(select image.image_url from s_shop_image image where image.shop_id = c.shop_id and image.image_type = 3 order by image.sort desc,image.id desc limit 1) shopBossImage,
+			s.shop_logo		 		as shopLogo
+		from m_coupon m 
+		inner join m_coupon_apply c on m.coupon_apply_id = c.id
+		inner join s_shop_info s on m.shop_id = s.id
+		where m.customer_id = #{customerId,jdbcType=INTEGER} 
+		and m.shop_id = #{shopId,jdbcType=INTEGER} 
+		and m.state = 2 
+		and now() between m.begin_time and m.end_time
+		and (m.order_money &lt;= #{orderMoney,jdbcType=DOUBLE} or m.order_money = 0)
+		and c.first_id = 0 and c.second_id = 0 and c.thrid_id = 0 and c.brand_id = 0
+	</select>
+	
+	<!-- 活动详情，优惠卷种类 -->
+	<select id="queryActivityCoupons" resultType="cn.xinmeng.web.shop.entity.market.S1096ResponseEntity" parameterType="map">
+		SELECT ca.shop_id shopId,CONCAT("店铺可使用面额为",GROUP_CONCAT(DISTINCT ca.coupon_money,"元" ORDER BY ca.coupon_money SEPARATOR '、'),"的优惠劵") remark  
+		FROM m_coupon_apply ca 
+		WHERE ca.state = 3 AND ca.coupon_number &gt; ca.coupon_receive_number AND NOW() &lt; ca.end_time
+			<if test="shopIds != null and shopIds.size() > 0">
+				<foreach collection="shopIds" separator="," item="shopId" open=" and ca.shop_id in (" close=")">
+					#{shopId,jdbcType=INTEGER}
+				</foreach>
+			</if>
+		GROUP BY ca.shop_id
+		ORDER BY ca.id DESC
+	</select>
+	
+	<!-- 活动详情，优惠卷种类 -->
+	<select id="queryActivityCouponsCount" resultType="INTEGER" parameterType="map">
+		SELECT COUNT(DISTINCT ca.shop_id)  
+		FROM m_coupon_apply ca 
+		WHERE ca.state = 3 AND ca.coupon_number &gt; ca.coupon_receive_number AND NOW() &lt; ca.end_time
+			<if test="shopIds != null and shopIds.size() > 0">
+				<foreach collection="shopIds" separator="," item="shopId" open=" and ca.shop_id in (" close=")">
+					#{shopId,jdbcType=INTEGER}
+				</foreach>
+			</if>
+	</select>
+	
+	<!-- 下单成功查询优惠劵 -->
+	<select id="queryCouponApplyList" resultType="cn.xinmeng.web.shop.entity.vo.CouponVo" parameterType="map">
+		SELECT 
+		   	c.id 					as id,
+			c.coupon_name			as couponName,	
+			c.coupon_money			as couponMoney,
+			c.order_money			as orderMoney,
+			c.begin_time			as beginTime,
+			c.end_time				as endTime,
+			c.shop_id				as useShopId,
+			c.coupon_number			as couponNumber,
+			c.coupon_receive_number	as couponReceiveNumber,
+			c.remark				as remark,
+			c.can_use_day			as canUseDay,
+			c.can_use_hour			as canUseHour,
+			c.max_get_number		as maxGetNumber,
+			s.shop_name				as useShopName,
+			IFNULL((select image.image_url from s_shop_image image where image.shop_id = c.shop_id and image.image_type = 3 order by image.sort desc,image.id desc limit 1),'') shopBossImage,
+			1 as receive,
+			<if test="entity.customerId != null and entity.customerId != 0">
+				COUNT(mc.id) customerReceiveNumber,			
+				IF(ll.id IS NULL,0,1) collection,
+			</if>
+			<choose>
+				<when test="entity.longitude != null and entity.latitude != null">
+					fn_distance(#{ entity.latitude,jdbcType=DOUBLE },#{ entity.longitude,jdbcType=DOUBLE },latitude,longitude)
+				</when>
+				<otherwise>0</otherwise>
+			</choose> distance
+		FROM m_coupon_apply c
+		inner join s_shop_info s on c.shop_id = s.id
+		<if test="entity.customerId != null and entity.customerId != 0">
+		LEFT JOIN m_coupon mc ON mc.customer_id=#{entity.customerId,jdbcType=INTEGER} AND mc.coupon_apply_id=c.id
+		LEFT JOIN c_collection ll ON ll.object_type = 3 and ll.object_id = c.id and ll.customer_id = #{entity.customerId,jdbcType=INTEGER}
+		</if>
+		WHERE c.state = 3 AND c.coupon_number &gt; c.coupon_receive_number AND c.coupon_money=#{couponMoney,jdbcType=DOUBLE} AND NOW() &lt; c.end_time
+		<if test="entity.longitude != null and entity.latitude != null">
+			and fn_distance(#{ entity.latitude,jdbcType=DOUBLE },#{ entity.longitude,jdbcType=DOUBLE },latitude,longitude) &lt; #{entity.distance,jdbcType=INTEGER}
+		</if>
+		<if test="entity.customerId != null and entity.customerId != 0">
+			GROUP BY c.id
+			HAVING c.max_get_number &gt; customerReceiveNumber
+		</if>
+		ORDER BY distance,c.coupon_number DESC,c.coupon_receive_number
+		LIMIT #{limit,jdbcType=INTEGER}
+	</select>
+	
+	<select id="searchCouponApplyCountNew" parameterType="map" resultType="INTEGER">
+		select count(tmp.id) from (
+			select
+				<if test="entity.customerId != null and entity.customerId != 0">
+					COUNT(mc.id) customerReceiveNumber,			
+				</if> 
+				c.max_get_number,
+				c.id
+			from m_coupon_apply c 
+			<if test="entity.longitude != null and entity.latitude != null">
+		  		inner join s_shop_info s on c.shop_id = s.id
+			</if>
+			<if test="entity.customerId != null and entity.customerId != 0">
+				LEFT JOIN m_coupon mc ON mc.customer_id=#{entity.customerId,jdbcType=INTEGER} AND mc.coupon_apply_id=c.id
+			</if>
+			where c.state = 3 and now() between c.begin_time and c.end_time 
+			and c.coupon_number &gt; c.coupon_receive_number
+			
+			<if test="entity.longitude != null and entity.latitude != null">
+				and fn_distance(#{ entity.latitude,jdbcType=DOUBLE },#{ entity.longitude,jdbcType=DOUBLE },latitude,longitude) &lt; #{entity.distance,jdbcType=INTEGER}
+			</if>
+			<choose>
+				<when test="entity.couponMoney != null and entity.couponMoney != 0">
+					and c.coupon_money = #{entity.couponMoney,jdbcType=INTEGER}
+				</when>
+				<otherwise>
+					and c.coupon_money in (1,5,10,20,50,100)
+				</otherwise>
+			</choose>
+			<if test="entity.customerId != null and entity.customerId != 0">
+				GROUP BY c.id
+				HAVING c.max_get_number &gt; customerReceiveNumber
+			</if>
+		) tmp
+	</select>
+	
+	<select id="searchCouponApplyListNew" parameterType="map" resultType="cn.xinmeng.web.shop.entity.vo.CouponVo">
+		select 
+			c.id 					as id,
+			c.coupon_name			as couponName,	
+			c.coupon_money			as couponMoney,
+			c.order_money			as orderMoney,
+			c.begin_time			as beginTime,
+			c.end_time				as endTime,
+			c.shop_id				as useShopId,
+			c.coupon_number			as couponNumber,
+			c.coupon_receive_number	as couponReceiveNumber,
+			c.remark				as remark,
+			c.can_use_day			as canUseDay,
+			c.can_use_hour			as canUseHour,
+			c.max_get_number		as maxGetNumber,
+			s.shop_name				as useShopName,
+			IFNULL((select image.image_url from s_shop_image image where image.shop_id = c.shop_id and image.image_type = 3 order by image.sort desc,image.id desc limit 1),'') shopBossImage,
+			<if test="entity.customerId != null and entity.customerId != 0">
+				COUNT(mc.id) customerReceiveNumber,			
+				IF(ll.id IS NULL,0,1) collection,
+			</if>
+			if(c.coupon_money &gt; #{entity.orderMoney,jdbcType=DOUBLE},0,1) receive,
+			<choose>
+				<when test="entity.longitude != null and entity.latitude != null">
+					fn_distance(#{ entity.latitude,jdbcType=DOUBLE },#{ entity.longitude,jdbcType=DOUBLE },latitude,longitude)
+				</when>
+				<otherwise>0</otherwise>
+			</choose> distance
+		from m_coupon_apply c 
+		inner join s_shop_info s on c.shop_id = s.id
+		<if test="entity.customerId != null and entity.customerId != 0">
+		LEFT JOIN m_coupon mc ON mc.customer_id=#{entity.customerId,jdbcType=INTEGER} AND mc.coupon_apply_id=c.id
+		LEFT JOIN c_collection ll ON ll.object_type = 3 and ll.object_id = c.id and ll.customer_id = #{entity.customerId,jdbcType=INTEGER}
+		</if>
+		where c.state = 3 and now() between c.begin_time and c.end_time 
+		and c.coupon_number &gt; c.coupon_receive_number
+		<if test="entity.longitude != null and entity.latitude != null">
+			and fn_distance(#{ entity.latitude,jdbcType=DOUBLE },#{ entity.longitude,jdbcType=DOUBLE },latitude,longitude) &lt; #{entity.distance,jdbcType=INTEGER}
+		</if>
+		<choose>
+			<when test="entity.couponMoney != null and entity.couponMoney != 0">
+				and c.coupon_money = #{entity.couponMoney,jdbcType=DOUBLE}
+			</when>
+			<otherwise>
+				and c.coupon_money in (1,5,10,20,50,100)
+			</otherwise>
+		</choose>
+		<if test="entity.customerId != null and entity.customerId != 0">
+			GROUP BY c.id
+			HAVING c.max_get_number &gt; customerReceiveNumber
+		</if>
+		order by
+		<if test="entity.customerId != null and entity.customerId != 0"> 
+		collection desc,
+		</if>
+		<choose>
+			<when test="entity.distanceType != null and entity.distanceType == 0">distance desc</when>
+			<when test="entity.distanceType != null and entity.distanceType == 1">distance</when>
+			<when test="entity.popularityType != null and entity.popularityType == 0">c.coupon_receive_number desc</when>
+			<when test="entity.popularityType != null and entity.popularityType == 1">c.coupon_receive_number</when>
+			<otherwise>distance</otherwise>
+		</choose>,c.id
+	</select>
+</mapper>

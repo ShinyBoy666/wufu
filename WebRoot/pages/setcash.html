@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>提取现金</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/statics/jquery/extend/jquery-extend.js"></script>
+    <script src="/statics/layer/layer.js"></script>
+    <script src="/statics/scripts/common.js"></script>
+    <script src="/statics/scripts/setcash.js"></script>
+</head>
+<body>
+    <div class="jph">
+        <!--page head-->
+        <div id="head" class="com-fixed com-head">
+            <div>
+                <ul>
+                    <li class="display-box fl com-title-over">
+                        <div class="com-head-left">
+                            <button type="button" class="com-head-title top-margin">
+                                <!--<i class="code-ret code-ret-icon"></i>-->
+                            </button>
+                        </div>
+                    </li>
+                    <li class="display-box fl com-title-center ct">
+                        <a class="com-head-title"><span>设置提现账户</span></a>
+                    </li>
+                    <li class="display-box fr com-title-over rg">
+                        <span class="com-head-right" id="house-rule">
+                            <button type="button" class="com-head-title">
+                                <i class="code-much code-much-icon"></i>
+                            </button>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="over-head"></div>
+        <div class="pure-tixian">
+            <p class="color-white com-font-size-12">提示:目前仅支持支付宝账户提现</p>
+        </div>
+        <!--main-->
+
+        <div class="cl">
+            <div class="confim-main-servce mypage-head-name clearfix">
+                <ul>
+                    <li class="display-box serch-one fl"><span class="cash-ch color-block com-font-size-16">提现账户</span></li>
+                    <li class="display-box serch-ttwo fl">
+                        <input id="txtaccount" type="text" placeholder="请绑定你的支付宝账号" class="cash-text-close" />
+                    </li>
+                </ul>
+            </div>
+            <div class="confim-main-servce mypage-head-name clearfix">
+                <ul>
+                    <li class="display-box serch-one fl"><span class="cash-ch color-block com-font-size-16">姓名</span></li>
+                    <li class="display-box serch-ttwo fl">
+                        <input id="txtname" type="text" placeholder="请输入你的真实姓名" class="cash-text-close" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="cash-button cash-button-top">
+            <button type="button" value="" onclick="SetCashAccount();" class="bind-button bind-button-bg color-white com-font-size-16">保存设置</button>
+        </div>
+    </div>
+</body>
+</html>

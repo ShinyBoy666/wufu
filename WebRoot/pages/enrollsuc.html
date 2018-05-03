@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>报名信息</title>
+    <meta name="description" content="让心去旅行">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--<link rel="shortcut icon" href="/Statics/Images/favicon.ico" />-->
+    <link rel="stylesheet" href="/statics/style/main.css?v1" />
+</head>
+<body>
+    <div class="container">
+        <img src="/statics/images/success.jpg" alt="报名成功">
+        <div class="main_tip">
+            <h5>我们将在24小时内进行报名确认</h5>
+            <h6>快去邀请您的小伙伴一起来结善缘吧</h6>
+        </div>
+        <a class="main_button" onclick="goshare()" href="javascript:void(0)">立即邀请</a>
+    </div>
+    <div id="J-guide" class="guide " style="display: none" onclick="closeshare()">
+        <i class="icon-guide"></i>
+    </div>
+
+    <script src="/Statics/Jquery/jquery-2.1.0.js"></script>
+    <script src="/Statics/Jquery/extend/jquery-extend.js"></script>
+    <script src="/Statics/Layer/layer.js"></script>
+    <script src="/Statics/Layer/extend/laytpl.js"></script>
+    <script src="/Statics/Scripts/common.js"></script>
+    <script type="text/javascript">
+        function goshare() {
+            $("#J-guide").show();
+        }
+
+        function closeshare() {
+            $("#J-guide").hide();
+        }
+
+    </script>
+</body>
+</html>

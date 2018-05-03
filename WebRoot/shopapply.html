@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <title>店铺申请</title>
+    <style type="text/css">
+        html {
+            font-size: 62.5%; /* 10÷16=62.5% */
+            font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+        }
+        /****针对所有iPhone4、5的标准模式***/
+        @media only screen and (min-width: 320px) {
+            html {
+                font-size: 53.3% !important;
+            }
+        }
+        /****针对所有iPhone6的标准模式***/
+        @media only screen and (min-width: 360px) {
+            html {
+                font-size: 60% !important;
+            }
+        }
+        /****针对所有iPhone6的标准模式***/
+        @media only screen and (min-width: 375px) {
+            html {
+                font-size: 62.5% !important;
+            }
+        }
+        /****针对所有iPhone6+的标准模式,414px写为412px是由于三星Nexus 6为412px，可一并处理***/
+        @media only screen and (min-width: 412px) {
+            html {
+                font-size: 69% !important;
+            }
+        }
+
+        @media only screen and (min-width: 428px) {
+            html {
+                font-size: 71.3% !important;
+            }
+        }
+
+        @media only screen and (min-width: 480px) {
+            html {
+                font-size: 80% !important;
+            }
+        }
+
+        @media only screen and (min-width: 540px) {
+            html {
+                font-size: 90% !important;
+            }
+        }
+
+        @media only screen and (min-width: 640px) {
+            html {
+                font-size: 106.7% !important;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-width: 320px;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+		.mainbody {
+    margin: 0 3rem;
+}
+
+.datacontent {
+    margin-top: 4rem;
+}
+
+    .datacontent div {
+        margin-top: 2rem;
+        clear: left;
+    }
+
+    .datacontent label {
+        float: left;
+        width: 6.8rem;
+        line-height: 4rem;
+        text-align: right;
+        font-size: 1.5rem;
+    }
+    .datacontent label font {
+        color: red;
+        position: relative;
+        top: 0.3rem;
+        font-weight: bolder;
+    }
+
+    .datacontent input[type="number"],.datacontent  input[type="text"] {
+        width: 19.8rem;
+        height: 4rem;
+        font-size: 1.5rem;
+        color: #8b8b8b;
+        padding: 0 1.5rem;
+        margin-left: 1.5rem;
+        border: 1px solid #7d7d7d;
+        -ms-border-radius: 0.3rem;
+        border-radius: 0.3rem;
+    }
+
+    .datacontent .code {
+        width: 9.5rem !important;
+        height: 4rem;
+        font-size: 1.5rem;
+        color: #8b8b8b;
+        padding: 0 1.5rem;
+        margin-left: 1.5rem;
+        border: 0.05rem solid #7d7d7d;
+        -ms-border-radius: 0.3rem;
+        border-radius: 0.3rem;
+    }
+
+    .datacontent input[type="button"] {
+        width: 8.5rem;
+        height: 4rem;
+        font-size: 1.2rem;
+        color: #ffffff;
+        background-color: #616161;
+        border: 0.05rem solid #616161;
+        -ms-border-radius: 0.3rem;
+        border-radius: 0.3rem;
+        margin-left: 1.5rem;
+    }
+
+    .datacontent .lalremark {
+        margin-top: 2rem;
+        width: 100%;
+        text-align: left;
+    }
+
+    .datacontent textarea {
+        padding: 1.5rem;
+        width: 28rem;
+        height: 12rem;
+        font-size: 1.5rem;
+        border: 1px solid #7d7d7d;
+        -ms-border-radius: 0.3rem;
+        border-radius: 0.3rem;
+    }
+
+
+        .mainbody #btnSumbit{
+            width: 31.4rem;
+            height: 4rem;
+            background-color: #e54b60;
+            color: #ffffff;
+            font-size: 1.8rem;
+            font-weight: bold;
+            border: 0.05rem solid #e54b60;
+            -ms-border-radius: 0.3rem;
+            border-radius: 0.3rem;
+            margin-top: 5rem;
+        }
+        input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button{
+    		-webkit-appearance: none !important;
+   			 margin: 0;
+		}
+		input[type="number"]{
+			-moz-appearance:textfield;
+		}
+		input[type="button"],input[type="submit"],input[type="text"],input[type="number"]{
+			-webkit-appearance: none;
+            outline: none;
+		}
+    </style>
+</head>
+<body>
+    <div class="mainbody">
+        <div class="datacontent">
+            <div>
+                <label for="Name"><font>*</font>姓名：</label><input type="text" name="Name" id="Name" maxlength="20" placeholder="请输入您的姓名" />
+            </div>
+            <div>
+                <label for="Phone"><font>*</font>手机号：</label><input type="number" name="Phone" id="Phone" maxlength="11" placeholder="请输入您的手机号码" />
+            </div>
+            <div style="display: flex;">
+                <label for="Code"><font>*</font>验证码：</label><input type="number" class="code" name="Code" id="Code" maxlength="4" placeholder="短信验证码" />
+                <input type="button" name="GetCode" id="GetCode" onclick="GetCode()" value="获取验证码" />
+            </div>
+            <div>
+                <label for="Remark" class="lalremark">捎个话给我们：</label><textarea rows="5" name="Remark" id="Remark" placeholder="给我们说点啥"></textarea>
+            </div>
+        </div>
+        <input type="button" id="btnSumbit" onclick="apply()" value="提交" />
+    </div>
+</body>
+<script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+<script src="/statics/layer/layer.js"></script>
+<script src="/statics/jquery/extend/jquery-extend.js"></script>
+<script>
+var validCode = true;
+function GetCode() {
+	var phone = $("#Phone").val();
+    if ($.trim(phone) == "") {
+        layer.msg("请输入手机号码", {
+            icon: 2,
+            time: 2000
+        });
+        return;
+    }
+    if (!phone.match(/^13[0-9]{9}$|14[0-9]{9}|17[0-9]{9}|15[0-9]{9}$|18[0-9]{9}$/)) {
+    	layer.msg("手机号不正确", {
+            icon: 2,
+            time: 2000
+        });
+        return;
+    }
+    GetSmsCode(phone);
+    var time = 60;
+    var btn = $("#GetCode");
+    if (validCode) {
+        validCode = false;
+        btn.prop("disabled", "disabled");
+        var t = setInterval(function () {
+            time--;
+            btn.val(time);
+            if (time == 0) {
+                clearInterval(t);
+                btn.val("重新获取");
+                validCode = true;
+                btn.removeAttr("disabled");
+            }
+        }, 1000);
+    }
+}
+function GetSmsCode(phone) {
+	var url = window.location.pathname.replace("/pages/", "");
+    var shopId = url.substring(0, url.indexOf('/'));
+    $.postJson("1043", { cellphone: phone, shopId: shopId }, function (flag, msg, data) {
+        if (flag == 1) {
+            if (data) {
+                layer.msg("已发送", {
+                    icon: 1,
+                    time: 2000
+                });
+
+            } else {
+                layer.msg(msg, {
+                    icon: 2,
+                    time: 2000
+                });
+            }
+        } else {
+            layer.msg(msg, {
+                icon: 2,
+                time: 2000
+            });
+        }
+    });
+}
+
+function apply() {
+	var name = $("#Name").val();
+    if ($.trim(name) == "") {
+        layer.alert("请输入姓名！");
+        return;
+    }
+    var phone = $("#Phone").val();
+    if ($.trim(phone) == "") {
+        layer.alert("请输入手机号码！");
+        return;
+    }
+    if (!phone.match(/^13[0-9]{9}$|14[0-9]{9}|17[0-9]{9}|15[0-9]{9}$|18[0-9]{9}$/)) {
+    	layer.alert("手机号不正确");
+        return;
+    }
+    var code = $("#Code").val();
+    if ($.trim(code) == "") {
+        layer.alert("请输入验证码！");
+        return;
+    }
+    var url = window.location.pathname.replace("/pages/", "");
+    var shopId = url.substring(0, url.indexOf('/'));
+    layer.load(2);
+    $.ajax({
+        url: "/shopApply.htm",
+        type: "post",
+        dataType: "json",
+        async: true,
+        data: {"remark": $("#Remark").val(), "linkman": name, "shopId": shopId, "telephone": phone, "code": code},
+        success: function (msg) {
+        	layer.closeAll('loading');
+        	if(msg === "success"){
+        		layer.msg('申请成功', {
+                    icon: 1,
+                    time: 1000
+                }, function () {
+                	location.href = "/pages/1/homepage.html";
+                });
+        	}else{
+        		layer.alert(msg);
+        	}
+        },
+        error: function (msg) {
+            layer.msg("请求出错，请检查网络" + JSON.stringify(msg));
+            layer.closeAll('loading');
+        }
+    });
+}
+</script>
+</html>

@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xinmeng.api.dao.auto.ShopInfoDao">
+  <resultMap id="BaseResultMap" type="cn.xinmeng.api.entity.auto.ShopInfo">
+	    <id column="id" jdbcType="INTEGER" property="id" />
+	   <result column="shop_logo" jdbcType="VARCHAR" property="shopLogo" />
+	   <result column="shop_name" jdbcType="VARCHAR" property="shopName" />
+	   <result column="shop_description" jdbcType="VARCHAR" property="shopDescription" />
+	   <result column="shop_phone" jdbcType="VARCHAR" property="shopPhone" />
+	   <result column="server_phone" jdbcType="VARCHAR" property="serverPhone" />
+	   <result column="agent_id" jdbcType="INTEGER" property="agentId" />
+	   <result column="province_id" jdbcType="INTEGER" property="provinceId" />
+	   <result column="city_id" jdbcType="INTEGER" property="cityId" />
+	   <result column="district_id" jdbcType="INTEGER" property="districtId" />
+	   <result column="shop_address" jdbcType="VARCHAR" property="shopAddress" />
+	   <result column="state" jdbcType="INTEGER" property="state" />
+	   <result column="short_url" jdbcType="VARCHAR" property="shortUrl" />
+	   <result column="qr_code" jdbcType="VARCHAR" property="qrCode" />
+	   <result column="wx_code" jdbcType="VARCHAR" property="wxCode" />
+	   <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+	   <result column="support_getui" jdbcType="INTEGER" property="supportGetui" />
+	   <result column="pay_type" jdbcType="INTEGER" property="payType" />
+	   <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+	   <result column="geo_code" jdbcType="VARCHAR" property="geoCode" />
+	   <result column="cash_amount" jdbcType="DOUBLE" property="cashAmount" />
+	   <result column="shop_type" jdbcType="INTEGER" property="shopType" />
+	   <result column="product_category_level" jdbcType="INTEGER" property="productCategoryLevel" />
+	   <result column="open_time" jdbcType="TIMESTAMP" property="openTime" />
+	   <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+	   <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+	   <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+	   <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+	   <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+   </resultMap>
+  
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+  <sql id="Base_Column_List">
+    id,
+    shop_logo,
+    shop_name,
+    shop_description,
+    shop_phone,
+    server_phone,
+    agent_id,
+    province_id,
+    city_id,
+    district_id,
+    shop_address,
+    state,
+    short_url,
+    qr_code,
+    wx_code,
+    longitude,
+    support_getui,
+    pay_type,
+    latitude,
+    geo_code,
+    cash_amount,
+    shop_type,
+    product_category_level,
+    open_time,
+    end_time,
+    create_time,
+    create_user,
+    update_time,
+    update_user
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="int" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from s_shop_info  where  id = #{id,jdbcType=INTEGER} 
+  </select>
+  
+  <select id="selectByExample" parameterType="cn.xinmeng.api.entity.auto.example.ShopInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <choose>
+	  	<when test="fieldList != null and fieldList != '' "> ${fieldList} </when>
+	  	<otherwise> <include refid="Base_Column_List" /> </otherwise>
+  	</choose>
+    from  s_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+   <delete id="deleteByPrimaryKey" parameterType="cn.xinmeng.api.entity.auto.example.ShopInfoExample">
+     delete from  s_shop_info where  id = #{id,jdbcType=INTEGER} 
+   </delete>
+  
+  <delete id="deleteByExample" parameterType="cn.xinmeng.api.entity.auto.example.ShopInfoExample">
+    delete from  s_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  
+  <insert id="insert" parameterType="cn.xinmeng.api.entity.auto.ShopInfo" useGeneratedKeys="true" keyProperty="id">
+    insert into s_shop_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="shopLogo != null">
+        shop_logo,
+      </if>
+      <if test="shopName != null">
+        shop_name,
+      </if>
+      <if test="shopDescription != null">
+        shop_description,
+      </if>
+      <if test="shopPhone != null">
+        shop_phone,
+      </if>
+      <if test="serverPhone != null">
+        server_phone,
+      </if>
+      <if test="agentId != null">
+        agent_id,
+      </if>
+      <if test="provinceId != null">
+        province_id,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="districtId != null">
+        district_id,
+      </if>
+      <if test="shopAddress != null">
+        shop_address,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="shortUrl != null">
+        short_url,
+      </if>
+      <if test="qrCode != null">
+        qr_code,
+      </if>
+      <if test="wxCode != null">
+        wx_code,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="supportGetui != null">
+        support_getui,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="geoCode != null">
+        geo_code,
+      </if>
+      <if test="cashAmount != null">
+        cash_amount,
+      </if>
+      <if test="shopType != null">
+        shop_type,
+      </if>
+      <if test="productCategoryLevel != null">
+        product_category_level,
+      </if>
+      <if test="openTime != null">
+        open_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+    </trim>
+    
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+    
+      <if test="id != null">
+        #{ id,jdbcType=INTEGER },
+      </if>
+      <if test="shopLogo != null">
+        #{ shopLogo,jdbcType=VARCHAR },
+      </if>
+      <if test="shopName != null">
+        #{ shopName,jdbcType=VARCHAR },
+      </if>
+      <if test="shopDescription != null">
+        #{ shopDescription,jdbcType=VARCHAR },
+      </if>
+      <if test="shopPhone != null">
+        #{ shopPhone,jdbcType=VARCHAR },
+      </if>
+      <if test="serverPhone != null">
+        #{ serverPhone,jdbcType=VARCHAR },
+      </if>
+      <if test="agentId != null">
+        #{ agentId,jdbcType=INTEGER },
+      </if>
+      <if test="provinceId != null">
+        #{ provinceId,jdbcType=INTEGER },
+      </if>
+      <if test="cityId != null">
+        #{ cityId,jdbcType=INTEGER },
+      </if>
+      <if test="districtId != null">
+        #{ districtId,jdbcType=INTEGER },
+      </if>
+      <if test="shopAddress != null">
+        #{ shopAddress,jdbcType=VARCHAR },
+      </if>
+      <if test="state != null">
+        #{ state,jdbcType=INTEGER },
+      </if>
+      <if test="shortUrl != null">
+        #{ shortUrl,jdbcType=VARCHAR },
+      </if>
+      <if test="qrCode != null">
+        #{ qrCode,jdbcType=VARCHAR },
+      </if>
+      <if test="wxCode != null">
+        #{ wxCode,jdbcType=VARCHAR },
+      </if>
+      <if test="longitude != null">
+        #{ longitude,jdbcType=DOUBLE },
+      </if>
+      <if test="supportGetui != null">
+        #{ supportGetui,jdbcType=INTEGER },
+      </if>
+      <if test="payType != null">
+        #{ payType,jdbcType=INTEGER },
+      </if>
+      <if test="latitude != null">
+        #{ latitude,jdbcType=DOUBLE },
+      </if>
+      <if test="geoCode != null">
+        #{ geoCode,jdbcType=VARCHAR },
+      </if>
+      <if test="cashAmount != null">
+        #{ cashAmount,jdbcType=DOUBLE },
+      </if>
+      <if test="shopType != null">
+        #{ shopType,jdbcType=INTEGER },
+      </if>
+      <if test="productCategoryLevel != null">
+        #{ productCategoryLevel,jdbcType=INTEGER },
+      </if>
+      <if test="openTime != null">
+        #{ openTime,jdbcType=TIMESTAMP },
+      </if>
+      <if test="endTime != null">
+        #{ endTime,jdbcType=TIMESTAMP },
+      </if>
+      <if test="createTime != null">
+        #{ createTime,jdbcType=TIMESTAMP },
+      </if>
+      <if test="createUser != null">
+        #{ createUser,jdbcType=VARCHAR },
+      </if>
+      <if test="updateTime != null">
+        #{ updateTime,jdbcType=TIMESTAMP },
+      </if>
+      <if test="updateUser != null">
+        #{ updateUser,jdbcType=VARCHAR },
+      </if>
+    </trim>
+  </insert>
+  
+  <insert id="insertBatch" parameterType="java.util.List">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">  
+        SELECT LAST_INSERT_ID() as id
+    </selectKey>
+    insert into s_shop_info 
+    (
+      shop_logo,
+      shop_name,
+      shop_description,
+      shop_phone,
+      server_phone,
+      agent_id,
+      province_id,
+      city_id,
+      district_id,
+      shop_address,
+      state,
+      short_url,
+      qr_code,
+      wx_code,
+      longitude,
+      support_getui,
+      pay_type,
+      latitude,
+      geo_code,
+      cash_amount,
+      shop_type,
+      product_category_level,
+      open_time,
+      end_time,
+      create_time,
+      create_user,
+      update_time,
+      update_user
+    )
+    values
+    <foreach collection="list" item="item" index="index" separator="," >  
+    (
+     #{ item.shopLogo,jdbcType=VARCHAR },
+     #{ item.shopName,jdbcType=VARCHAR },
+     #{ item.shopDescription,jdbcType=VARCHAR },
+     #{ item.shopPhone,jdbcType=VARCHAR },
+     #{ item.serverPhone,jdbcType=VARCHAR },
+     #{ item.agentId,jdbcType=INTEGER },
+     #{ item.provinceId,jdbcType=INTEGER },
+     #{ item.cityId,jdbcType=INTEGER },
+     #{ item.districtId,jdbcType=INTEGER },
+     #{ item.shopAddress,jdbcType=VARCHAR },
+     #{ item.state,jdbcType=INTEGER },
+     #{ item.shortUrl,jdbcType=VARCHAR },
+     #{ item.qrCode,jdbcType=VARCHAR },
+     #{ item.wxCode,jdbcType=VARCHAR },
+     #{ item.longitude,jdbcType=DOUBLE },
+     #{ item.supportGetui,jdbcType=INTEGER },
+     #{ item.payType,jdbcType=INTEGER },
+     #{ item.latitude,jdbcType=DOUBLE },
+     #{ item.geoCode,jdbcType=VARCHAR },
+     #{ item.cashAmount,jdbcType=DOUBLE },
+     #{ item.shopType,jdbcType=INTEGER },
+     #{ item.productCategoryLevel,jdbcType=INTEGER },
+     #{ item.openTime,jdbcType=TIMESTAMP },
+     #{ item.endTime,jdbcType=TIMESTAMP },
+     #{ item.createTime,jdbcType=TIMESTAMP },
+     #{ item.createUser,jdbcType=VARCHAR },
+     #{ item.updateTime,jdbcType=TIMESTAMP },
+     #{ item.updateUser,jdbcType=VARCHAR }
+    )  
+    </foreach>  
+  </insert>
+  
+  <select id="countByExample" parameterType="cn.xinmeng.api.entity.auto.example.ShopInfoExample" resultType="java.lang.Integer">
+    select count(*) from s_shop_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  
+  <update id="updateByExample" parameterType="map">
+    update s_shop_info set 
+	      shop_logo = #{record.shopLogo,jdbcType=VARCHAR},
+	      shop_name = #{record.shopName,jdbcType=VARCHAR},
+	      shop_description = #{record.shopDescription,jdbcType=VARCHAR},
+	      shop_phone = #{record.shopPhone,jdbcType=VARCHAR},
+	      server_phone = #{record.serverPhone,jdbcType=VARCHAR},
+	      agent_id = #{record.agentId,jdbcType=INTEGER},
+	      province_id = #{record.provinceId,jdbcType=INTEGER},
+	      city_id = #{record.cityId,jdbcType=INTEGER},
+	      district_id = #{record.districtId,jdbcType=INTEGER},
+	      shop_address = #{record.shopAddress,jdbcType=VARCHAR},
+	      state = #{record.state,jdbcType=INTEGER},
+	      short_url = #{record.shortUrl,jdbcType=VARCHAR},
+	      qr_code = #{record.qrCode,jdbcType=VARCHAR},
+	      wx_code = #{record.wxCode,jdbcType=VARCHAR},
+	      longitude = #{record.longitude,jdbcType=DOUBLE},
+	      support_getui = #{record.supportGetui,jdbcType=INTEGER},
+	      pay_type = #{record.payType,jdbcType=INTEGER},
+	      latitude = #{record.latitude,jdbcType=DOUBLE},
+	      geo_code = #{record.geoCode,jdbcType=VARCHAR},
+	      cash_amount = #{record.cashAmount,jdbcType=DOUBLE},
+	      shop_type = #{record.shopType,jdbcType=INTEGER},
+	      product_category_level = #{record.productCategoryLevel,jdbcType=INTEGER},
+	      open_time = #{record.openTime,jdbcType=TIMESTAMP},
+	      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+	      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+	      create_user = #{record.createUser,jdbcType=VARCHAR},
+	      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+	      update_user = #{record.updateUser,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  <update id="updateByExampleSelective" parameterType="map">
+    update s_shop_info 
+    <set> 
+	      <if test="record.shopLogo != null">
+	        shop_logo = #{record.shopLogo,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.shopName != null">
+	        shop_name = #{record.shopName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.shopDescription != null">
+	        shop_description = #{record.shopDescription,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.shopPhone != null">
+	        shop_phone = #{record.shopPhone,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.serverPhone != null">
+	        server_phone = #{record.serverPhone,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.agentId != null">
+	        agent_id = #{record.agentId,jdbcType=INTEGER},
+	      </if>
+	      <if test="record.provinceId != null">
+	        province_id = #{record.provinceId,jdbcType=INTEGER},
+	      </if>
+	      <if test="record.cityId != null">
+	        city_id = #{record.cityId,jdbcType=INTEGER},
+	      </if>
+	      <if test="record.districtId != null">
+	        district_id = #{record.districtId,jdbcType=INTEGER},
+	      </if>
+	      <if test="record.shopAddress != null">
+	        shop_address = #{record.shopAddress,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.state != null">
+	        state = #{record.state,jdbcType=INTEGER},
+	      </if>
+	      <if test="record.shortUrl != null">
+	        short_url = #{record.shortUrl,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.qrCode != null">
+	        qr_code = #{record.qrCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.wxCode != null">
+	        wx_code = #{record.wxCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.longitude != null">
+	        longitude = #{record.longitude,jdbcType=DOUBLE},
+	      </if>
+	      <if test="record.supportGetui != null">
+	        support_getui = #{record.supportGetui,jdbcType=INTEGER},
+	      </if>
+	      <if test="record.payType != null">
+	        pay_type = #{record.payType,jdbcType=INTEGER},
+	      </if>
+	      <if test="record.latitude != null">
+	        latitude = #{record.latitude,jdbcType=DOUBLE},
+	      </if>
+	      <if test="record.geoCode != null">
+	        geo_code = #{record.geoCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.cashAmount != null">
+	        cash_amount = #{record.cashAmount,jdbcType=DOUBLE},
+	      </if>
+	      <if test="record.shopType != null">
+	        shop_type = #{record.shopType,jdbcType=INTEGER},
+	      </if>
+	      <if test="record.productCategoryLevel != null">
+	        product_category_level = #{record.productCategoryLevel,jdbcType=INTEGER},
+	      </if>
+	      <if test="record.openTime != null">
+	        open_time = #{record.openTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="record.endTime != null">
+	        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="record.createTime != null">
+	        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="record.createUser != null">
+	        create_user = #{record.createUser,jdbcType=VARCHAR},
+	      </if>
+	      <if test="record.updateTime != null">
+	        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="record.updateUser != null">
+	        update_user = #{record.updateUser,jdbcType=VARCHAR},
+	      </if>
+	</set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  <update id="updateSelectiveByPrimaryKey" parameterType="cn.xinmeng.api.entity.auto.ShopInfo">
+    update s_shop_info 
+    <set> 
+	      <if test="shopLogo != null">
+	        shop_logo = #{shopLogo,jdbcType=VARCHAR},
+	      </if>
+	      <if test="shopName != null">
+	        shop_name = #{shopName,jdbcType=VARCHAR},
+	      </if>
+	      <if test="shopDescription != null">
+	        shop_description = #{shopDescription,jdbcType=VARCHAR},
+	      </if>
+	      <if test="shopPhone != null">
+	        shop_phone = #{shopPhone,jdbcType=VARCHAR},
+	      </if>
+	      <if test="serverPhone != null">
+	        server_phone = #{serverPhone,jdbcType=VARCHAR},
+	      </if>
+	      <if test="agentId != null">
+	        agent_id = #{agentId,jdbcType=INTEGER},
+	      </if>
+	      <if test="provinceId != null">
+	        province_id = #{provinceId,jdbcType=INTEGER},
+	      </if>
+	      <if test="cityId != null">
+	        city_id = #{cityId,jdbcType=INTEGER},
+	      </if>
+	      <if test="districtId != null">
+	        district_id = #{districtId,jdbcType=INTEGER},
+	      </if>
+	      <if test="shopAddress != null">
+	        shop_address = #{shopAddress,jdbcType=VARCHAR},
+	      </if>
+	      <if test="state != null">
+	        state = #{state,jdbcType=INTEGER},
+	      </if>
+	      <if test="shortUrl != null">
+	        short_url = #{shortUrl,jdbcType=VARCHAR},
+	      </if>
+	      <if test="qrCode != null">
+	        qr_code = #{qrCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="wxCode != null">
+	        wx_code = #{wxCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="longitude != null">
+	        longitude = #{longitude,jdbcType=DOUBLE},
+	      </if>
+	      <if test="supportGetui != null">
+	        support_getui = #{supportGetui,jdbcType=INTEGER},
+	      </if>
+	      <if test="payType != null">
+	        pay_type = #{payType,jdbcType=INTEGER},
+	      </if>
+	      <if test="latitude != null">
+	        latitude = #{latitude,jdbcType=DOUBLE},
+	      </if>
+	      <if test="geoCode != null">
+	        geo_code = #{geoCode,jdbcType=VARCHAR},
+	      </if>
+	      <if test="cashAmount != null">
+	        cash_amount = #{cashAmount,jdbcType=DOUBLE},
+	      </if>
+	      <if test="shopType != null">
+	        shop_type = #{shopType,jdbcType=INTEGER},
+	      </if>
+	      <if test="productCategoryLevel != null">
+	        product_category_level = #{productCategoryLevel,jdbcType=INTEGER},
+	      </if>
+	      <if test="openTime != null">
+	        open_time = #{openTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="endTime != null">
+	        end_time = #{endTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="createTime != null">
+	        create_time = #{createTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="createUser != null">
+	        create_user = #{createUser,jdbcType=VARCHAR},
+	      </if>
+	      <if test="updateTime != null">
+	        update_time = #{updateTime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="updateUser != null">
+	        update_user = #{updateUser,jdbcType=VARCHAR},
+	      </if>
+	</set>
+	where  id = #{id,jdbcType=INTEGER} 
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="cn.xinmeng.api.entity.auto.ShopInfo">
+    update s_shop_info set
+        shop_logo = #{shopLogo,jdbcType=VARCHAR},
+        shop_name = #{shopName,jdbcType=VARCHAR},
+        shop_description = #{shopDescription,jdbcType=VARCHAR},
+        shop_phone = #{shopPhone,jdbcType=VARCHAR},
+        server_phone = #{serverPhone,jdbcType=VARCHAR},
+        agent_id = #{agentId,jdbcType=INTEGER},
+        province_id = #{provinceId,jdbcType=INTEGER},
+        city_id = #{cityId,jdbcType=INTEGER},
+        district_id = #{districtId,jdbcType=INTEGER},
+        shop_address = #{shopAddress,jdbcType=VARCHAR},
+        state = #{state,jdbcType=INTEGER},
+        short_url = #{shortUrl,jdbcType=VARCHAR},
+        qr_code = #{qrCode,jdbcType=VARCHAR},
+        wx_code = #{wxCode,jdbcType=VARCHAR},
+        longitude = #{longitude,jdbcType=DOUBLE},
+        support_getui = #{supportGetui,jdbcType=INTEGER},
+        pay_type = #{payType,jdbcType=INTEGER},
+        latitude = #{latitude,jdbcType=DOUBLE},
+        geo_code = #{geoCode,jdbcType=VARCHAR},
+        cash_amount = #{cashAmount,jdbcType=DOUBLE},
+        shop_type = #{shopType,jdbcType=INTEGER},
+        product_category_level = #{productCategoryLevel,jdbcType=INTEGER},
+        open_time = #{openTime,jdbcType=TIMESTAMP},
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        create_user = #{createUser,jdbcType=VARCHAR},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_user = #{updateUser,jdbcType=VARCHAR}
+    where  id = #{id,jdbcType=INTEGER} 
+  </update>
+</mapper>

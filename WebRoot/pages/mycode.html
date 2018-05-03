@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>推荐好友</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css"/>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="/statics/jquery/jquery-1.8.2.js"></script>
+    <script src="/statics/jquery/extend/jquery-extend.js"></script>
+    <script src="/statics/jquery/qrcode.js"></script>
+    <script src="/statics/layer/layer.js"></script>
+    <script src="/statics/scripts/common.js"></script>
+    <script src="/statics/layer/extend/laytpl.js"></script>
+    <script src="/statics/scripts/wxshare.js"></script>
+    <script src="/statics/scripts/mycode.js"></script>
+    <style>
+    #head div ul li a{
+    	font-size: 18px;
+    }
+    </style>
+</head>
+<body>
+    <div class="jph">
+        <!--page head-->
+        <div id="head" class="com-fixed com-head">
+            <div>
+                <ul>
+                    <li class="display-box fl com-title-over">
+                        <div class="com-head-left">
+                            <button type="button" class="com-head-title" onclick="history.back()">
+                                <i class="code-ret code-ret-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="display-box fl com-title-center ct">
+                        <a class="com-head-title"><span>推荐好友</span></a>
+                    </li>
+                    <li class="display-box fr com-title-over rg">
+                        <span class="com-head-right" id="house-rule">
+                            <button type="button" onclick="huodong()" class="com-head-title" style="vertical-align: middle;">
+		                    	<img height="30px" src="/statics/img/icon/wenhao.png" />
+                            </button>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="over-head"></div>
+        <div class="ct" style="padding: 50px 0px; background-color: #F5F5F5">
+            <ul>
+                <li id="code"></li>
+                <li>让好友扫一扫,即可邀请好友开店哦</li>
+            </ul>
+        </div>
+        <div class=" clearfix" style="border-top: 2px solid #ccc; border-bottom: 1px solid #ccc;line-height: 30px;padding: 0 4px;">
+            <a href="#">
+                <div class="display-box com-title-ser fl">
+                    <div class="mypage-head-name">
+                        <p>最近推荐好友</p>
+                    </div>
+                </div>
+              
+            </a>
+        </div>
+        <div class="color-six mg-line-height" id="friendlist">
+            <script type="text/html" id="friend-list">
+                {{# if(d.customerCategory==2){ }}
+                <div class="friend-main-servce clearfix">
+                    <div class="display-box home-main-width fr">
+                        <div class="mypage-head-name rg">
+                            <span class="com-font-size-14">{{ formatDate(d.openTime)}}<!--<i class="right-ret right-ret-icon mg-left ver-middle"></i>--></span>
+                        </div>
+                    </div>
+                    <div class="display-box home-main-width fl">
+                        <div class="mypage-head-name">
+                            <div class="fl">
+                                <img src="{{d.headSculpture}}" width="45" alt="" />
+                            </div>
+                            <div class="fl com-head-left">
+                                <p>
+                                    {{d.nickname}}<i class="fd-yelow fd-yelow-icon"></i>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {{# }else{ }}
+                <!--second line-->
+                <div class="friend-main-servce cl">
+                    <div class="display-box home-main-width fl">
+                        <div class="mypage-head-name">
+                            <div class="fl">
+                                <img src="{{d.headSculpture}}" width="45" alt="" />
+                            </div>
+                            <div class="fl com-head-left">
+                                <p>
+                                    {{d.nickname}}<i class="fd-gray fd-gray-icon"></i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="display-box home-main-width fr">
+                        <div class="mypage-head-name rg">
+                            <span class="com-font-size-14">{{ formatDate(d.openTime)}}<!--<i class="right-ret right-ret-icon mg-left ver-middle"></i>--></span>
+                        </div>
+                    </div>
+                </div>{{# } }}
+            </script>
+        </div>
+        
+        <div class="display-box  fr" onclick="location.href='invitefriend.html'" style="width: 100%; border-bottom: 1px solid #ccc;line-height: 30px;">
+            <div class="mypage-head-name">
+                <span>查看全部推荐的好友</span><i class="right-ret right-ret-icon mg-left ver-middle  fr"></i>
+            </div>
+        </div>
+        
+        <div id="huodong1" class="hide" style="background-color:#000;background-color: rgba(0, 0, 0, 0.5);filter: alpha(opacity=50);height:100%; width:100%;">
+        	<div style="margin:auto;width:80%;padding-top:5%;">
+	        	<div class="fr" style="margin-bottom:15px;margin-right:15px">
+	        		<img src="/statics/img/icon/guanbi.png" width="30px" onclick="layer.closeAll();" />
+	        	</div>
+	       			<img src="/statics/img/icon/huodong.png" width="100%"/>
+       			<div onclick="location.href=''" style="background-color:#cc3333;margin:-65px 10% 0px ;position:absolute;border:0px solid;border-radius:5px;width:61.5%;z-index:2;">
+	                <button type="button" onclick="goshare()" class="color-white com-font-size-18" style="width:100%;height:40px;">立即邀请好友</button>
+	            </div>
+       		</div>
+    	</div>
+    	<div id="J-guide" class="guide " style="display: none" onclick="closeshare()">
+            <i class="icon-guide"></i>
+        </div>
+        <!--分享信息-->
+        <input id="hidtimestamp" type="hidden" value="0" />
+        <input id="hidnoncestr" type="hidden" value="0" />
+        <input id="hidsignature" type="hidden" value="0" />
+        <input id="wxtitle" type="hidden" value="" />
+        <input id="wxdescription" type="hidden" value="" />
+        <input id="wximgurl" type="hidden" value="" />
+        <input id="wxhref" type="hidden" value="" />
+    </div>
+</body>
+</html>

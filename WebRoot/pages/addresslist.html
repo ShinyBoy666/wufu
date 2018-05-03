@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>收件人管理</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+</head>
+<body>
+    <div class="jph">
+        <!--page head-->
+        <div id="head" class="com-fixed com-head">
+            <div>
+                <ul>
+                    <li class="display-box fl com-title-over">
+                        <div class="com-head-left">
+                            <button type="button" class="com-head-title" onclick="location.href='mysetting.html'">
+                                <i class="code-ret code-ret-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="display-box fl com-title-center ct">
+                        <a class="com-head-title"><span>收件人管理</span></a>
+                    </li>
+                    <li class="display-box fr com-title-over rg">
+                        <span class="com-head-right" id="house-rule">
+                            <button type="button" class="com-head-title">
+                                <!--<span class="com-font-size-14">删除</span>-->
+                            </button>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="over-head"></div>
+        <!--main-->
+        <div id="list" class="cl">
+            <!--选联系人-->
+            <script type="text/html" id="tmp-list">
+                <div class="Manage-pad-pd Manage item" data-id="{{d.id}}">
+                    <div class="forget-li-bottpm">
+                        <font>{{ d.recipientName }} <span class="mg-large-left">{{ d.recipientPhone }} </span></font>
+                        <p>{{d.provinceName+d.cityName+d.districtName+d.recipientAddress}}</p>
+                    </div>
+                    <div class="Manage-pad-bottom clearfix">
+                        <ul>
+                            {{# if(d.isDefault==1){ }}
+                            <li class="fl"><button type="button" class="shop-buttom"><i class="choose over-select-icon choose1"></i>默认地址</button></li>
+                            {{# }else{ }}
+                            <li class="fl"><button type="button" class="shop-buttom" onclick="setDefault({{d.id}})"><i class="choose over-select-icon"></i>设为默认</button></li>
+                            {{# } }}
+                            <li class="fr">
+                                <button type="button" class="shop-buttom" onclick="edit({{d.id}})"><i class="edit edit-icon"></i>编辑</button>
+                                <button type="button" class="shop-buttom com-head-left" onclick="del({{d.id}})"><i class="delete delete-icon"></i>删除</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="Manage-bottom-line"></div>
+            </script>
+        </div>
+        <div id="nodata" class="hide">
+            <img src="/statics/img/image/no_data.png" alt="无数据" />
+            <p>啊哦！好像没有检测到数据哟！</p>
+        </div>
+        <div class="forget-but over-head">
+            <button type="button" onclick="add()" value="" class="bind-button bind-button-bg color-white com-font-size-16">+新建地址</button>
+        </div>
+
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/addresslist.js"></script>
+    </div>
+</body>
+</html>

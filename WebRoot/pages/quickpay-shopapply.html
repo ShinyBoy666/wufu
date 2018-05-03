@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>商铺入驻申请</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+</head>
+<body id="shopApply" class="font-hui apply">
+    <div class="jph">
+        <div class="logo"><span class="logo-ico">&nbsp;</span></div>
+        <div class="title font-black">舜凯云商商铺入驻申请</div>
+        <form>
+            <dl class="form-row">
+                <dt>企业名称</dt>
+                <dd><input type="text" name="enterpriseName" id="enterpriseName" /></dd>
+            </dl>
+            <dl class="form-row">
+                <dt>企业联系人</dt>
+                <dd class="clearfix">
+                    <div style="float: left; width: 55%; margin-right: 5%" >
+                        <input type="text" name="linkman" id="linkman"/>
+                    </div>
+                    <span id="sex" style="float: left; width: 40%; display: inline-block; line-height: 30px;">
+                        <i style="float: left; padding: 0 10px 0 18px" class="radio" onclick="selectSex(this)">先生</i>
+                        <i style="float: left; padding: 0 0px 0 18px" class="radio" onclick="selectSex(this)">女士</i>
+                    </span>
+                </dd>
+            </dl>
+            <dl class="form-row">
+                <dt>联系人电话</dt>
+                <dd><input type="text" name="telephone" id="telephone"/></dd>
+            </dl>
+
+            <dl class="form-row">
+                <dt>联系人邮箱</dt>
+                <dd><input type="text" name="email" id="email" placeholder="请填写联系人邮箱" /></dd>
+            </dl>
+            <div style="padding: 10px; margin: 10px auto;" class="red">温馨提醒：舜凯云商优惠买单活动正在火热进行中(2016-07-11~2016-08-21),现在入驻限时免费(仅限哈尔滨)，入驻请及时！</div>
+            <div class="bottom">
+                <input id="submit" onclick="apply()" class="btn-red-one" type="button" value="确认提交" />
+            </div>
+        </form>
+        <script src="/statics/jquery/jquery-1.8.2.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/scripts/quickpay-shopapply.js"></script>
+        <style>
+            .select { float: left; width: 30%; height: 30px; }
+            .select-down {display:none; height: 28px; width: 30px; float: left; background: #cc3333 url('/statics/img/icon/xiala.png') center center no-repeat; -ms-background-size: 16px 10px; background-size: 16px 10px; border: 1px solid #cc3333; -ms-border-bottom-right-radius: 3px; border-bottom-right-radius: 3px; margin-left: -30px; -ms-border-top-right-radius: 3px; border-top-right-radius: 3px; }
+        </style>
+    </div>
+</body>
+</html>
+

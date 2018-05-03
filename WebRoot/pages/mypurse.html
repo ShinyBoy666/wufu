@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>我的钱包</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/statics/jquery/extend/jquery-extend.js"></script>
+    <script src="/statics/layer/layer.js"></script>
+    <script src="/statics/scripts/common.js"></script>
+    <script src="/statics/scripts/mypurse.js"></script>
+    <style>
+    	.mypage-head-name{
+    		padding: 10px;
+    	}
+    </style>
+</head>
+<body>
+    <div class="jph">
+        <!--page head-->
+        <div id="head" class="com-fixed com-head">
+            <div>
+                <ul>
+                    <li class="display-box fl com-title-over">
+                        <div class="com-head-left">
+                            <button type="button" onclick="location.href='mypage.html'" class="com-head-title">
+                                <i class="code-ret code-ret-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="display-box fl com-title-center ct">
+                        <a class="com-head-title"><span>我的钱包</span></a>
+                    </li>
+                    <li class="display-box fr com-title-over rg">
+                        <span class="com-head-right" id="house-rule">
+                            <button type="button" id="wash" class="com-head-title">
+                                <span class="com-font-size-16 color-six" style="font-weight: 400;">提现</span>
+                            </button>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="over-head"></div>
+        <div id="divcash" class="pure-tixian color-white com-font-size-12">
+            <p id="pcashing"></p>
+        </div>
+        <div class="pure-center-bg pure-center-padding">
+            <div class="ct color-white">
+                <ul>
+                    <li class="code-money"><i class="pure-money pure-money-icon"></i><span class="com-font-size-16 code-balance">账户余额</span></li>
+                    <li><span class="com-font-size-35" id="spancashAmount">0元</span></li>
+                </ul>
+            </div>
+        </div>
+        <!--收支明细-->
+        <div class="product-center"></div>
+        <div class="code-main-servce code-top-border code-line-inner clearfix" onclick="location.href='amountdetail.html'">
+            <div class="display-box product-button fl">
+                <div class="mypage-head-name">
+                    <p>收支明细</p>
+                </div>
+            </div>
+            <div class="display-box com-title-ser fr">
+                <div class="mypage-head-name rg">
+                    <i class="right-ret right-ret-icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="code-main-servce code-top-border code-line-inner clearfix" onclick="location.href = 'mywithdrawals.html'">
+            <div class="display-box product-button fl">
+                <div class="mypage-head-name">
+                    <p>提现记录</p>
+                </div>
+            </div>
+            <div class="display-box com-title-ser fr">
+                <div class="mypage-head-name rg">
+                    <i class="right-ret right-ret-icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="product-center"></div>
+        <!--<div class="color-block com-font-size-14">
+            <div class="code-main-servce code-top-border code-line-inner clearfix">
+                <div class="display-box product-button fl">
+                    <div class="mypage-head-name">
+                        <p>本日收益</p>
+                    </div>
+                </div>
+                <div class="display-box com-title-ser fr">
+                    <div class="mypage-head-name rg">
+                        <strong class="color-peach code-mucha" id="strongincome">+0</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="code-main-servce code-line-inner cl">
+                <div class="display-box product-button fl">
+                    <div class="mypage-head-name">
+                        <p>本月收益</p>
+                    </div>
+                </div>
+                <div class="display-box com-title-ser fr">
+                    <div class="mypage-head-name rg">
+                        <strong class=" color-peach code-mucha" id="strongmonthIncome">+0</strong>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</body>
+</html>

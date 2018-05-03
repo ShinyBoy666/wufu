@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>我关注的商品</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+</head>
+<body>
+    <div class="jph">
+        <!--page head-->
+        <div id="head" class="com-fixed com-head coupon-head-bg">
+            <div>
+                <ul>
+                    <li class="display-box fl com-title-over">
+                        <div class="com-head-left">
+                            <button type="button" onclick="javascript: history.back();" class="copon-head-button">
+                                <i class="code-ret code-ret-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="display-box fl com-title-center ct">
+                        <a class=""><span>我收藏的商品</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--head end-->
+        <div class="classify-margin-top"></div>
+        <!--main-->
+        <div class="project-bottom-height clearfix" id="productList">
+            <!--列表循环-->
+            <script type="text/html" id="product-list">
+                <div>
+                    <div class="forget-li-bottpm">
+                        <div class="mypage-head-name clearfix">
+                            <div class="fl display-box com-title-over product-list-img-overflow">
+                                <a href="productdetail.html?pid={{d.productId}}"><img src="{{d.imageUrl}}" /></a>
+                            </div>
+                            <div class="fl width-eight">
+                                <ul style="padding-left:5px">
+                                    <li class="color-block text-overflow-hidden"><a href="productdetail.html?pid={{d.productId}}">{{d.productName}}</a></li>
+                                    <li class="color-peach shop-bottom-img-top">￥{{d.retailPrice.toFixed(2)}}</li>
+                                    <!--<li class="cloud-through color-nine com-font-size-12">￥{{d.marketPrice.toFixed(2)}}</li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </script>
+        </div>
+        <div id="nodata">
+            <img src="/statics/img/image/no_data.png" alt="无数据" />
+            <p>啊哦！好像没有检测到数据哟！</p>
+        </div>
+        <div id="back-to-top">
+            <img src="/statics/img/image/pd_to_top.png" alt="置顶" />
+        </div>
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/mycare.js"></script>
+    </div>
+</body>
+</html>

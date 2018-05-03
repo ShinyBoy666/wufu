@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>商品详情</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="/statics/style/itembass.css?vqq00003" />
+    <link href="/statics/style/swiper-3.3.1.min.css" rel="stylesheet" />
+    <link href="/statics/style/productdetail.css?v1" rel="stylesheet" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <style type="text/css">
+        #productdetail img {
+            margin: 0;
+            padding: 0;
+            vertical-align: top;
+        }
+        .icon-simi{
+        	background-image: url(/statics/img/icon/simibaohu.png);
+        }
+        .icon-yunshu{
+        	background-image: url(/statics/img/icon/yunshu.png);
+        }
+        .icon-zhengpin{
+        	background-image: url(/statics/img/icon/zhengpinbaozhang.png);
+        }
+        #icon ul li{
+		    font-size: 14px;
+		    text-align: center;
+		    color: #606060;
+		    width: 33%;
+		    float: left;
+        }
+        #icon ul li i{
+        	background-size: 39px 33px;
+	    	cursor: pointer;
+			height: 33px;
+			width: 39px;
+			display: inline-block;
+			margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="jph">
+        <div class="cash-li-pading" style="position: fixed;z-index: 999">
+            <i class="poject-return poject-return-icon" onclick="javascript: history.back();"></i>
+        </div>
+        <div id="content" style="padding-bottom: 40px"></div>
+        <div class="shop-bottom">
+            <div class="shop-bottom-menu com-font-size-10 color-nine">
+                <div class="fl project-bottom-size" id="div_collection" onclick="productcollection(this)">
+                    <a href="javascript:void(0)" class="color-nine">
+                        <p class="shop-bottom-img-top"><i class="collect collect-icon"></i></p>
+                        <p>收藏</p>
+                    </a>
+                </div>
+                <div class="fl project-bottom-size">
+                    <a href="javascript:void(0)" class="color-nine" onclick="goshare()">
+                        <p class="shop-bottom-img-top"><i class="share share-icon"></i></p>
+                        <p>分享</p>
+                    </a>
+                </div>
+                <div class="fl project-bottom-size ">
+                    <a href="cart.html" class="color-nine">
+                        <p class="shop-bottom-img-top">
+                            <i id="endcart" class="bottom-myy bottom-myy-icon"></i>
+                            <i id="cartTotalItemNum" class="i_car_num">0</i>
+                        </p>
+                        <p>购物车</p>
+                    </a>
+                </div>
+
+                <div class="fl project-bottom-size bind-button-bg addcar" id="cartAvailable" onclick="addcart()" style="display: none">
+                    <button type="button" class="project-bottom-buttom color-white">加入购物车</button>
+                </div>
+                <div class="fl project-bottom-size bind-button-bg "  id="cartDisable" style="display: none;background-color: #ccc">
+                    <button type="button" class="project-bottom-buttom color-white" style="background-color: #ccc">已下架</button>
+                </div>
+            </div>
+        </div>
+        <div id="J-guide" class="guide " style="display: none" onclick="closeshare()">
+            <i class="icon-guide"></i>
+        </div>
+        <script type="text/html" id="tmp-model">
+            {{#  if (d.productPriceList!=null && d.productPriceList.length > 0){ }}
+            <div class="swiper-container swiper-banner">
+                <div class="swiper-wrapper" id="bannercontent">
+                    {{# for(var i = 0, len = d.productPriceList[0].imageUrlList.length; i < len; i++){ }}
+                    <div class="swiper-slide"><img style="width: 100%" src="{{d.productPriceList[0].imageUrlList[i]}}" /></div>
+                    {{# }   }}
+                </div>
+				<div class="swiper-pagination pagination-banner" style="display: block;text-align: right">
+					
+				</div>
+                <div class="swiper-pagination pagination-banner" style="display: none"></div>
+            </div>
+            <div class="com-font-size-14 clearfix classCation " style="height: 100%">
+                <ul>
+                    <li id="productname">
+                        <div class="clearfix">
+                            <p class="fl display-box poject-left-width">{{d.productName}}</p>
+                            <p class="fr display-box poject-right-width"><i class="right-ret right-ret-icon fr" style="display: none"></i></p>
+                        </div>
+
+                        <p class="color-nine">{{d.productIntroduction}}</p>
+                        <p class="color-peach">
+                            ¥<span class="com-font-size-20" id="selectedprice" style="margin-right:5px;">{{d.productPriceList[0].retailPrice.toFixed(2)}}</span>
+                            <!--<span style="color: #666"> (返现：¥</span><span style="color: #666" class="com-font-size-14" id="selectedprofitFirst">{{d.productPriceList[0].profitFirst.toFixed(2)}}</span>  <span style="color: #666"> )</span>-->
+						{{#  if (d.isNew != null && d.isNew == 2){ }}
+							<img height="14px" src="/statics/img/icon/new2.png" style="margin-left:5px;"/>
+						{{# }   }}
+						{{#  if (d.hot != null && d.hot == 2){ }}
+							<img height="14px" src="/statics/img/icon/hot2.png" style="margin-left:5px;"/>
+						{{# }   }}
+							<span style="float:right;color:#b2b2b2;font-size:12px;">销量：{{d.buyCount+d.buyVirtualCount}}</span>
+						</p>
+                        <p class="color-peach" style="color: #666;">
+                            市场价：<span style="text-decoration:line-through;">¥<span class="com-font-size-14" id="selectedmarketprice">{{d.productPriceList[0].marketPrice.toFixed(2)}}</span></span>
+                        </p>
+                    </li>
+                    <li onclick="showsku()" style="line-height: 20px;height: 20px;overflow: hidden">
+                        <span id="selectedsku">已选 {{d.productPriceList[0].sku}}、 {{#  if (d.productPriceList[0].quantity > 0){ }}1{{# } else { }}0{{# } }}件</span>
+                        <span class="fr"><i class="right-ret right-ret-icon"></i></span>
+                    </li>
+                    <!--<li id="divmore" style="text-align: center;margin-top: 10px" onclick="showmore()">
+                        <a id="more" href="#productdetail">点击查看产品详情</a>
+                    </li>-->
+                </ul>
+            </div>
+
+			<div class="clearfix" style="padding: 4px 0;background-color: #e7e7e7;">
+                <div class="clearfix" style="background-color: #fff;">
+                    <img src="/statics/img/image/baozhang.jpg"/>
+                </div>
+            </div>
+            <div id="productdetail" style="min-height: 100%;height: 100%;">
+                {{d.description}}
+            </div>
+            <div id="mask" class="panel-cm" style="left: 0;right: 0;">
+                <div class="mask"></div>
+            </div>
+            <div id="J-panel-cm" class="panel-cm com-font-size-12" style="left: 0;right: 0;">
+
+                <div class="panel-content">
+                    <div class="g-item dib-wrap">
+                        <div class="img-wrap dib"><img id="smallimage" src="{{d.productPriceList[0].imageUrlList[0]}}?160_160" /></div>
+                        <div class="g-mid dib">
+                            <div class="g-title">{{d.productName}}</div>
+                            <div class="price">
+                                <!--<i>零售价：</i>-->
+                                <b id="J-sku-price">¥{{d.productPriceList[0].retailPrice.toFixed(2)}}</b>
+                                <!--<i style="color: #666">(返现:¥</i>
+                                <b style="color: #666" id="J-sku-vip-price">{{d.productPriceList[0].profitFirst.toFixed(2)}}</b>
+                                <i style="color: #666">)</i>-->
+                            </div>
+                            <div class="price" style="color: #666;">
+                                <i >市场价：</i><span style="text-decoration:line-through;">¥
+                                <b id="J-sku-market-price">{{d.productPriceList[0].marketPrice.toFixed(2)}}</b></span>
+                            </div>
+                        </div>
+                        <div class="close dib" onclick="closesku()"></div>
+                    </div>
+                    <section class="cm-content">
+                        <dl id="J-cm">
+                            <dt>规格</dt>
+                            <dd>
+                                {{# for(var i = 0, len = d.productPriceList.length; i < len; i++){ }}
+                                {{# if(i===0){ }}
+                                <label class="sel cansearch" onclick="changesku(this);" data-quantity="{{d.productPriceList[i].quantity}}" data-sku="{{d.productPriceList[i].sku}}" data-id="{{d.productPriceList[i].id}}" data-retail_price="{{d.productPriceList[i].retailPrice}}" data-profitfirst="{{d.productPriceList[i].profitFirst}}" data-marketprice="{{d.productPriceList[i].marketPrice}}">{{d.productPriceList[i].sku}}</label>
+                                {{# }else { }}
+                                {{# if(d.productPriceList[i].quantity>0){ }}
+                                <label class="cansearch" onclick="changesku(this);" data-quantity="{{d.productPriceList[i].quantity}}" data-sku="{{d.productPriceList[i].sku}}" data-id="{{d.productPriceList[i].id}}" data-retail_price="{{d.productPriceList[i].retailPrice}}" data-profitfirst="{{d.productPriceList[i].profitFirst}}" data-marketprice="{{d.productPriceList[i].marketPrice}}">{{d.productPriceList[i].sku}}</label>
+                                {{# }else { }}
+
+                                <label class="notcanbuy" data-quantity="{{d.productPriceList[i].quantity}}" data-sku="{{d.productPriceList[i].sku}}" data-id="{{d.productPriceList[i].id}}" data-retail_price="{{d.productPriceList[i].retailPrice}}" data-profitfirst="{{d.productPriceList[i].profitFirst}}" data-marketprice="{{d.productPriceList[i].marketPrice}}">{{d.productPriceList[i].sku}}</label>
+                                {{# } }}
+                                {{# } }}
+                                {{# }  }}
+                            </dd>
+                        </dl>
+                    </section>
+                    <div id="J-cm-amount" class="cm-amount clearfix">
+                        <label>
+                            库存量：
+                            <span id="J-last-num">{{d.productPriceList[0].quantity}}</span>
+                        </label>
+                        <div class="right">
+                            <ul class=" amount-bar dib-wrap">
+                                <li class="btn-minus dib disabled" onclick="changeminusnum()">
+                                    <i class="icon"></i>
+                                </li>
+                                <li class="amount-val dib" id="buynum">1</li>
+                                <li class="btn-add dib " onclick="changeaddnum()">
+                                    <i class="icon"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <section class="cm-foot">
+                        <button class="J-ok btn" type="submit" onclick="confirmsku()">确定</button>
+                    </section>
+                </div>
+            </div>
+            {{# }   }}
+        </script>
+
+        <input id="hidselectvalue" type="hidden" value="|0" />
+        <input id="hidselectimg" type="hidden" value="" />
+        <input id="hidcollection" type="hidden" value="0" />
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/scripts/swiper-3.3.1.min.js"></script>
+        <script src="/statics/scripts/jquery.fly.min.js?v000"></script>
+        <script src="/statics/scripts/wx-share.js"></script>
+        <script src="/statics/scripts/productdetail.js?v789"></script>
+    </div>
+</body>
+</html>

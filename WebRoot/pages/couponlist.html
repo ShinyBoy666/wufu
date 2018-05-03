@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>优惠券</title>
+    <style type="text/css">
+        .circliful {
+            position: relative;
+        }
+
+        .circle-text {
+            color: #fff;
+        }
+
+        .circle-text, .circle-info, .circle-text-half, .circle-info-half {
+            width: 100%;
+            position: absolute;
+            text-align: center;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="project-body" style="background-color: #fff">
+    <div class="jph">
+        <!--page head-->
+        <div id="head" class="com-fixed com-head coupon-head-bg">
+            <div>
+                <ul>
+                    <li class="display-box fl com-title-over">
+                        <div class="com-head-left">
+                            <button type="button" onclick="location.href='homepage.html'" class="copon-head-button">
+                                <i class="code-ret code-ret-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="display-box fl com-title-center ct">
+                        <a class=""><span>优惠券</span></a>
+                    </li>
+                    <li class="display-box fr com-title-over rg">
+                        <span class="com-head-right" id="house-rule">
+                            <button type="button" onclick="location.href = 'userule.html'" class="copon-head-button">
+                                <span class="com-font-size-14">使用规则</span>
+                            </button>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="over-head"></div>
+        <!--main-->
+        <div>
+            <!--优惠券使用-->
+            <div class="coupon-padding COUPON-BOTTOM" id="list">
+                <script type="text/html" id="tmp-list">
+                    <div class="coupon-item coupon-itembg{{ d.overNumber==0?2:1 }} clearfix">
+                        {{# if(d.overNumber>0){ }}
+                        <div class="fr rg" style="text-align: center; width: 30%; padding-top: 10px">
+                            {{# if(d.receive){ }}
+                            <div style="margin: 0 auto;" id="myStat{{d.id}}" data-dimension="55" data-text="{{GetPercent(d.overNumber,d.couponNumber).toFixed(1) }}%" d data-info="New Clients" data-width="1" data-fontsize="10" data-percent="{{GetPercent(d.overNumber,d.couponNumber)}}" data-fgcolor="#fff" data-bgcolor="#ffa4a1"></div>
+                            <span class="coupon-get" onclick="getCoupon(this, '{{d.id }}', '{{d.useShopId }}')">
+                                立即领取
+                            </span>
+                            {{# }else{ }}
+                            <span style="color: #f1fec9;line-height:90px;">
+                                已领取
+                            </span>
+                            {{# } }}
+                        </div>
+                        {{#  }else{ }}
+                        <div class="fr rg" style="text-align: center; width: 30%; padding-top: 10px">
+                            <div style="margin: 0 auto;" id="myoverStat{{d.id}}" data-dimension="55" data-text="已领完" d data-info="New Clients" data-width="1" data-fontsize="10" data-percent="100" data-fgcolor="#fff" data-bgcolor="#ffa4a1"></div>
+                            <span class="coupon-get2">
+                                立即领取
+                            </span>
+                        </div>
+                        {{# } }}
+                        <div style="margin:0 5px;max-width:70%">{{ formatDate(d.beginTime)}}-{{ formatDate(d.endTime)}}</div>
+                        <div class="fl" style="margin-right: 5px;margin-left: 5px;margin-top: 10px"><img src="{{d.useShopLogo }}" width="62" height="62" alt=""></div>
+                        <div class="fl coupon-left">
+                            <ul>
+                                <li class="clearfix">
+                                    <div class="fl coupon-money coupon-moeny-color{{ d.overNumber==0?2:1 }}">
+                                        ¥ {{d.couponMoney }}
+                                    </div>
+                                    <div class="fr" style="margin-bottom: 0;margin-top: 5px;margin-right: 10%;">
+                                        {{# if(d.orderMoney>0){ }}
+                                        <label class="coupon-name">满减券</label>
+                                        {{# } else{ }}
+                                        <label class="coupon-name">无门槛</label>
+                                        {{# } }}
+                                    </div>
+                                </li>
+                                <li class="coupon-filter2">{{d.couponName }}</li>
+                                <li class="coupon-filter2">{{d.description }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </script>
+            </div>
+        </div>
+        <div id="nodata">
+            <img src="/statics/img/image/no_data.png" alt="无数据" />
+            <p>啊哦！好像没有检测到数据哟！</p>
+        </div>
+        <link rel="stylesheet" href="/statics/style/itembass.css?v2" />
+        <link href="/statics/style/common.css" rel="stylesheet" />
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/couponlist.js"></script>
+        <script src="/statics/jquery/jquery.circliful.min.js"></script>
+    </div>
+</body>
+</html>

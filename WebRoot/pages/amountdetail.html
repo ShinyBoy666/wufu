@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>收支明细</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/statics/jquery/extend/jquery-extend.js"></script>
+    <script src="/statics/layer/layer.js"></script>
+    <script src="/statics/scripts/common.js"></script>
+    <script src="/statics/layer/extend/laytpl.js"></script>
+    <script src="/statics/scripts/amountdetail.js"></script>
+</head>
+<body>
+    <div class="jph">
+        <!--page head-->
+        <div id="head" class="com-fixed com-head">
+            <div>
+                <ul>
+                    <li class="display-box fl com-title-over">
+                        <div class="com-head-left">
+                            <button type="button" onclick="location.href='mypurse.html'" class="com-head-title">
+                                <i class="code-ret code-ret-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="display-box fl com-title-center ct">
+                        <a class="com-head-title"><span>收支明细</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="over-head"></div>
+        <div class="product-center"></div>
+        <div id="amountlist" class="color-block com-font-size-14">
+            <script type="text/html" id="amount-list">
+                {{# if(d.paymentType==1){ }}
+                <div class="code-main-servce cl" style="height: 56px !important;">
+                    <div class="display-box fl" style="width: 80% !important;">
+                        <div class="mypage-head-name">
+                            <p class="text-overflow-hidden" style="line-height: 18px">【{{ formatDate(d.createTime)}}】{{d.remark}}</p>
+                        </div>
+                    </div>
+                    <div class="display-box fr" style="width: 20% !important;">
+                        <div class="mypage-head-name rg">
+                            <strong class=" color-peach" id="strongmonthIncome">+{{d.amount}}</strong>
+                        </div>
+                    </div>
+                </div>
+                {{# }else{ }}
+                <div class="code-main-servce cl" style="height: 56px !important;">
+                    <div class="display-box fl" style="width: 80% !important;">
+                        <div class="mypage-head-name">
+                            <p class="text-overflow-hidden" style="line-height: 18px">【{{ formatDate(d.createTime)}}】{{d.remark}}</p>
+                        </div>
+                    </div>
+                    <div class="display-box fr" style="width: 20% !important;">
+                        <div class="mypage-head-name rg">
+                            <strong class=" color-green" id="strongmonthIncome">-{{d.amount}}</strong>
+                        </div>
+                    </div>
+                </div>
+                {{# } }}
+            </script>
+        </div>
+        <div id="nodata">
+            <img src="/statics/img/image/no_data.png" alt="无数据" />
+            <p style="margin-top: 20px">啊哦！好像没有检测到数据哟！</p>
+        </div>
+        <div id="back-to-top">
+            <img src="/statics/img/image/pd_to_top.png" alt="置顶" />
+        </div>
+    </div>
+</body>
+</html>

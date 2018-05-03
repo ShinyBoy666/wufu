@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xinmeng.api.dao.ex.ExOrderDao">
+
+ 	<!-- 修改订单状态以及帐户金额 -->
+ 	<update id="updateOrderAccountPayment">
+ 		update o_order set 
+ 			account_Payment = account_Payment + #{accountPayment,jdbcType=DOUBLE}, 
+ 			pay_state = #{payState,jdbcType=INTEGER},
+ 			online_pay_type = #{onlinePayType,jdbcType=INTEGER}
+ 		where order_id = #{orderId,jdbcType=VARCHAR}
+ 	</update>
+ 	
+ 	<!-- 优惠买单 修改已领优惠劵金额 -->
+ 	<update id="updateQuickOrderReceiveCouponAmount">
+ 		update o_quick_order set 
+ 			receive_coupon_amount = receive_coupon_amount + #{receiveCouponAmount,jdbcType=DOUBLE}
+ 		where order_id = #{orderId,jdbcType=VARCHAR} and pay_state = 3 and receive_coupon_amount + #{receiveCouponAmount,jdbcType=DOUBLE} &lt;= total_amount 
+ 	</update>
+ 	
+ 	
+  	<!-- 查询订单统计 -->
+  	<select id="queryOrderTotal" resultType="cn.xinmeng.api.entity.auto.biz.OrderTotalBiz">
+  		SELECT 
+			COUNT(1) orderCount,
+			SUM(CASE online_pay_type WHEN 4 THEN total_amount ELSE 0 END) cashAmount, 
+			SUM(total_amount) totalAmount
+			FROM o_order oo 
+		WHERE oo.pay_state=3 AND oo.shop_id=#{shopId,jdbcType=INTEGER}
+		and EXISTS(select 1 from o_order_state oos where oos.order_id = oo.order_id AND oos.state=3 AND oos.state_type=2 AND oos.create_time > #{payTime,jdbcType=TIMESTAMP})
+  	</select>
+  	
+  	
+  	<!-- 查询优惠买单统计 -->
+  	<select id="queryQuickOrderTotal" resultType="cn.xinmeng.api.entity.auto.biz.OrderTotalBiz">
+  		SELECT 
+			COUNT(1) orderCount,
+			SUM(total_amount) totalAmount
+			FROM o_quick_order qo
+		WHERE qo.pay_state=3 AND qo.shop_id = #{shopId,jdbcType=INTEGER}
+		and qo.create_time > #{payTime,jdbcType=TIMESTAMP}
+  	</select>
+ 	
+</mapper>

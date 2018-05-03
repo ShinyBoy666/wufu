@@ -1,0 +1,129 @@
+/**
+ * 钱包收支明细css
+ * 
+ * **/
+
+body {
+	background: #EFEFEF;
+}
+
+.burse_ul_li {
+	width: 100%;
+}
+
+.burse_money {
+	width: 60%;
+	float: left;
+	margin-left: 1rem;
+	height: 3.2rem;
+	margin-top: 0.9rem;
+}
+
+.burse_time {
+	font-size: 1.2rem;
+	color: #888;
+	margin-top: 0.3rem;
+}
+
+.burse_thread {
+	border-bottom: 1px solid #EFEFEF;
+	width: 100%;
+	height: 5rem;
+	background: white;
+	float: left;
+}
+
+.burse_bottom{
+	color: #888;
+	font-size: 1.3rem;
+	margin: 1.5rem 34% 0rem;
+	float: left;
+}
+.burse_money_add{
+	color: #E74A5F;
+	font-size: 1.8rem;
+	margin-right: 1.1rem;
+	float: right;
+	margin-top: 1.6rem;
+}
+.burse_money_subtract{
+	color: #35d531;
+	font-size: 1.8rem;
+	margin-right: 1.1rem;
+	float: right;
+	margin-top: 1.6rem;
+}
+.remainder_ranking_tu {
+	height: 3.5rem;
+	width: 3.5rem;
+	border: 1px #C6C6C6 solid;
+	border-radius: 6px;
+	float: left;
+	margin-top: 0.75rem;
+	margin-left: 1.1rem;
+}
+.Commission_details_money {
+	width: 50%;
+	float: left;
+	margin-left: 1rem;
+	height: 3.2rem;
+	margin-top: 0.9rem;
+}
+.myteam_head_index{
+	height: 5rem;
+	width: 50%;
+	background: white;
+	float: left;
+	line-height: 5rem;
+	text-align: center;
+	font-size: 1.6rem;
+	color: #696969;
+}
+/*
+ * 我的贡献值的css
+ */
+.mycontribute_index{
+	width: 100%;
+	height: 2.5rem;
+}
+.mycontribute_ul_li{
+	width: 100%;
+	float: left;
+}
+.mycontribute_fen{
+	font-size: 1.5rem;
+	color: #fccd12;
+	margin: 0rem 0rem 0rem 1rem;
+}
+.mycontribute_money_add{
+	color: #fff;
+	font-size: 1.5rem;
+	margin-right: 1.1rem;
+	float: right;
+	margin-top: 1rem;
+	text-align: center;
+	background: #E74A5F;
+	width: 6rem;
+	height: 3rem;
+	line-height: 3rem;
+	border-radius: 3px;
+}
+.mycontribute_money_add_1{
+	color: #fff;
+	font-size: 1.5rem;
+	margin-right: 1.1rem;
+	float: right;
+	margin-top: 1rem;
+	text-align: center;
+	background: #E74A5F;
+	width: 10rem;
+	height: 3rem;
+	line-height: 3rem;
+	border-radius: 3px;
+}
+.mycontribute_text_1{
+	float: left;font-size: 1.8rem; color: #333;margin-left: 1.1rem;
+}
+.mycontribute_case{
+	background: #EFEFEF;width: 100%;height: 0.5rem; float: left; border-top: 1px solid #C6C6C6;
+}

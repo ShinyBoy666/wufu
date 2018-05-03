@@ -1,0 +1,72 @@
+/**
+ * 我的副卡的css
+ */
+
+body {
+	min-width: 320px;
+	max-width: 750px;
+	margin: 0 auto;
+	background: #1e1c1a;
+}
+
+.Vice_card_index {
+	text-align: center;
+	width: 100%;
+}
+
+.img_1 {
+	width: 35%;
+	height: 0.9%;
+	margin: 3rem 0rem 0rem 0rem;
+}
+
+.img_2 {
+	width: 72%;
+	height: 52%;
+	margin: 2.5rem 0rem 0rem 0rem;
+}
+
+.img_4 {
+	width: 16%;
+	height: 0.08%;
+	margin: 3.5rem 1.25% 3.5rem 3%;
+}
+
+.img_4_1 {
+	width: 16%;
+	height: 0.08%;
+	margin: 3.5rem 1.25% 3.5rem 1.25%;
+}
+
+.img_4_2 {
+	width: 16%;
+	height: 0.08%;
+	margin: 3.5rem 1.25% 3.5rem 1.25%;
+}
+
+.img_4_3 {
+	width: 16%;
+	height: 0.08%;
+	margin: 3.5rem 1.25% 3.5rem 1.25%;
+}
+
+.img_4_4 {
+	width: 16%;
+	height: 0.08%;
+	margin: 3.5rem 2.5% 3.5rem 1.25%;
+}
+
+.Vice_card_wufu {
+	position: relative;
+	color: #e9be48;
+	width: 42%;
+	height: 2.5rem;
+	float: left;
+	margin-top: -4.5rem;
+	margin-left: 30%;
+	background: #875c0a;
+	border-radius: 3px;
+	text-align: center;
+	line-height: 2.5rem;
+	font-size: 1.3rem;
+}

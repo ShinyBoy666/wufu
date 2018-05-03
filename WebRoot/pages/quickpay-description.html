@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>活动介绍</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="/statics/style/itembass.css?vqq00003" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <style type="text/css">
+        body { background-color: #C3214A; color: #fff; }
+        a, button { color: #fff; }
+        .orderinfo_item { background-color: #CF4D6F; padding: 5px 10px; margin-bottom: 10px; border-radius: 4px; font-size: 14px; }
+            .orderinfo_item .remark { width: 76%; overflow: hidden; padding-top: 4px; line-height: 20px; height: 40px; padding-left: 10px; padding-left: 10px; text-overflow: ellipsis; /*以省略号...显示*/ white-space: nowrap; /*强制不换行*/ margin-top: 5px; }
+        .orderinfo_padding { padding: 6px 10px; }
+        .orderinfo_img { -ms-border-radius: 4px; border-radius: 4px; width: 60px; height: 60px; display: inline-block; float: left; 
+                          background: url('/statics/img/image/monkey.png')  7px -10px no-repeat;
+            -ms-background-size:50px 80px;
+            background-size:50px 80px;
+        }
+        .orderinfo_nickname { margin-left: 10px; float: left; position: relative; width: 76%; margin-top: 6px; }
+            .orderinfo_nickname .shopname { float: left; width: 24%; line-height: 20px; height: 20px; overflow: hidden; text-overflow: ellipsis; /*以省略号...显示*/ white-space: nowrap; /*强制不换行*/ }
+            .orderinfo_nickname .shopaddress { float: right; width: 52%; line-height: 20px; height: 20px; overflow: hidden; text-overflow: ellipsis; /*以省略号...显示*/ white-space: nowrap; /*强制不换行*/ }
+        .add-icon { cursor: pointer; height: 24px; padding-top: 0; vertical-align: middle; width: 24px; background: #000000 url("/statics/img/icon/add_ico.png") no-repeat scroll center center; background: rgba(0, 0, 0, 0) url("/statics/img/icon/add_ico.png") no-repeat scroll center center; display: inline-block; -ms-background-size: 24px 24px; background-size: 24px 24px; }
+        .sub-icon { cursor: pointer; height: 24px; padding-top: 0; vertical-align: middle; width: 24px; background: #000000 url("/statics/img/icon/sub_ico.png") no-repeat scroll center center; background: rgba(0, 0, 0, 0) url("/statics/img/icon/sub_ico.png") no-repeat scroll center center; display: inline-block; -ms-background-size: 24px 24px; background-size: 24px 24px; }
+        .address-icon { cursor: pointer; height: 18px; padding-top: 0; vertical-align: middle; width: 14px; background: #000000 url("/statics/img/icon/address_ico.png") no-repeat scroll center center; background: rgba(0, 0, 0, 0) url("/statics/img/icon/address_ico.png") no-repeat scroll center center; display: inline-block; background-size: 14px 18px; }
+        .icon-logo {
+            padding: 12px; display: inline-block; float: left;  background: #000000 url("/statics/img/icon/address_ico.png") no-repeat scroll center center; background: url("/statics/img/icon/60.png") no-repeat scroll center center;
+            -ms-background-size:24px 24px;
+            background-size:24px 24px
+        }
+
+        .more { float: left;padding-top: 4px; }
+    </style>
+</head>
+<body>
+    <div class="jph">
+        <div class="com-fixed com-head" style="background-color: #C3214A; border-bottom: none; font-size: 20px; display: none;">
+            <div>
+                <ul style="text-align: center">
+                    <li class="display-box   ct">
+                        <a href="javascript:void(0)"><span>活动介绍</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="over-head" style="display: none;"></div>
+        <div id="orderlist" class="clearfix" style="padding: 10px;font-size: 14px;">
+
+        </div>
+        <p id="back-to-top" style="display: none;">
+            <a href="#top">
+                <img src="/statics/img/image/pd_to_top.png" />
+            </a>
+        </p>
+        <div id="nodata" class="hide" style="margin: 0 auto;text-align: center;padding: 60px 0;">
+            <img src="/statics/img/image/no_data.png" alt="无数据" />
+            <p>啊哦！好像没有检测到数据哟！</p>
+        </div>
+        <input id="hidrandomList" type="hidden" value="1" />
+        <input id="hidfullreduceList" type="hidden" value="1" />
+        <input id="hidsaleList" type="hidden" value="1" />
+        <input id="hidcouponList" type="hidden" value="1" />
+        <script type="text/html" id="tmp-model">
+            {{# if(d.randomList.length!=0){ }}
+            <div class="orderinfo_item">
+                <div style="padding: 10px; border-bottom: 1px solid #ccc">
+                    <i class="sub-icon" onclick="showhide(1, this)"></i><span style="padding-left: 10px;">随机立减</span>
+                </div>
+                <div id="randomList">
+
+                    {{# for(var i = 0, len = d.randomList.length; i < len; i++){ }}
+                    <div style="padding: 10px 0px;" class="clearfix" onclick="goshopdetail({{d.randomList[i].shopId }})">
+                        <div style="width: 20%;">
+                            <img src="{{d.randomList[i].shopLogo}}" class="orderinfo_img" />
+                        </div>
+                        <div class="orderinfo_nickname" style="">
+                            <div class="shopname" style="float: left">{{d.randomList[i].shopName}}</div>
+                            <div class="shopaddress" style="float: right">
+                                <i class="address-icon"></i> {{d.randomList[i].shopAddress}}
+                            </div>
+                        </div>
+                        <div class="remark">
+                            {{d.randomList[i].remark}}
+                        </div>
+                    </div>
+                    {{# } }}
+                    <div style="padding: 10px 0;" onclick="more(1)">
+                        <div style="display: block; margin: 0 auto; width: 100px" class="clearfix">
+                            <i class="icon-logo"></i>
+                            <span class="more">加载更多</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{# }if(d.fullreduceList.length!=0){ }}
+            <div class="orderinfo_item">
+                <div style="padding: 10px; border-bottom: 1px solid #ccc">
+                    <i class="sub-icon" onclick="showhide(2, this)"></i><span style="padding-left: 10px;">满额立减</span>
+                </div>
+                <div id="fullreduceList">
+                    {{# for(var i = 0, len = d.fullreduceList.length; i < len; i++){ }}
+                    <div style="padding: 10px 0px;" class="clearfix" onclick="goshopdetail({{d.fullreduceList[i].shopId }})">
+                        <div style="width: 20%;">
+                            <img src="{{d.fullreduceList[i].shopLogo}}" class="orderinfo_img" />
+                        </div>
+                        <div class="orderinfo_nickname" style="">
+                            <div class="shopname" style="float: left">{{d.fullreduceList[i].shopName}}</div>
+                            <div class="shopaddress" style="float: right">
+                                <i class="address-icon"></i> {{d.fullreduceList[i].shopAddress}}
+                            </div>
+                        </div>
+                        <div class="remark">
+                            {{d.fullreduceList[i].remark}}
+                        </div>
+                    </div>
+                    {{# } }}
+                    <div style="padding: 10px 0;" onclick="more(2)">
+                        <div style="display: block; margin: 0 auto; width: 100px" class="clearfix">
+                            <i class="icon-logo"></i>
+                            <span class="more">加载更多</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{# }if(d.saleList.length!=0){ }}
+            <div class="orderinfo_item">
+                <div style="padding: 10px; border-bottom: 1px solid #ccc">
+                    <i class="sub-icon" onclick="showhide(3, this)"></i><span style="padding-left: 10px;">折扣买单</span>
+                </div>
+                <div id="saleList">
+                    {{# for(var i = 0, len = d.saleList.length; i < len; i++){ }}
+                    <div style="padding: 10px 0px;" class="clearfix" onclick="goshopdetail({{d.saleList[i].shopId }})">
+                        <div style="width: 20%;">
+                            <img src="{{d.saleList[i].shopLogo}}" class="orderinfo_img" />
+                        </div>
+
+                        <div class="orderinfo_nickname">
+                            <div class="shopname" style="float: left">{{d.saleList[i].shopName}}</div>
+                            <div class="shopaddress" style="float: right">
+                                <i class="address-icon"></i> {{d.saleList[i].shopAddress}}
+                            </div>
+                        </div>
+                        <div class="remark">
+                            {{d.saleList[i].remark}}
+                        </div>
+                    </div>
+                    {{# } }}
+                    <div style="padding: 10px 0;" onclick="more(3)">
+                        <div style="display: block; margin: 0 auto; width: 100px" class="clearfix">
+                            <i class="icon-logo"></i>
+                            <span class="more">加载更多</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{# }if(d.couponList.length!=0){ }}
+            <div class="orderinfo_item">
+                <div style="padding: 10px; border-bottom: 1px solid #ccc">
+                    <i class="sub-icon" onclick="showhide(4, this)"></i><span style="padding-left: 10px;">优惠劵买单</span>
+                </div>
+                <div id="couponList">
+                    {{# for(var i = 0, len = d.couponList.length; i < len; i++){ }}
+                    <div style="padding: 10px 0px;" class="clearfix" onclick="goshopdetail({{d.couponList[i].shopId }})">
+                        <div style="width: 20%;">
+                            <img src="{{d.couponList[i].shopLogo}}" class="orderinfo_img" />
+                        </div>
+                        <div class="orderinfo_nickname">
+                            <div class="shopname" style="float: left">{{d.couponList[i].shopName}}</div>
+                            <div class="shopaddress" style="float: right">
+                                <i class="address-icon"></i> {{d.couponList[i].shopAddress}}
+                            </div>
+                        </div>
+                        <div class="remark">
+                            {{d.couponList[i].remark}}
+                        </div>
+                    </div>
+                    {{# } }}
+                    <div style="padding: 10px 0;" onclick="more(4)">
+                        <div style="display: block; margin: 0 auto; width: 100px" class="clearfix">
+                            <i class="icon-logo"></i>
+                            <span class="more">加载更多</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{# } }}
+
+        </script>
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js?v1"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/common.js?v1"></script>
+        <script src="/statics/scripts/quickpay-description.js"></script>
+    </div>
+</body>
+</html>

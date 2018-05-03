@@ -1,0 +1,219 @@
+﻿body { background-color: #F5F5F5; }
+.head { background: #fff none repeat scroll 0 0; border-bottom: 1px solid #ccc; height: 50px; left: 0; margin: 0 auto; max-width: 640px; overflow: hidden; position: fixed; right: 0; top: 0; width: 100%; z-index: 9999; }
+    .head div { height: 50px; line-height: 50px; }
+    .head .return-width { width: 15%; }
+    .head .main-width { width: 70%; }
+    .head .near-return-icon { background-size: 12px 22px; height: 22px; width: 12px; display: inline-block; background-image: url("/statics/img/icon/return-icon.png"); vertical-align: middle; }
+
+/*findactivitylist.html 热门活动*/
+.findactivitylist .content { padding-top: 50px; }
+.findactivitylist .activityitem { margin-top: 15px; background-color: #fff; padding-bottom: 8px; }
+    .findactivitylist .activityitem .mainimg { width: 100%; }
+    .findactivitylist .activityitem .maintitle { background-color: #fff; opacity: 0.6; margin-top: -40px; color: #000; height: 40px; line-height: 40px; position: relative; }
+    .findactivitylist .activityitem .mainheadimg { border-radius: 50%; margin-top: -30px; left: 80%; position: relative; width: 60px; height: 60px; }
+    .findactivitylist .activityitem .maindetail { position: relative; margin-top: -15px; }
+.findactivitylist .add-icon { background-size: 20px 20px; height: 20px; width: 20px; display: inline-block; background-image: url("/statics/img/icon/add_icon.png"); vertical-align: middle; }
+.findactivitylist .baoming_icon { background-size: 14px 18px; height: 18px; width: 14px; display: inline-block; background-image: url("/statics/img/icon/baoming_icon.png"); vertical-align: middle; }
+.findactivitylist .pagetime_icon { background-size: 18px 18px; height: 18px; width: 18px; display: inline-block; background-image: url("/statics/img/icon/page-time_icon.png"); vertical-align: middle; }
+.findactivitylist .mask { background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0; bottom: 0; left: 0; margin: 0 auto; max-width: 640px; position: fixed; right: 0; top: 0; z-index: 3; }
+.findactivitylist .login_div { background-color: #fff; left: 0; margin: 0 auto; max-width: 576px; padding: 10px 0; position: fixed; right: 0; top: 20%; width: 96%; z-index: 9999; opacity: 0.95; border-radius: 6px; }
+    .findactivitylist .login_div .logo { margin: 0 auto; text-align: center; width: 100%; }
+    .findactivitylist .login_div .info_div { padding: 5px 0; }
+        .findactivitylist .login_div .info_div .li_phone_des { box-sizing: border-box; float: left; width: 10%; line-height: 40px; text-align: center; }
+        .findactivitylist .login_div .info_div .li_phone_content { box-sizing: border-box; float: left; width: 90%; line-height: 40px; }
+            .findactivitylist .login_div .info_div .li_phone_content .span_title { border: 0 none; color: #000033; font-size: 14px; padding-left: 8px; line-height: 40px; border-left: 1px solid #ccc; width: 25%; display: inline-block; line-height: 30px; font-size: 16px; color: #000; }
+            .findactivitylist .login_div .info_div .li_phone_content .span_code { background-color: #F59701; border-radius: 5px; color: #fff; font-size: 12px; line-height: 30px; margin-left: -75px; margin-top: 5px; padding: 0 4px; position: absolute; vertical-align: middle; }
+            .findactivitylist .login_div .info_div .li_phone_content input { border: 0 none; color: #000033; font-size: 14px; padding-left: 8px; width: 65%; border: 1px solid #F59701; border-radius: 4px; line-height: 40px; }
+
+.findactivitylist .btnclass { background: #F59701 none repeat scroll 0 0; border-radius: 3px; color: #fff; font-size: 16px; height: 40px; line-height: 40px; width: 40%; }
+.findactivitylist .huodong_icon { background-size: 18px 18px; height: 18px; width: 18px; display: inline-block; background-image: url("/statics/img/icon/huodong_icon.png"); vertical-align: middle; }
+.findactivitylist .name_icon { background-size: 18px 18px; height: 18px; width: 18px; display: inline-block; background-image: url("/statics/img/icon/name_icon.png"); vertical-align: middle; }
+.findactivitylist .key_icon { background-size: 9px 18px; height: 18px; width: 9px; display: inline-block; background-image: url("/statics/img/icon/key_icon.png"); vertical-align: middle; }
+.findactivitylist .phone_icon { background-size: 12px 18px; height: 18px; width: 12px; display: inline-block; background-image: url("/statics/img/icon/phone_icon.png"); vertical-align: middle; }
+
+/*findactivitydetail.html  活动详情*/
+.findactivitydetail .content { background-color: #fff; padding: 10px 6px; }
+.findactivitydetail .baoming_icon { background-size: 14px 18px; height: 18px; width: 14px; display: inline-block; background-image: url("/statics/img/icon/baoming_icon.png"); vertical-align: middle; }
+.findactivitydetail .ganxingqu_icon { background-size: 15px 20px; height: 20px; width: 15px; display: inline-block; background-image: url("/statics/img/icon/ganxingqu_icon.png"); vertical-align: middle; }
+.findactivitydetail .btnconfirm { width: 80%; background-color: #F59701; border-radius: 3px; height: 40px; line-height: 40px; color: #fff; }
+/*grouplist.html*/
+#grouplist { color: #4d4d4d; }
+    #grouplist .add { font-size: 30px; font-weight: 100; color: #4d4d4d; }
+    #grouplist .list { padding: 2%; margin-top: 45px; }
+    #grouplist .item { padding: 10px 0; border-bottom: 1px solid #ccc; }
+    #grouplist .group-logo { -ms-border-radius: 4px; border-radius: 4px; width: 70px; height: 70px; overflow: hidden; float: left; }
+        #grouplist .group-logo img { width: 100%; height: 100%; }
+    #grouplist .group-info { padding-left: 8px; float: left; width: -webkit-calc(100%-88px); width: calc(100% - 88px); width: -moz-calc(100% - 88px); }
+    #grouplist .msg-ico { float: right; background: url('../img/icon/talk.png') no-repeat; background-size: 18px 18px; padding: 8px; }
+    #grouplist .group-name { font-size: 16px; color: #1a1a1a; }
+    #grouplist .group-desc { font-size: 12px; color: #4c4c4c; padding-top: 6px; }
+    #grouplist .group-size { font-size: 12px; color: #4d4d4d; padding-top: 6px; }
+    #grouplist h1 { font-size: 16px; text-align: center; line-height: 30px; }
+    #grouplist dl { padding: 10px 15px; }
+    #grouplist dt { float: left; width: 70px; line-height: 28px; }
+    #grouplist dd { float: left; width: 70px; width: -webkit-calc(100%-70px); width: calc(100% - 70px); width: -moz-calc(100% - 70px); }
+        #grouplist dd input, #grouplist dd textarea { border: 1px solid #f39900; -ms-border-radius: 4px; border-radius: 4px; line-height: 22px; padding: 4px 6px; width: -webkit-calc(100%-12px); width: calc(100% - 12px); width: -moz-calc(100% - 12px); }
+    #grouplist .btn-list { margin: 10px 15px 20px 15px; }
+        #grouplist .btn-list input { width: 45%; -ms-border-radius: 4px; border-radius: 4px; display: block; color: #fff; font-size: 16px; line-height: 30px; }
+    #grouplist #submit { float: left; background-color: #f39900; }
+    #grouplist #cancel { float: right; background-color: #a6a6a6; }
+    #grouplist #addPopo { padding: 10px 10px 20px 10px; }
+    #grouplist .lr-ui { width: 80px; height: 80px; min-height: 80px; -moz-min-width: 80px; -ms-min-width: 80px; -o-min-width: 80px; -webkit-min-width: 80px; min-width: 80px; }
+    #grouplist .layui-layer { -ms-border-radius: 4px; border-radius: 4px; }
+
+
+    #msglist { color: #4d4d4d; }
+    #msglist .add { font-size: 30px; line-height: 45px; height: 45px; display: inline-block; }
+    #msglist .list { padding: 2%; margin-top: 45px; }
+    #msglist .item { padding: 10px 0; border-bottom: 1px solid #ccc; }
+    #msglist .msg-logo { -ms-border-radius: 4px; border-radius: 4px; width: 50px; height: 50px; overflow: hidden; float: left; }
+        #msglist .msg-logo img { width: 100%; height: 100%; }
+    #msglist .msg-info { padding-left: 8px; float: left; width: -webkit-calc(100%-88px); width: calc(100% - 68px); width: -moz-calc(100% - 68px); }
+    #msglist .msg-time { float: right; color: #8a8a8a; }
+    #msglist .msg-title { font-size: 16px; color: #f39900; }
+    #msglist .msg-desc { font-size: 12px; color: #4d4d4d; padding: 6px 0; }
+    #msglist .msg-imgs img { float: left; }
+    #msglist #show .layui-layer{ background-color: transparent;}
+    
+    /*msgadd.html*/
+#msgadd { padding: 0px; }
+    #msgadd .list { margin-top: 45px; }
+    #msgadd .item { width: 18.5%; padding: 3%; float: left; }
+    #msgadd .content { width: 94%; margin: 3%; border-bottom: 1px solid #f5f5f5; }
+        #msgadd .content textarea { width: 100%; padding: 3% 0; }
+    #msgadd .lr-ui { min-width: initial; min-height: initial; width: 100%; min-height: 65px; }
+    #msgadd .lr-hint { top: 58%; }
+    #msgadd .line { height: 5px; background-color: #f5f5f5; }
+    #msgadd .imgs { padding: 5px 0; background-color: #fff; }
+
+    #msgadd .publish { padding: 10px 3%; background-color: #fff; }
+        #msgadd .publish .right { float: right; color: #f39900; }
+        #msgadd .publish .left { float: left; color: #1a1a1a; }
+    #msgadd .last { height: 200px; background-color: #f5f5f5; }
+    #msgadd .add { -ms-border-radius: 4px; border-radius: 4px; background-color: #f39900; color: #fff; padding: 2px 4px; display: block; }
+
+#chatlist { }
+    #chatlist .list { padding: 2%; margin-top: 45px; }
+    #chatlist .item { padding: 10px 0; border-bottom: 1px solid #ccc; }
+    #chatlist .face { -ms-border-radius: 50%; border-radius: 50%; width: 70px; height: 70px; overflow: hidden; float: left; }
+        #chatlist .face img { width: 100%; height: 100%; }
+    #chatlist .info { padding-left: 8px; float: left; width: -webkit-calc(100%-88px); width: calc(100% - 88px); width: -moz-calc(100% - 88px); }
+    #chatlist .time { float: right; color: #4e4e4e; }
+    #chatlist .name { font-size: 16px; color: #1a1a1a; }
+    #chatlist .msg-count { font-size: 12px; color: #4c4c4c; padding-top: 6px; }
+
+#chatmsg { background-color: #f5f5f5; }
+    #chatmsg .more { color: #808080; text-align: center; padding: 0px; margin-top: 50px; }
+    #chatmsg .item { padding: 10px 0; margin: 5px; }
+    #chatmsg .time { color: #808080; text-align: center; padding: 0; }
+    #chatmsg .content { color: #1a1a1a; background-color: #fff; -ms-border-radius: 5px; border-radius: 5px; padding: 2%; width: 50%; }
+    #chatmsg .face { -ms-border-radius: 6px; border-radius: 6px; width: 40px; height: 40px; overflow: hidden; float: left; }
+    #chatmsg .receive .face, #chatmsg .receive .content, #chatmsg .receive .arrow { float: left; border-color: #f5f5f5 #fff #f5f5f5 #f5f5f5; border-width: 5px 10px 5px 3px; }
+    #chatmsg .send .face, #chatmsg .send .arrow, #chatmsg .send .content { float: right; border-color: #f5f5f5 #f5f5f5 #f5f5f5 #fff; border-width: 5px 3px 5px 10px; }
+    #chatmsg .content:before, #chatmsg .content:after { width: 0px; height: 0px; border: transparent solid; position: absolute; left: 100%; content: ""; }
+    #chatmsg .content:before { border-width: 10px; border-left-color: #000; top: 20px; }
+    #chatmsg .content:after { border-width: 8px; border-left-color: #fff; top: 22px; }
+    #chatmsg .arrow { width: 0; height: 0; font-size: 0; border-style: solid; margin-top: 6px; }
+    #chatmsg .bottom { position: fixed; bottom: 0px; width: 100%; padding: 10px; margin: 0px; background-color: #fff; }
+    #chatmsg .input-content { float: left; width: 71%; margin-right: 5%; border: 1px solid #f39900; -ms-border-radius: 4px; border-radius: 4px; min-height: 16px; padding: 2%; }
+    #chatmsg .btn-send { float: left; -ms-border-radius: 4px; border-radius: 4px; background-color: #f39900; padding: 2%; color: #fff; min-height: 16px; }
+    
+    #msgadd .publish{ padding: 10px 3%;background-color: #fff;}
+    #msgadd .publish .right{ float: right;color:#f39900}
+    #msgadd .publish .left{ float: left;color:#1a1a1a}
+    #msgadd .last{ height:200px;background-color:#f5f5f5}
+    #msgadd .add{-ms-border-radius: 4px; border-radius: 4px;background-color: #f39900;color: #fff;padding: 2px 4px; }
+
+
+/*findpositionlist.html 信息列表*/
+.findpositionlist .content { padding-top: 50px; }
+.findpositionlist .activityitem { margin-top: 15px; background-color: #fff; padding-bottom: 8px; }
+    .findpositionlist .activityitem .mainimg { width: 100%; }
+    .findpositionlist .activityitem .maintitle { background-color: #fff; opacity: 0.6; margin-top: -40px; color: #000; height: 40px; line-height: 40px; position: relative; }
+    .findpositionlist .activityitem .mainheadimg { border-radius: 50%; margin-top: -30px; left: 80%; position: relative; width: 60px;height: 60px; }
+    .findpositionlist .activityitem .maindetail { position: relative; margin-top: -15px; }
+.findpositionlist .add-icon { background-size: 20px 20px; height: 20px; width: 20px; display: inline-block; background-image: url("/statics/img/icon/add_icon.png"); vertical-align: middle; }
+     .findpositionlist .link-word { background-color: #000; height: 50%; left: 20%;   opacity: 0.4;  top: 25%; width: 60%; z-index: 5;  }
+        .findpositionlist .link-word p{ text-align: center}
+        .findpositionlist .index-p-line { line-height: 37px;text-align: center }
+        .findpositionlist ul { padding: 10px; }
+        .findpositionlist ul li{ padding: 6px 0px; }
+        .findpositionlist ul img{ border-radius: 4px; }
+/*findpositionadd.html 信息添加*/
+ .findpositionadd .content { padding-top: 50px; }
+        .findpositionadd .com-title-over { width: 30% !important; }
+        .findpositionadd .width-eight { width: 70% !important; }
+        .findpositionadd .div-padding { padding: 5px 10px; background-color: #fff; margin-bottom: 15px; }
+        .findpositionadd .li-bottom { border-bottom: 1px solid #eee; }
+        .findpositionadd .li-top { border-top: 1px solid #eee; }
+        .findpositionadd .li-padding { padding: 10px; }
+        .findpositionadd li span { line-height: 30px; }
+        .findpositionadd .li-input { border: 0 none; color: #000033; font-size: 14px; padding: 7px 0; width: 100%; padding-left: 8px; }
+        .findpositionadd .right-border { border-left: 1px solid #eee; }
+
+        .findpositionadd .btnconfirm { width: 95%; background-color: #F59701; border-radius: 3px; height: 40px; line-height: 40px; color: #fff; }
+
+        .findpositionadd .search_icon { background-size: 16px 16px; height: 16px; width: 16px; display: inline-block; background-image: url("/statics/img/icon/search_icon.png"); vertical-align: middle; }
+        .findpositionadd .search_active_icon { background-size: 16px 16px; height: 16px; width: 16px; display: inline-block; background-image: url("/statics/img/icon/search_active_icon.png"); vertical-align: middle; }
+        .findpositionadd .lr-ui { width: 150px;height: 150px;min-height: 150px;min-width: 150px; }
+/*findpositiondetail.html 信息详情*/
+  .findpositiondetail .content { padding-top: 50px; }
+        .findpositiondetail .div_title { padding: 10px 0px; background-color: #fff; margin-top: 10px; border-radius: 4px; }
+            .findpositiondetail .div_title .span_title { padding: 4px 10px; color: #fff; height: 20px; line-height: 20px; width: 40px; border-radius: 0px 10px 10px 0px; background-color: #F59701; }
+            .findpositiondetail .div_title .span_position { padding: 10px; color: #F59701; }
+            .findpositiondetail .div_title .span_money { color: #F59701; float: right; margin-right: 20px; }
+            .findpositiondetail .div_link { margin-top: 10px; background-color: #fff; border-radius: 4px; height: 80px; }
+                .findpositiondetail .div_link .headimg { width: 60px; height: 60px; border-radius: 50%; margin-top: 10px; }
+                .findpositiondetail .div_link .linkname { color: #8A8A8A; margin-left: 2px; padding: 0 5px; } 
+                .findpositiondetail .div_link .link_position { background-color: #fff; border: 1px solid #F59701; border-radius: 10px; color: #F59701; padding: 4px; }
+/*发现界面  find.html*/
+                 .find #bannercontent img { width: 100%; height: 100%; }
+        .find .swiper-slide { background-color: #fff; }
+            .find .swiper-slide p { padding: 0; text-align: center; }
+        .find .swiper-pagination-bullet-active { background-color: #D63929 !important; }
+        .find .swiper-pagination-bullet { background-color: #fff; opacity: 1; }
+        .find .swiper-product { margin-top: 10px; }
+            .find .swiper-product .swiper-slide { border-radius: 4px; border: 1px solid #ccc; }
+        .find .homefunction { background: #fff none repeat scroll 0 0; }
+            .find .homefunction ul li { width: 25%; float: left; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; text-align: center; font-size: 10px; padding: 5px 0; }
+                .find .homefunction ul li font { color: #999; text-decoration: line-through; }
+                .find .homefunction ul li .shop-bottom-img-top { margin-top: 5px; }
+                .find .homefunction ul li .huodong-icon { background-size: 28px 28px; cursor: pointer; height: 28px; width: 28px; background-image: url("/statics/img/icon/home_huodong_icon.png"); display: inline-block; }
+                .find .homefunction ul li .pin-icon { background-size: 28px 28px; cursor: pointer; height: 28px; width: 28px; background-image: url("/statics/img/icon/home_pin_icon.png"); display: inline-block; }
+                .find .homefunction ul li .fujin-icon { background-size: 22px 28px; cursor: pointer; height: 28px; width: 22px; background-image: url("/statics/img/icon/home_fujin_icon.png"); display: inline-block; }
+                .find .homefunction ul li .xiaozu-icon { background-size: 28px 28px; cursor: pointer; height: 28px; width: 28px; background-image: url("/statics/img/icon/home_xiaozu_icon.png"); display: inline-block; }
+        .find .jipin-icon { background-size: 25px 31px; cursor: pointer; height: 31px; width: 25px; background-image: url("/statics/img/icon/find_ji_icon.png"); display: inline-block; }
+        .find .showplace1 { padding: 10px; background-color: #fff; }
+            .find .showplace1 .title { border-left: 2px solid #F29012; padding-left: 10px; }
+            .find .showplace1 .showplace1_main { border: 1px solid #ccc; border-radius: 4px; padding: 0px; padding-bottom: 10px; margin-top: 10px; }
+                .find .showplace1 .showplace1_main .description { width: 80%; padding: 0px 6px; box-sizing: border-box; float: left; }
+                    .find .showplace1 .showplace1_main .description .address { height: 30px; line-height: 30px; overflow: hidden; }
+                .find .showplace1 .showplace1_main .left_content { width: 15%; border-left: 2px solid #F29012; box-sizing: border-box; text-align: center; float: left; }
+        .find .showplace2 { padding: 10px; background-color: #fff; }
+            .find .showplace2 .right-ret { background-size: 10px 15px; cursor: pointer; height: 15px; vertical-align: sub; width: 18px; background: rgba(0, 0, 0, 0) url("/statics/img/icon/right-icon.png") no-repeat scroll center center; display: inline-block; }
+
+        .find .showplace3 { background-color: #fff; padding: 10px; }
+            .find .showplace3 li { padding: 10px; border-top: 1px solid #ccc; }
+            .find .showplace3 .left_content { border-radius: 4px; border: 1px solid #ccc; width: 25%; float: left; box-sizing: border-box; }
+            .find .showplace3 .right_content { width: 75%; float: left; box-sizing: border-box; }
+                .find .showplace3 .right_content .info { padding-left: 10px; line-height: 24px; overflow: hidden; height: 24px; }
+        .find .showplace4 { margin-top: 10px; background-color: #fff; padding: 10px; }
+            .find .showplace4 .title { border-left: 2px solid #F29012; padding-left: 10px; }
+            .find .showplace4 li { padding: 10px; border-top: 1px solid #ccc; }
+        .find .showplace5 { margin-top: 10px; background-color: #fff; padding: 10px; }
+        .find .showplace6 { margin-top: 10px; background-color: #fff; padding: 10px; }
+        .find .getmore { text-align: center; padding: 10px; color: #F29012; border-top: 1px solid #ccc; margin-top: 10px; }
+        .find .dingwei-icon { background-image: url("/statics/img/icon/find_dingwei_icon.png"); background-size: 12px 16px; cursor: pointer; display: inline-block; height: 16px; vertical-align: middle; width: 12px; }
+        .find .shipin-icon { background-image: url("/statics/img/icon/find_shipin_icon.png"); background-size: 16px 12px; cursor: pointer; display: inline-block; height: 12px; vertical-align: middle; width: 16px; }
+        .find .time-icon { background-size: 12px 12px; cursor: pointer; height: 12px; width: 12px; background-image: url("/statics/img/icon/find_time_icon.png"); display: inline-block; vertical-align: middle; }
+ 
+#newjoin { }
+    #newjoin .list { padding: 2%; margin-top: 45px; }
+    #newjoin .item { padding: 10px 0; border-bottom: 1px solid #ccc; }
+    #newjoin .face { -ms-border-radius: 4px; border-radius: 4px; width: 70px; height: 70px; overflow: hidden; float: left; }
+        #newjoin .face img { width: 100%; height: 100%; }
+    #newjoin .info { padding-left: 8px; float: left; width: -webkit-calc(100%-88px); width: calc(100% - 88px); width: -moz-calc(100% - 88px); }
+    #newjoin .msg { float: right; background: url('../img/icon/xiaoxi2.png') no-repeat #f39900 4px 4px; background-size: 14px 14px; padding: 2px 6px 2px 20px; color: #fff; -ms-border-radius: 4px; border-radius: 4px; font-size: 12px; }
+    #newjoin .name { font-size: 16px; color: #1a1a1a; }
+    #newjoin .msg-count { font-size: 12px; color: #4c4c4c; padding-top: 6px; }
+    #newjoin .desc { color: #4d4d4d; font-size: 12px; margin-top: 4px; }

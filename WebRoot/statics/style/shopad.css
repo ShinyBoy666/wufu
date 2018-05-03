@@ -1,0 +1,30 @@
+﻿body{ font-family: Microsoft YaHei;}
+.ad-header{ margin: 10px 11px;}
+.ad-header .left-logo{width: 55%;}
+.ad-header .right-btn {width: 40%;float: right;}
+.ad-banner{ width: 100%}
+.ad-content1{ width: 100%;margin: 25px 0px;text-align: center;}
+.ad-content1 img{ width: 90%;}
+.ad-content1 p{ font-size: 18px;font-weight: bold;margin: 25px 0px;}
+.ad-content1 .content-ruzhu{ background-color: #c4214b;margin: 0px 11px;color: #fff;height: 48px;font-size: 20px;line-height: 46px;}
+.ad-content1 .content-ruzhu a{color: #ffffff; font-size: 20px;line-height: 46px;font-family: Microsoft YaHei;}
+.ad-content1 span{ font-size: 18px;margin: 50px auto 35px auto;color: #8a8a8a;display: block;width: 110px;border-bottom: solid 1px #8a8a8a;}
+.ad-content1 .content-line{ height: 5px;background-color: #e4e4e4;}
+.ad-content2 .content-logo{ margin: 50px 0px 60px 0px;text-align: center;}
+.ad-content2 .content-logo img{ width: 50%;}
+.ad-content2 .content-item{ margin: 30px 11px 0px 11px;height: 125px;}
+.ad-content2 .content-item .item-line{background-color: #e4e4e4;height: 1px;margin-top: 24px;float: left;width: 100%;} 
+.ad-content2 .content-item .item-left{ width: 25%;float: left;} 
+.ad-content2 .content-item .item-right{ width: 70%;font-size: 16px;float: left;margin-left: 5%;line-height: 24px;} 
+.ad-content2 .content-item .item-right .item-title{ color: #646464;} 
+.ad-content2 .content-item .item-right .item-content{color: #8a8a8a;} 
+.ad-content3{ width: 100%;padding-bottom: 50px;margin-top: 50px;text-align: center;background-color: #e4e4e4;}
+.ad-content3 .content-logo{ padding: 25px 0px 25px 0px;text-align: center;background-color: #e4e4e4;}
+.ad-content3 .content-logo img{ width: 50%;}
+.ad-content3 .content-desc{font-size: 16px; color: #646464;text-align: left;margin: 0px 11px;}
+.ad-content3 .module{ margin: 50px 11px 0px 11px;background-color: #e4e4e4;height: 420px;}
+.ad-content3 .module .module-item-left{margin-top: 5px; float: left;width: 49%;height: 200px;text-align: center;background-color: #ffffff;}
+.ad-content3 .module .module-item-right{margin-top: 5px;margin-left: 2%;float: left;width: 49%;height: 200px;text-align: center;background-color: #ffffff;}
+.ad-content3 .module img{ margin-top: 15px;}
+.ad-content3 .module .module-title{color: #363636;margin-top: 10px;}
+.ad-content3 .module .module-content{color: #8a8a8a;margin: 10px 8px;text-align: left;}

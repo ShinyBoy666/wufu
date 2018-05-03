@@ -1,0 +1,146 @@
+﻿   #mask_layer {
+            background-color: rgb(255, 255, 255);
+            height: 100%;
+            left: 0;
+            position: absolute;
+            text-align: center;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+        }
+
+            #mask_layer > div {
+                background-color: rgb(238, 238, 238);
+                bottom: 0;
+                font-size: 15px;
+                left: 50%;
+                line-height: 1.8;
+                padding: 10px;
+                position: absolute;
+                transform: translate3d(-50%, -18%, 0px);
+                width: 56%;
+            }
+
+                #mask_layer > div > .button {
+                    bottom: 0;
+                    position: absolute;
+                    transform: translate3d(-50%, 100%, 0px);
+                } 
+        html, body, a, div, section, img, span, sup {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: '楷体';
+            background: url(/statics/img/image/beijing.jpg) no-repeat center;
+            background-size: 100% 100%;
+        }
+
+        #main {
+            width: 100%;
+            height: 100%;
+            padding-top: 90px;
+        }
+        
+        #logo {
+            width: 100%;
+            text-align: center;
+            height: 70px;
+        }
+        
+        #logo > img {
+            width: 70px;
+            height: 70px;
+            border-radius: 7px;
+        }
+        
+        #nameCopy {
+            width: 100%;
+            font-size: 18px;
+            font-weight: bolder;
+            text-align: center;
+            line-height: 18px;
+            color: #fff;
+            margin-top: 10px;
+        }
+        
+        #nameDesc {
+            width: 100%;
+            margin-top: 35px;
+            text-align: center;
+            line-height: 15px;
+            font-size: 15px;
+            color: #fff;
+        }
+
+        #changTiem {
+            width: 100%;
+            margin-top: 25px;
+            text-align: center;
+            line-height: 13px;
+            color: #fff;
+            font-size: 13px;
+        }
+		
+        .buttonBtn {
+            width: 80%;
+            margin: 25px auto 0;
+            border: 1px solid #fff;
+            border-radius: 3px;
+            text-align: center;
+            display:table;
+            line-height: 42px;
+        }
+        .buttonBtn-first{
+        	margin-top: 35px;
+       	}
+        .buttonBtn > a {
+           color: #fff;
+        }
+        .buttonBtn > a > img {
+            height: 25px;
+            vertical-align:middle;
+        }
+        .buttonBtn > a > span {
+            margin-left: 10px;
+            font-size: 15px;
+        }
+        #copy {
+            text-align: center;
+            font-size: 10px;
+            color: #EDEDED;
+            position: fixed;
+            bottom: 35px;
+            width: 100%;
+        }
+
+        #changVer {
+            width: 100%;
+            margin-top: 10px;
+            text-align: center;
+            line-height: 13px;
+            font-size: 13px;
+            color: #fff;
+        }
+
+        #mainBg {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 99;
+            background: url(/statics/img/image/bg.png) no-repeat center;
+            background-size: 100% 100%;
+            opacity: 0.6;
+        }
+
+        .hide {
+            display: none;
+        }

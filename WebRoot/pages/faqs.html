@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>常见问题</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/statics/jquery/extend/jquery-extend.js"></script>
+    <script src="/statics/layer/layer.js"></script>
+    <script src="/statics/layer/extend/laytpl.js"></script>
+    <script src="/statics/scripts/common.js"></script>
+    <script src="/statics/scripts/faqs.js"></script>
+    <script type="text/javascript">
+        //$(document).ready(function () {
+        //    var id = getQueryString("t");
+        //    if (id == 1) {
+        //        $("#head").hide();
+        //        $("#overhead").hide();
+        //    } $.postJson("1117", { id: 6 }, function (f, m, d) {
+        //        if (f === 1) {
+        //            $("#qa").html(d);
+        //        } else {
+        //            layer.msg(m);
+        //        }
+
+        //    });
+        //});
+        //function getQueryString(name, defValue) {
+        //    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        //    var r = window.location.search.substr(1).match(reg);
+        //    if (r != null) return decodeURI(r[2]);
+        //    if (defValue != undefined)
+        //        return defValue;
+        //    return null;
+        //}
+    </script>
+</head>
+<body>
+    <div class="jph">
+        <!--page head-->
+        <div id="head" class="com-fixed com-head coupon-head-bg">
+            <div>
+                <ul>
+                    <li class="display-box fl com-title-over">
+                        <div class="com-head-left">
+                            <button type="button" class="setting-buton-bg" onclick="location.href='mypage.html'">
+                                <i class="code-ret code-ret-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="display-box fl com-title-center ct">
+                        <input id="txtkeyword" name="txtkeyword" placeholder="请输入问题" class="top-keyword" type="text" />
+                    </li>
+                    <li class="display-box fr com-title-over">
+                        <span class="com-head-right" id="house-rule">
+                            <button type="button" class="com-head-title" onclick="search();"><i class="search"></i></button>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="overhead" class="over-head"></div>
+        <div class="clearfix project-bottom-height">
+            <div id="divsearch" style="position: fixed; width: 100%; background-color: #fff;">
+                <div style="width: 96%; margin: auto; padding: 5px;">
+                    <input id="btnsearch" class="btn-search" onclick="search();" type="button" value="查询"/>
+                    <input id="txtkeyword2" placeholder="请输入问题" class="keyword" type="text"/>
+                </div>
+            </div>
+            <div id="qa" class="USERULR mypage-head-name" ><!--style="padding-top: 30px"-->
+                <ul id="list">
+                    <script type="text/html" id="tmp-list">
+                        <li>
+                            <div><span>{{ d.question }}</span></div>
+                            <div>
+                                {{ d.answer.replace('p','div') }}
+                            </div>
+                        </li>
+                    </script>
+                </ul>
+                <!--<ul>
+                    <li>
+                        <p><span><font>Q</font>我为什么提不了现？</span></p>
+                        <p>
+                            <span><font>A</font></span>平台仅支持会员才能提现，非会员需要充值180元成为会员后方可提现，普通会员可以获得相关的推荐与销售收益，但不能使用和提现。
+                        </p>
+                    </li>
+                    <li>
+                        <p><span><font>Q</font>我帐户中有余额为什么不能使用？</span></p>
+                        <p>
+                            <span><font>A</font></span>平台的余额使用仅支持升级为会员的用户方可使用，可以在“我的”—>“我的钱包”—>“提现” 提示成为会员的地方升级成为VIP会员！
+                        </p>
+                    </li>
+                    <li>
+                        <p><span><font>Q</font>我支付过了订单怎么还是未支付状态？</span></p>
+                        <p>
+                            <span><font>A</font></span>由于网络原因支付宝与微信有时会响应稍慢，请稍等片刻，如果超过10分钟还没支付成功，请拨打客服电话 400-112-232。
+                        </p>
+                    </li>
+                    <li>
+                        <p><span><font>Q</font>我推荐了好友为什么没收到任何收益？</span></p>
+                        <p>
+                            <span><font>A</font></span>您推荐的好友一般分为VIP与非VIP，如果您的好友是非VIP用户那么需要到该用户成为VIP用户时你方可获取收益。
+                        </p>
+                    </li>
+                    <li>
+                        <p><span><font>Q</font>如何区分VIP用户与非VIP用户？</span></p>
+                        <p>
+                            <span><font>A</font></span>进入到“推广”—>我推荐的好友页面如果看到图标为金色的VIP标志即为VIP用户，灰色为非VIP用户！
+                        </p>
+                    </li>
+                </ul>-->
+            </div>
+        </div>
+        <div id="nodata">
+            <img src="/statics/img/image/no_data.png" alt="无数据" />
+            <p>啊哦！好像没有检测到数据哟！<a href="addfaq.html" style="color: red;">马上去提问</a></p>
+        </div>
+        <div id="back-to-top">
+            <img src="/statics/img/image/pd_to_top.png" alt="置顶" />
+        </div>
+    </div>
+</body>
+</html>

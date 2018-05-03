@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>让心去旅行</title>
+    <meta name="description" content="让心去旅行">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--<link rel="shortcut icon" href="/Statics/Images/favicon.ico" />-->
+    <link rel="stylesheet" href="/statics/style/main.css?v1" />  
+    <style type="text/css">
+        .returnBtn {
+            position: fixed;
+            top: 10px;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            background: rgba(0,0,0,.4);
+            color: #fff;
+            border-radius: 50%;
+            font-family: 'SimSun';
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+            .returnBtn.left {
+                left: 10px;
+                text-indent: -3px;
+            }
+
+            .returnBtn.right {
+                right: 10px;
+            }
+
+            .returnBtn:hover {
+                background: rgba(0,0,0,.9);
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <a href="#" class="returnBtn left">&lt;</a>
+        <section class="event_item">
+            
+        </section>
+    </div>
+    <p id="back-to-top" style="display: block;">
+        <a href="#top">
+            <img src="/statics/images/pd_to_top.png" />
+        </a>
+    </p>
+    <script type="text/html" id="tmp-list">
+
+        <img src="{{ d.imageUrl }}" alt="{{ d.title }}">
+        <div class="info_box">
+            <h3 class="title">{{ d.title }}</h3>
+            <div><a href="activitydetail.html?id={{ d.id }}" class="button"><i class="icons-sprite icons-booking_2"></i>我要报名</a></div>
+        </div>
+    </script>
+    
+
+    <script src="/Statics/Jquery/jquery-2.1.0.js"></script>
+    <script src="/Statics/Jquery/extend/jquery-extend.js"></script>
+    <script src="/Statics/Layer/layer.js"></script>
+    <script src="/Statics/Layer/extend/laytpl.js"></script>
+    <script src="/Statics/Scripts/common.js"></script>
+    <script src="/Statics/Scripts/activity.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function loadInfo(num) {
+            ishave = false;
+            $.post("/mvc/Classroom/GetClassRoomList", { pageIndex: num }, function (rst) {
+                if (rst.flag === 1) {
+                    pageIdx++;
+                    totalpages = rst.data.pageCount;
+                    var data = rst.data.classroomList;
+                    $(".event_item").bindList(data, "tmp-list");;
+                } else {
+                    layer.msg(rst.msg); 
+                }
+            });
+            ishave = true;
+        }
+
+        var pageIdx = 1;
+        var totalpages = 1;
+        var ishave = true;
+        //首页定位头部
+        $(function () {
+            //获取要定位元素距离浏览器顶部的距离
+            //滚动条事件
+            $(window).scroll(function () {
+                setTimeout(onScroll, 300);
+
+                //滚动条到网页头部的 高度，兼容ie,ff,chrome
+                var top = document.documentElement.scrollTop + document.body.scrollTop;
+                //网页的高度
+                var textheight = $(document).height();
+                // 网页高度-top-当前窗口高度
+                if (textheight - top - $(window).height() <= 10) {
+                    if (pageIdx > totalpages) {
+                        return;
+                    }
+                    if (ishave)
+                        loadInfo(pageIdx);
+                }
+            });
+        });
+
+        var scrollTimer = null;
+        function onScroll() {//滚动加载
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(function () {
+                //返回顶部
+                if ($(window).scrollTop() > 100) {
+                    $("#back-to-top").fadeIn(500);
+                }
+                else {
+                    $("#back-to-top").fadeOut(500);
+                }
+
+            }, 100);
+        }
+
+        $(function() {
+            loadInfo(1);
+        });
+    </script>
+</body>
+</html>

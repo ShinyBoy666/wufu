@@ -1,0 +1,198 @@
+Trigger 两个方法解释
+getRepeatCount()：获得的SimpleTrigger应该重复的次数，在这之后会被自动删除。
+getRepeatInterval()：获取的SimpleTrigger应该重复的时间间隔（以毫秒为单位）。
+
+SimpleScheduleBuilder 方法总结：
+withIntervalInSeconds(int intervalInSeconds) 指定重复间隔秒 - 然后将乘以1000毫秒。
+withRepeatCount(int triggerRepeatCount) 指定的数量触发时会重复 - 发射总数将是这个数字+1。
+repeatForever() 指定触发器将无限期地重复。
+
+DateBuilder 方法总结：
+futureDate(int interval, IntervalUnit unit) 返回一个date类型  IntervalUnit 是一个枚举类型 方法意思是在未来interval内会运行
+ 
+simpleTrigger 实例代码如下：
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
+
+import java.util.Date;
+
+import org.quartz.DateBuilder;
+import org.quartz.Job;
+import org.quartz.JobDetail;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+import org.quartz.JobKey;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.SchedulerFactory;
+import org.quartz.SchedulerMetaData;
+import org.quartz.SimpleTrigger;
+import org.quartz.TriggerBuilder;
+import org.quartz.DateBuilder.IntervalUnit;
+import org.quartz.impl.StdSchedulerFactory;
+import org.quartz.yc.log.util.LoggerUtils;
+
+/**
+ * @author  Chris
+ * 
+ */
+public class SimpleTriggerExample extends LoggerUtils implements Job {
+
+public SimpleTriggerExample() {
+}
+
+public void execute(JobExecutionContext context)
+throws JobExecutionException {
+JobDetail detail = context.getJobDetail();
+logger.info("simplejob says {} executing at {}", detail.getKey(),
+context.getFireTime());
+
+}
+
+public void run() throws SchedulerException {
+
+SchedulerFactory sf = new StdSchedulerFactory();
+Scheduler scheduler = sf.getScheduler();
+
+Date startTime = DateBuilder.nextGivenSecondDate(null, 15);
+
+JobDetail job = newJob(SimpleTriggerExample.class).withIdentity("job1",
+"group1").build();
+
+// job1 只会触发一次
+SimpleTrigger trigger = (SimpleTrigger) TriggerBuilder.newTrigger()
+.withIdentity("trigger1", "group1").startAt(startTime).build();
+
+Date ft = runScheduler(scheduler, job, trigger);
+
+// job2 只会触发依次
+job = newJob(SimpleTriggerExample.class).withIdentity("job2", "group1")
+.build();
+trigger = (SimpleTrigger) TriggerBuilder.newTrigger().withIdentity(
+"trigger2", "group1").startAt(ft).build();
+
+ft = runScheduler(scheduler, job, trigger);
+
+// job3 运行11次 （运行一次之后每10秒钟重复一次，并重复10次）
+job = newJob(SimpleTriggerExample.class).withIdentity("job3", "group1")
+.build();
+trigger = TriggerBuilder.newTrigger()
+.withIdentity("trigger3", "group1").startAt(ft).withSchedule(
+simpleSchedule().withIntervalInSeconds(10)
+.withRepeatCount(10)).build();
+ft = runScheduler(scheduler, job, trigger);
+
+// 和job3一样，重新启动一个触发器
+// 在70秒的时间间隔，这个时间只会重复两次
+trigger = TriggerBuilder.newTrigger()
+.withIdentity("trigger3", "group2").startAt(ft).withSchedule(
+simpleSchedule().withIntervalInSeconds(10)
+.withRepeatCount(2)).forJob(job).build();
+ft = runScheduler2(scheduler, job, trigger);
+
+job = newJob(SimpleTriggerExample.class).withIdentity("job4", "group1")
+.build();
+
+// job4 执行6次（运行一次重复执行5次，每10秒钟执行一次）
+trigger = (SimpleTrigger) TriggerBuilder.newTrigger().withIdentity(
+"trigger4", "group1").startAt(startTime).withSchedule(
+simpleSchedule().withIntervalInSeconds(10).withRepeatCount(5))
+.build();
+ft = runScheduler(scheduler, job, trigger);
+
+// job5 运行一次，在未来五分钟运行一次
+job = newJob(SimpleTriggerExample.class).withIdentity("job5", "group1")
+.build();
+trigger = (SimpleTrigger) TriggerBuilder.newTrigger().withIdentity(
+"trigger5", "group1").startAt(
+DateBuilder.futureDate(5, IntervalUnit.MINUTE)).build();
+ft = runScheduler(scheduler, job, trigger);
+
+// job6无限期运行，每40秒运行一次
+job = newJob(SimpleTriggerExample.class).withIdentity("job6", "group1")
+.build();
+trigger = TriggerBuilder.newTrigger()
+.withIdentity("trigger6", "group1").startAt(startTime)
+.withSchedule(
+simpleSchedule().withIntervalInSeconds(40)
+.repeatForever()).build();
+ft = runScheduler(scheduler, job, trigger);
+logger.info("------- Started Scheduler -----------------");
+// 所有作业都被添加到调度，但没有工作已经开始，直到调度运行。
+scheduler.start();
+
+// job 也可以被计划执行，在start()之后调用
+// job7 重复执行20次，每5分钟执行一次
+job = newJob(SimpleTriggerExample.class).withIdentity("job7", "group1")
+.build();
+trigger = TriggerBuilder.newTrigger()
+.withIdentity("trigger7", "group1").startAt(startTime)
+.withSchedule(
+simpleSchedule().withIntervalInMinutes(5)
+.withRepeatCount(20)).build();
+ft = runScheduler(scheduler, job, trigger);
+
+// job 可以直接执行，不需要等待
+job = newJob(SimpleTriggerExample.class).withIdentity("job8", "group1")
+.storeDurably().build();
+scheduler.addJob(job, true);
+scheduler.triggerJob(JobKey.jobKey("job8", "group1"));
+
+try {
+// wait 33 seconds to show jobs
+Thread.sleep(30L * 1000L);
+// executing...
+} catch (Exception e) {
+}
+// 设置一个重复的调度器，并把之前的触发器删除
+trigger = TriggerBuilder.newTrigger()
+.withIdentity("trigger7", "group1").startAt(startTime)
+.withSchedule(
+simpleSchedule().withIntervalInMinutes(5)
+.withRepeatCount(20)).build();
+ft = scheduler.rescheduleJob(trigger.getKey(), trigger);
+loggerInfo(job, trigger, ft);
+try {
+// wait five minutes to show jobs
+Thread.sleep(300L * 1000L);
+// executing...
+} catch (Exception e) {
+}
+scheduler.shutdown(true);
+SchedulerMetaData metaData = scheduler.getMetaData();
+//统计执行了多少个job
+logger.info("Executed {} jobs.",metaData.getNumberOfJobsExecuted());
+
+}
+
+private Date runScheduler(Scheduler scheduler, JobDetail job,
+SimpleTrigger trigger) throws SchedulerException {
+Date ft = scheduler.scheduleJob(job, trigger);
+loggerInfo(job, trigger, ft);
+return ft;
+}
+
+private Date runScheduler2(Scheduler scheduler, JobDetail job,
+SimpleTrigger trigger) throws SchedulerException {
+Date ft = scheduler.scheduleJob(trigger);
+loggerInfo(job, trigger, ft);
+return ft;
+}
+
+private void loggerInfo(JobDetail job, SimpleTrigger trigger, Date ft) {
+logger
+.info(
+"job key {} . will run at {} and repeat {} times , every {} seconds .",
+job.getKey(), ft, trigger.getRepeatCount(), trigger
+.getRepeatInterval() / 100);
+}
+
+/**
+ * @param args
+ * @throws SchedulerException
+ */
+public static void main(String[] args) throws SchedulerException {
+SimpleTriggerExample example = new SimpleTriggerExample();
+example.run();
+}
+}

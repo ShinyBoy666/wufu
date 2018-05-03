@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>使用规则</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var id = getQueryString("t");
+            if (id == 1) {
+                $("#head").hide();
+                $("#overhead").hide();
+            }
+        });
+        function getQueryString(name, defValue) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return decodeURI(r[2]);
+            if (defValue != undefined)
+                return defValue;
+            return null;
+        }
+    </script>
+</head>
+<body>
+    <div class="jph">
+        <!--page head-->
+        <div id="head" class="com-fixed com-head coupon-head-bg">
+            <div>
+                <ul>
+                    <li class="display-box fl com-title-over">
+                        <div class="com-head-left">
+                            <button type="button" class="setting-buton-bg" onclick="history.go(-1);">
+                                <i class="code-ret code-ret-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="display-box fl com-title-center ct">
+                        <a href="#"><span>使用规则</span></a>
+                    </li>
+                    <li class="display-box fr com-title-over rg">
+                        <span class="com-head-right" id="house-rule">
+                            <button type="button" class="com-head-title"></button>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="overhead" class="over-head"></div>
+        <div class="clearfix project-bottom-height">
+            <div class="USERULR mypage-head-name">
+                <ul>
+                    <li>
+                        <p><span><font>Q</font>优惠券分哪些类型？</span></p>
+                        <p>
+                            <span><font>A</font></span>平台的优惠券仅分为店铺有门槛优惠、无门槛优惠券以及满减优惠券。
+                        </p>
+                    </li>
+                    <li>
+                        <p><span><font>Q</font>满减优惠券怎么计算？</span></p>
+                        <p>
+                            <span><font>A</font></span>当用户当次的购物总和满足当前店铺满减规则时，下单时可以选择使用相应面值优惠券，不同店铺之间的商品不累计计算。
+                        </p>
+                    </li>
+                    <li>
+                        <p><span><font>Q</font>我如何领取优惠券？</span></p>
+                        <p>
+                            <span><font>A</font></span>进入商家的店铺在首页上有一个“领取优惠券”功能，点击进入即可看到所有现在做优惠活动的商家，用户可以按自己的需求领取。
+                        </p>
+                    </li>
+                    <li>
+                        <p><span><font>Q</font>优惠券分哪些种类？</span></p>
+                        <p>
+                            <span><font>A</font></span>优惠券分为电子优惠券、纸质优惠券与及优惠卡等。
+                        </p>
+                    </li>
+                    <li>
+                        <p><span><font>Q</font>优惠券可以在不同店铺之间使用吗？</span></p>
+                        <p>
+                            <span><font>A</font></span>不可以，某店铺的优惠券只能要相应店铺中使用！
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

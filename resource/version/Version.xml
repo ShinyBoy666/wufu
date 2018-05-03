@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VersionModel>
+  <Android>
+    <Version>1</Version><!--低于此版本全部提示升级-->
+    <Name>jipinhui v1.1.0</Name>
+    <Notice>1.舜凯云商1.0</Notice><!--更新日志说明-->
+    <MinVersion>1</MinVersion><!--低于此版本全部强制升级-->
+    <Url>http://pic4.taojinzi.com/android/app2015122301.apk</Url>
+  </Android>
+  <Ios>
+    <Version>110</Version>
+    <Name>jipinhui v2.2.4</Name>
+    <Notice>1.舜凯云商1.0</Notice><!--更新日志说明-->
+    <MinVersion>100</MinVersion>
+    <Url>itms-services://?action=download-manifest&amp;url=https://d.taojinzi.com/taojinzi20160415.plist</Url>
+  </Ios>
+  <Address><!-- 地址库更新 -->
+    <Version>1</Version>
+    <Url>http://d.taojinzi.com/app_db/xregion.s3db</Url>
+  </Address>
+</VersionModel>

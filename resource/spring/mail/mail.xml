@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+	default-autowire="byName">
+
+	<!-- 使用Spring封装的Mail Sender -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${mail.host}" />
+		<property name="username" value="${mail.username}" />
+		<property name="password" value="${mail.password}" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- vilocity config -->
+	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="resourceLoaderPath" value="/WEB-INF/" />
+		<property name="velocityProperties">
+			<props>
+				<prop key="default.contentType">text/html; charset=utf-8</prop>
+				<prop key="output.encoding">utf-8</prop>
+				<prop key="input.encoding">utf-8</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 系统发送地址 -->
+	<bean id="adminInternetAddress" class="javax.mail.internet.InternetAddress">
+		<property name="address" value="${mail.username}" />
+		<property name="personal" value="${mail.personal}" />
+	</bean>
+
+	<!-- 邮件发送 -->
+	<bean id="mailEngine" class="cn.xinmeng.common.mail.impl.MailEngineServiceImpl">
+		<property name="mailSender" ref="mailSender" />
+		<!-- 如果使用Vilocity -->
+		<property name="velocityEngine" ref="velocityEngine" />
+	</bean>
+
+</beans>

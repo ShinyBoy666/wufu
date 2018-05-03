@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>确认订单</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link href="/statics/style/common.css" rel="stylesheet" />
+
+</head>
+<body id="activityorderconfim">
+    <div class="jph">
+        <!--page head-->
+        <div id="head" class="com-fixed com-head">
+            <input id="txtCoupons" type="hidden" />
+            <input id="isRealyname" type="hidden" value="0" />
+            <div>
+                <ul>
+                    <li class="display-box fl com-title-over">
+                        <div class="com-head-left">
+                            <button type="button" class="com-head-title top-margin" onclick="goback()">
+                                <i class="code-ret code-ret-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="display-box fl com-title-center ct">
+                        <a class="com-head-title"><span>确认订单</span></a>
+                    </li>
+                    <li class="display-box fr com-title-over rg">
+                        <span class="com-head-right" id="house-rule">
+                            <button type="button" class="com-head-title">
+                                <!--<i class="code-much code-much-icon"></i>-->
+                            </button>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="over-head"></div>
+        <div class="order-center"></div>
+        <!--main-->
+        <div class="clearfix coount-page-main">
+            <div id="address">
+                <script type="text/html" id="tmp-address">
+                    <div id="addressId" class="list-bg" data-id="{{d.id}}" onclick="addressList(this)">
+                        <p class="color-block">{{d.recipientName}}<span class="com-head-left">{{d.recipientPhone}}</span></p>
+                        <p class="com-font-size-14" style="line-height: 20px">
+                            {{d.provinceName+d.cityName+d.districtName+d.recipientAddress}}
+                        </p>
+                    </div>
+                </script>
+
+                <div class="list-bg" onclick="addAddress(1)" style="text-align: center;line-height: 60px">
+                    点击添加地址信息
+                </div>
+            </div>
+            <div id="cusinfo" style="display: none">
+                <div class="forget-li-bottpm forget-li-top mypage-head-name clearfix">
+                    <ul>
+                        <li class="display-box com-title-over fl"><span class="cash-ch color-block com-font-size-16">姓名</span></li>
+                        <li class="display-box width-eight fl forget-right-border">
+                            <input type="text" id="txtRealName" name="txtRealName" placeholder="请输入姓名" class="cash-text-close forget-inner-border"/>
+                        </li>
+                    </ul>
+                </div>
+                <div class="forget-li-bottpm mypage-head-name clearfix">
+                    <ul>
+                        <li class="display-box com-title-over fl"><span class="cash-ch color-block com-font-size-16">身份证号</span></li>
+                        <li class="display-box width-eight fl forget-right-border">
+                            <input type="text" id="txtIdCard" placeholder="请输入身份证号" class="cash-text-close forget-inner-border"/>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="seatNumberInfo" style="display: none">
+                <div class="forget-li-bottpm forget-li-top mypage-head-name clearfix">
+                    <ul>
+                        <li class="display-box com-title-over fl"><span class="cash-ch color-block com-font-size-16">位置</span></li>
+                        <li class="display-box width-eight fl forget-right-border">
+                            <input type="text" id="seatNumber" name="seatNumber" placeholder="请输入座位号/桌号/包厢号" class="cash-text-close forget-inner-border" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="products-center"></div>
+            <!--产品详情价格-->
+            <div id="product-detail">
+                <script id="tmp-product-detail" type="text/html">
+                    <div id="product" onclick="productDetail('{{d.productId}}')" data-json="{{$.jsonToString(d)}}" class="confim-main-servce mypage-head-name com-font-size-14 clearfix">
+                        <div class="fl display-box com-title-over">
+                            <img src="{{d.imageUrl}}?160_160" width="75px" />
+                        </div>
+                        <div class="fl display-box width-eight order" style="padding-left:15px">
+                            <div class="color-block text-overflow-hidden" style="margin:0 20px 5px 0">{{d.productName}}</div>
+                            <div class="clearfix"><span class="fl">×{{d.productNumber}} {{d.sku}}</span><i class="fr right-ret right-ret-icon"></i></div>
+                            <div><span class="color-peach">￥{{d.productNumber*d.retailPrice}}</span></div>
+                        </div>
+                    </div>
+                </script>
+            </div>
+            <div class="products-center"></div>
+            <div class="com-center-pad address-second">
+                <div class="ct mypage-head-name home-wind" style="width: auto;">请选择支付方式&nbsp;&nbsp;&nbsp;</div>
+
+                <div>
+                    <!-- 账户支付 -->
+                    <div class="home-wind paytype clearfix" onclick="payType(1)">
+                        <i id="accoutPay" class="choose1 choose1-icon pay-right-ico"></i>
+                        <span id="cashAmount" class="pay-right-text">￥0.00</span>
+                        <i class="wallet wallet-icon pay-left-ico"></i>
+                        <div class="pay-left-text">可用余额</div>
+                    </div>
+                    <!-- 微信支付 -->
+                    <div class="home-wind clearfix paytype" onclick="payType(2)">
+                        <i class="choose choose-icon pay-right-ico" id="wxPay"></i>
+                        <i class="wx wx-icon pay-left-ico"></i>
+                        <span class="pay-left-text">微信支付</span>
+                    </div>
+                    <!-- 支付宝支付 -->
+                    <div class="home-wind clearfix paytype" onclick="payType(3)">
+                        <i class="choose choose-icon pay-right-ico" id="zfbPay"></i>
+                        <i class="zfb  zfb-icon pay-left-ico"></i>
+                        <span class="pay-left-text">支付宝支付</span>
+                    </div>
+                </div>
+            </div>
+            <div class="products-center"></div>
+            <div class="mypage-head-name Order confim-main-servce">
+                <ul>
+                    <li><font>商品金额:</font><span class="fr">￥<span id="totalAmount">0.00</span></span></li>
+                    <li>优惠金额:<span class="fr">￥ <span id="couponeMoney">0.00</span></span></li>
+                    <li>应付款:<span class="fr">￥ <span id="payMoney">0.00</span></span></li>
+                </ul>
+            </div>
+        </div>
+        <!--bottom-->
+        <div class="confim-bottom">
+            <div class="">
+                <div class="fl  display-box serch-ttwo">
+                    <div class="color-pink color-peach com-head-left">
+                        在线支付:￥<span id="onlineMoney">0.00</span>
+                    </div>
+                </div>
+                <div class="display-box fl serch-one">
+                    <div class="rg">
+                        <button type="button" onclick="goPay()" data-state="1" id="btnGoPay" class="order-close bind-button-bg color-white com-font-size-14">去付款</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="addressPopo" style="display: none; padding-bottom: 10px; max-width: 640px;margin: 0 auto;background-color:#fff">
+            <!--main-->
+            <div id="addressList" class="cl">
+
+                <!--选联系人-->
+                <script type="text/html" id="tmp-addressList">
+                    <div class="Manage-pad-pd Manage item" data-id="{{d.id}}" onclick="choose('{{d.id}}')">
+                        <div>
+                            <font>{{ d.recipientName }} <span class="mg-large-left">{{ d.recipientPhone }} </span></font>
+                            <p>{{d.provinceName+' '+d.cityName+' '+d.districtName+' '+d.recipientAddress}}</p>
+                        </div>
+                        <div class="Manage-pad-bottom clearfix hide">
+                            <ul>
+                                {{# if(d.isDefault==1){ }}
+                                <li class="fl"><button type="button" class="shop-buttom"><i class="choose over-select-icon choose1"></i>默认地址</button></li>
+                                {{# }else{ }}
+                                <li class="fl"><button type="button" class="shop-buttom" onclick="setDefault({{d.id}})"><i class="choose over-select-icon"></i>设为默认</button></li>
+                                {{# } }}
+                                <li class="fr">
+                                    <button type="button" class="shop-buttom" onclick="edit({{d.id}})"><i class="edit edit-icon"></i>编辑</button>
+                                    <button type="button" class="shop-buttom com-head-left" onclick="del({{d.id}})"><i class="delete delete-icon"></i>删除</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="Manage-bottom-line"></div>
+                </script>
+            </div>
+            <div class="forget-but over-head">
+                <button type="button" onclick="addAddress()" value="" class="bind-button bind-button-bg color-white com-font-size-16">+新建地址</button>
+            </div>
+
+        </div>
+
+        <div id="couponPopo" class="hide">
+            <div class="com-fixed com-head">
+                <div>
+                    <ul>
+                        <li class="display-box fl com-title-over">
+                            <div class="com-head-left">
+                                <button type="button" class="com-head-title top-margin" onclick="layer.closeAll();">
+                                    <i class="code-ret code-ret-icon"></i>
+                                </button>
+                            </div>
+                        </li>
+                        <li class="display-box fl com-title-center ct">
+                            <a class="com-head-title"><span>选择优惠券</span></a>
+                        </li>
+                        <li class="display-box fr com-title-over rg">
+                            <span class="com-head-right" id="house-rule">
+                                <button type="button" class="com-head-title">
+                                    <!--<i class="code-much code-much-icon"></i>-->
+                                </button>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="line20"></div>
+            <div id="coupon-choose" class="coupon-choose">
+                <script id="tmp-coupon-choose" type="text/html">
+                    <div class="coupon-shop-item clearfix">
+                        <ul class="clearfix">
+                            <!--<li onclick="clearCoupon(this)" class="fr coupon-shop-name com-font-size-16 ">不使用</li>-->
+                            <li class="coupon-shop-name com-font-size-16 red fl">{{d.shopName}}</li>
+                        </ul>
+                        <ul class="coupon-list">
+                            {{# for (var i = 0; i <d.usableCoupons.length; i++) { var dd=d.usableCoupons[i]; }}
+                            <li data-couponMoney="{{dd.couponMoney}}"
+                                data-shopId="{{d.shopId}}"
+                                data-code="{{dd.couponCode}}" class="clearfix coupon-item" onclick="selectCoupon(this)">
+                                <div class="com-font-size-35 fl red coupon-price">￥{{dd.couponMoney}}</div>
+                                <div class="fl coupon-desc">
+                                    <ul>
+                                        <li class="com-font-size-16 coupon-name" style="display:inline-block">{{dd.couponName}}</li>
+                                        <li class="coupon-filter2">{{dd.description}}</li>
+                                        <li class="coupon-date" style="color:#eee">{{ formatDate(dd.beginTime)}} ~ {{ formatDate(dd.endTime)}}</li>
+                                    </ul>
+                                </div>
+                                <div class="fl coupon-selected">
+                                    <i class="coupon-ico {{ dd.selected?'coupon-selected-ico':''}}">
+                                    </i>
+                                </div>
+                            </li>
+                            {{# } }}
+                        </ul>
+                    </div>
+
+
+                    <div class="line10"></div>
+                </script>
+
+            </div>
+            <div class="forget-but over-head">
+                <button type="button" onclick="layer.closeAll();" value="" class="bind-button bind-button-bg color-white com-font-size-16">完成</button>
+            </div>
+        </div>
+
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/activityorderconfim.js"></script>
+    </div>
+</body>
+</html>

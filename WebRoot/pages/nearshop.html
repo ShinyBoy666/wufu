@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>附近店铺</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <link href="/statics/style/swiper-3.3.1.min.css" rel="stylesheet"/>
+
+</head>
+<body>
+    <div class="jph">
+        <div id="search-box">
+            <div id="history-seach" class="clearfix" style="">
+                <div class="clearfix">
+                    <span id="clearHistory" style="float: right"></span>
+                    <span class="search-title">历史搜索</span>
+                </div>
+                <div id="keys" class="clearfix search-key">
+                    <script id="tmp-keys" type="text/html">
+                        <span>{{d}}</span>
+                    </script>
+                </div>
+            </div>
+
+            <div id="common-seach" class="clearfix" style="">
+                <div class="clearfix">
+                    <span class="search-title">常用搜索</span>
+                </div>
+                <div class="clearfix search-key">
+                    <span>舜凯云商</span>
+                    <span>智慧云白山</span>
+                    <span>和和网咖</span>
+                    <span>蒸功夫家</span>
+                </div>
+            </div>
+
+        </div>
+        <!--page head-->
+        <div id="head" class="com-fixed search-head">
+            <div class="Nearfy clearfix">
+                <div class="fl near-return-width">
+                    <a href="javascript:void(0)"><i class="code-ret near-return-icon"></i></a>
+                </div>
+                <!--<div style="line-height: 30px; width: 90%; text-align: center;">附近的店铺</div>-->
+                <div class="fl textbox display-box" style="width: 81%">
+                    <div class="fl display-box" style="width: 100%">
+                        <input type="text" name="serch" placeholder="输入店铺名称搜索" id="shopId" class="classify-inputtext" style="padding-left: 6px;" />
+                    </div>
+                </div>
+                <div id="btnSearch" class="fl display-box" onclick="loadInfo()">
+                    <i class="home-serch-icon textbox-icon001 fl"></i>
+                </div>
+            </div>
+        </div>
+        <!--head end-->
+        <div class="classify-margin-top"></div>
+
+        <!--main-->
+        <div class="clearfix">
+            <div class="nearBar forget-li-bottpm clearfix">
+                <ul>
+                    <li><a href="#">最近距离</a></li>
+                    <li><a href="#">最大销量</a></li>
+                    <li><a href="#">最新入驻</a></li>
+                </ul>
+            </div>
+            <!--列表循环-->
+            <div id="shoplist">
+                <script type="text/html" id="tmp-shoplist">
+                    <div onclick="location.href = '../{{d.id}}/homepage.html'">
+                        <div class="forget-li-bottpm cycle">
+                            <div class="mypage-head-name clearfix">
+                                <div class="fl" style="width: 75% !important;">
+                                    <ul>
+                                        <li class="clearfix">
+                                            <p class="fl" style="width: 20% !important; max-height: 50px; overflow: hidden;">
+                                                <img src="{{d.logo}}?100_100" style="width: 100%;" />
+                                            </p>
+                                            <p class="fl mg-large-left" style="width: 70% !important;">
+                                                <span class="text-overflow-hidden-single">{{d.shopName}}</span>
+                                                <font class="text-overflow-hidden-single">
+                                                    {{# for (var i = 0; i < d.categoryList.length; i++) { var dd=d.categoryList[i]; }}
+                                                    {{dd}}&nbsp;
+                                                    {{# } }}
+                                                </font>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="fl" style="width: 100% !important; line-height: 27px">
+                                    <i class="redAdd redAdd-icon"></i>{{d.shopAddress}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="near-bg-cener"></div>
+                    </div>
+                </script>
+            </div>
+        </div>
+        <div id="back-to-top">
+            <img src="/statics/img/image/pd_to_top.png" alt="置顶" />
+        </div>
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=qvgtsuiFVb5rH1rfdhRdSKGWlAxbaMfD"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/nearshop.js"></script>
+        <script src="/statics/scripts/swiper-3.3.1.jquery.min.js"></script>
+    </div>
+</body>
+</html>

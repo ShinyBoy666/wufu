@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>升级会员</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link href="/statics/style/common.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="jph">
+        <!--page head-->
+        <div id="head" class="com-fixed com-head">
+            <input id="txtCoupons" type="hidden" />
+            <div>
+                <ul>
+                    <li class="display-box fl com-title-over">
+                        <div class="com-head-left">
+                            <button type="button" class="com-head-title top-margin" onclick="history.back()">
+                                <i class="code-ret code-ret-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="display-box fl com-title-center ct">
+                        <a class="com-head-title"><span>升级会员</span></a>
+                    </li>
+                    <li class="display-box fr com-title-over rg">
+                        <span class="com-head-right" id="house-rule">
+                            <button type="button" class="com-head-title">
+                                <!--<i class="code-much code-much-icon"></i>-->
+                            </button>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="over-head"></div>
+
+        <div class="clearfix">
+            <div style="font-size:20px;line-height:30px;text-align:center;color:#fff;background-color:rgb(197,32,75);padding:60px 40px">
+                <span id="typeName"></span>：￥<span class="totalAmount">0</span>/年
+                <div id="tixian" class="hide" style="font-size:14px;font-weight:100">亲,您还不是会员哟，请升级会员才能提现!</div>
+            </div>
+        </div>
+        <!--main-->
+        <div class="clearfix coount-page-main">
+            <div class="com-center-pad address-second">
+                <div class="ct home-wind" style="padding:10px;margin:0px;width:auto;">请选择支付方式&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                <div id="accountDeduct" class="home-wind clearfix hide" style="line-height:30px;margin-top:10px" onclick="payType(1)">
+                    <div class="display-box home-main-width fl">
+                        <i class="wallet wallet-icon"></i><span class="confim-quan-v com-head-left">可用余额</span>
+                    </div>
+                    <div class="display-box home-main-width fr">
+                        <div class="rg wxy">
+                            <span class="confim-quan-v" style="line-height:30px;margin-bottom:0px;display:inline-block">￥<span id="cashAmount">0.00</span></span>
+                            <i id="accoutPay" class="choose choose-icon com-head-left"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="home-wind clearfix" style="line-height:30px;margin-top:10px" onclick="payType(2)">
+                    <div class="display-box home-main-width fl">
+                        <i class="wx wx-icon"></i><span class="confim-quan-v com-head-left">微信支付</span>
+                    </div>
+                    <div class="display-box home-main-width fr">
+                        <div class="rg wxy">
+                            <i id="wxPay" class="choose choose-icon com-head-left"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="home-wind clearfix" style="line-height:30px;margin-top:10px" onclick="payType(3)">
+                    <div class="display-box home-main-width fl">
+                        <i class="zfb zfb-icon"></i><span class="confim-quan-v com-head-left">支付宝支付</span>
+                    </div>
+                    <div class="display-box home-main-width fr">
+                        <div class="rg wxy">
+                            <i id="zfbPay" class="choose choose-icon com-head-left"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="products-center"></div>
+            <div class="mypage-head-name Order confim-main-servce hide">
+                <ul>
+                    <li><font>商品金额:</font><span class="fr">￥<span id="totalAmount" class="totalAmount">0.00</span></span></li>
+                    <li>优惠券抵扣:<span class="fr">￥ <span id="couponeMoney">0.00</span></span></li>
+                    <li>应付款:<span class="fr">￥ <span id="payMoney">0.00</span></span></li>
+                </ul>
+            </div>
+        </div>
+        <!--bottom-->
+        <div class="confim-bottom">
+            <div class="">
+                <div class="fl  display-box serch-ttwo">
+                    <div class="color-pink color-peach com-head-left">
+                        在线支付:￥<span id="onlineMoney">0.00</span>
+                    </div>
+                </div>
+                <div class="display-box fl serch-one">
+                    <div class="rg">
+                        <button type="button" onclick="goPay()" id="btnGoPay" class="order-close bind-button-bg color-white com-font-size-14">去付款</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/vipupgrade.js"></script>
+    </div>
+</body>
+</html>

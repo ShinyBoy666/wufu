@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>优惠买单</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link href="/statics/style/common.css" rel="stylesheet" />
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/statics/jquery/extend/jquery-extend.js"></script>
+    <script src="/statics/layer/layer.js"></script>
+    <script src="/statics/scripts/common.js"></script>
+    <script src="/statics/layer/extend/laytpl.js"></script>
+    <script src="/statics/scripts/quickpay-success.js"></script>
+
+</head>
+<body>
+    <div id="jph" class="jph">
+        <div style="padding: 15px 0;text-align: center;line-height:20px" class="clearfix">
+            <i style="-ms-border-radius: 50%; border-radius: 50%; padding: 10px; margin:0 10px 0 10%;font-size: 20px; color: #fff; background:url(/statics/img/image/gou.png); -ms-background-size: 20px 20px; background-size: 20px 20px; display: inline-block;float:left"></i>
+            <span style="display: inline-block; float: left;">
+                恭喜您在<span id="shopName"></span>买单成功！
+            </span>
+        </div>
+        <div class="bg-line"></div>
+        <ul style="padding: 15px;line-height:25px">
+            <li>订单金额：￥<span id="price">0.00</span></li>
+            <li>订单编号：<span id="orderId"></span></li>
+        </ul>
+        <div class="bg-line"></div>
+        <div style="background-color:#f9f9f9" class="clearfix">
+            <div style="text-align: center; font-size: 20px; padding: 20px">
+                <span id="price2"></span>
+                <!--恭喜您获得价值<span id="price2">0</span>元的优惠券!-->
+            </div>
+            <div>
+                <div style="-ms-border-radius:50%; border-radius: 50%; width: 200px; height: 200px; overflow: hidden;margin:20px auto">
+                    <img src="/statics/img/image/sharp.png" style="width: 200px;height:200px" />
+                </div>
+            </div>
+            <div style="margin: 10px 0;">
+                <button id="getConpon" type="button">
+                    去领优惠券
+                </button>
+                <button id="share" type="button" onclick="goshare()">
+                    分享给小伙伴
+                </button>
+            </div>
+        </div>
+
+        <div id="J-guide" class="guide " style="display: none" onclick="closeshare()">
+            <i class="icon-guide"></i>
+        </div>
+        <!--分享信息-->
+        <input id="hidtimestamp" type="hidden" value="0" />
+        <input id="hidnoncestr" type="hidden" value="0" />
+        <input id="hidsignature" type="hidden" value="0" />
+        <input id="wxtitle" type="hidden" value="" />
+        <input id="wxdescription" type="hidden" value="" />
+        <input id="wximgurl" type="hidden" value="" />
+        <input id="wxhref" type="hidden" value="" />
+        <style>
+            #share { border-radius: 4px; background-color: #fc9c0a; color: #fff; display: block; float: left; width: 41%; padding: 10px 0; text-align: center; font-size: 16px;display: none; }
+            #getConpon { border-radius: 4px; background-color: #cc3333; color: #fff; display: block; float: left; width: 41%; padding: 10px 0; text-align: center; margin: 0 6%; font-size: 16px;display: none; }
+        </style>
+    </div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>支付</title>
+    <meta name="description" content="让心去旅行">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--<link rel="shortcut icon" href="/Statics/Images/favicon.ico" />-->
+    <link rel="stylesheet" href="/statics/style/main.css?v1" />
+    <style type="text/css">
+        .licur {
+            border: 1px solid #9A001A !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="event_item"></section>
+        <section class="pay_box">
+            <div class="price_list_wrap">
+                <ul class="price_list">
+                    <li class="licur" data-num="1" style=" border: 1px solid #fff;">
+                        <h6>￥1200</h6>
+                        <p>本次活动费用</p>
+                    </li>
+                    <li data-num="2" style=" border: 1px solid #fff;">
+                        <h6>￥3600</h6>
+                        <p>可获得4次线下禅修活动权利</p>
+                    </li>
+                    <li data-num="3" style=" border: 1px solid #fff;">
+                        <h6>￥15680</h6>
+                        <p>可获得1年不限次数的活动权利</p>
+                    </li>
+                </ul>
+            </div>
+            <h2>选择赞助方式</h2>
+            <ul class="pay_type">
+                <li><label for="pay_wallet"><img src="/statics/images/wallet.png" alt="钱包"><span>钱包</span><span id="cashAmount" style=" color: #969696;margin-left: 10px;">(0元)</span><input type="radio" value="1" name="pay_type" id="pay_wallet"><i></i></label></li>
+                <li><label for="pay_alipay"><img src="/statics/images/alipay.png" alt="支付宝"><span>支付宝</span><input type="radio" value="2" name="pay_type" id="pay_alipay"><i></i></label></li>
+                <li><label for="pay_weixin"><img src="/statics/images/weixin.png" alt="微信"><span>微信</span><input type="radio" value="3" name="pay_type" id="pay_weixin"><i></i></label></li>
+            </ul>
+            <a class="main_button" href="javascript:void(0)" onclick="gopay()">立即赞助</a>
+        </section>
+    </div>
+    <input id="pricetype" type="hidden" value="1" />
+    <script type="text/html" id="tmp-list">
+        <div class="img_box"><img src="{{d.imageUrl}}" alt="{{d.title}}"><h5>{{d.title}}</h5></div>
+    </script>
+
+    <script src="/Statics/Jquery/jquery-2.1.0.js"></script>
+    <script src="/Statics/Jquery/extend/jquery-extend.js"></script>
+    <script src="/Statics/Layer/layer.js"></script>
+    <script src="/Statics/Layer/extend/laytpl.js"></script>
+    <script src="/Statics/Scripts/common.js"></script>
+    <script type="text/javascript">
+
+        function checkli() {
+            $(this).addClass("licur").siblings().removeClass("licur");
+            $("#pricetype").val($(this).data("num"));
+        }
+        function loadInfo() {
+            var tid = getQueryString("cid", 0);
+            $.post("/mvc/Classroom/GetClassRoomPayDetail", { id: tid }, function (rst) {
+                if (rst.flag === 1) {
+                    var data = rst.data;
+                    $(".event_item").bindSyncModel(data, "tmp-list");
+                    if (parseFloat(data.amount) < parseFloat(1200)) {
+                        $("input:radio[name='pay_type']").eq(0).attr("disabled", "disabled");
+                        $("input:radio[name='pay_type']").eq(1).attr("checked", true);
+                        $("#cashAmount").text("(" + data.amount + "元)");
+                    }
+                    if (data.cusremaincount > 0) {
+                        $("input:radio[name='pay_type']").eq(0).attr("checked", true);
+                        $("input:radio[name='pay_type']").eq(1).attr("disabled", "disabled");
+                        $("input:radio[name='pay_type']").eq(2).attr("disabled", "disabled");
+                        $("#cashAmount").text("(可免费支付)");
+                    }
+                } else {
+                    layer.msg(rst.msg);
+                }
+            });
+        }
+
+        function gopay() {
+            var cid = getQueryString("cid", 0);
+            if (cid == 0) {
+                layer.msg("活动不存在");
+                return false;
+            }
+            var paytype = $("input:radio[name='pay_type']:checked").val();
+            var pricetype = $("#pricetype").val();
+            $.post("/mvc/ClassroomOrder/CreateOrder", { cid: cid, paytype: paytype, pricetype: pricetype }, function (rst) {
+                if (rst.flag === 1) {
+                    layer.msg(rst.msg);
+                    location.href = "enrollsuc.html";
+                } if (rst.flag ===2) {
+                    $("body").html(rst.msg);
+                } else {
+                    layer.msg(rst.msg);
+                }
+            });
+            return true;
+        }
+
+        $(function () {
+            $(".price_list li").bind('click', checkli);
+            loadInfo();
+        });
+    </script>
+</body>
+</html>

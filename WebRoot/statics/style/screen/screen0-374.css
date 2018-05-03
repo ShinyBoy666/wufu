@@ -1,0 +1,32 @@
+﻿@charset "utf-8";
+/*iphone5屏幕宽度的样式*/
+.jph { font-size: 12px; }
+.com-head-title { font-size: 14px; }
+
+/*quickpay.html*/
+.keyboard-key li button { font-size: 16px; line-height: 36px; }
+.quickpay-title { font-size: 18px; line-height: 40px; }
+.keyboard-price div { font-size: 18px; }
+.clear-price { font-size: 22px; }
+
+
+/*quickpayorderconfim.html*/
+#quickpayorderconfim .conpon-item .left img { height: 80px; }
+#quickpayorderconfim .conpon-shop { line-height: 30px; }
+#quickpayorderconfim .quickpayorderconfim-submit { height: 40px; line-height: 40px; font-size: 14px; }
+#quickpayorderconfim .pay-right-ico { line-height: 20px; }
+#quickpayorderconfim .pay-right-text { line-height: 25px; }
+#quickpayorderconfim .pay-left-ico { line-height: 20px; }
+#quickpayorderconfim .pay-left-text { line-height: 20px; }
+#quickpayorderconfim .logo { width: 80px; height: 80px; }
+#quickpayorderconfim .shop-title { font-size: 16px; }
+#quickpayorderconfim .right-padding { padding: 8px 0 0 4px; }
+#quickpayorderconfim .conpon-money { font-size: 20px; }
+#quickpayorderconfim .conpon-role { font-size: 12px; color: #666; }
+#quickpayorderconfim .conpon-data { font-size: 12px; color: #999; }
+
+#msgadd .add { font-size: 12px;}
+
+    #msglist .msg-title { font-size: 16px; color: #f39900; }
+    #msglist .msg-desc { font-size: 12px; color: #4d4d4d; padding: 6px 0; }
+

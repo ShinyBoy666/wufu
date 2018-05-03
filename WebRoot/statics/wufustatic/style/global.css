@@ -1,0 +1,108 @@
+/**
+ * 通用的css
+ * **/
+.global_head{	
+	height: 1rem;
+	background: #EFEFEF;
+	width: 100%;
+}
+.mycontribute_head{
+	height: 0.5rem;
+	background: #EFEFEF;
+	width: 100%;
+}
+.myteam_head{
+	height: 2.5rem;
+	background: #EFEFEF;
+	width: 100%;
+	line-height: 2.5rem;
+}
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+}
+body {
+	min-width: 320px;
+	max-width: 750px;
+	margin: 0 auto;
+}
+li{
+	list-style-type: none;	
+	height: 5rem;
+}
+.global_import{
+	font-size: 1.5rem;
+	color: #888;
+}
+.global_name{
+	font-size: 1.5rem;
+	color: #333;
+}
+
+.mycontribute_name{
+	font-size: 1.8rem;
+	color: #333;
+}
+html {
+    font-size: 62.5%; /* 10÷16=62.5% */
+    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+}
+/****针对所有iPhone4、5的标准模式***/
+
+@media only screen and (min-width: 320px) {
+	html {
+		font-size: 53.3% !important;
+	}
+}
+
+
+/****针对所有iPhone6的标准模式***/
+
+@media only screen and (min-width: 360px) {
+	html {
+		font-size: 60% !important;
+	}
+}
+
+
+/****针对所有iPhone6的标准模式***/
+
+@media only screen and (min-width: 375px) {
+	html {
+		font-size: 62.5% !important;
+	}
+}
+
+
+/****针对所有iPhone6+的标准模式,414px写为412px是由于三星Nexus 6为412px，可一并处理***/
+
+@media only screen and (min-width: 412px) {
+	html {
+		font-size: 69% !important;
+	}
+}
+
+@media only screen and (min-width: 428px) {
+	html {
+		font-size: 71.3% !important;
+	}
+}
+
+@media only screen and (min-width: 480px) {
+	html {
+		font-size: 80% !important;
+	}
+}
+
+@media only screen and (min-width: 540px) {
+	html {
+		font-size: 90% !important;
+	}
+}
+
+@media only screen and (min-width: 640px) {
+	html {
+		font-size: 106.7% !important;
+	}
+}

@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>微信跳转支付</title>
+    <meta name="description" content="舜凯云商">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="/statics/style/common.css?v1" />
+    <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/statics/jquery/extend/jquery-extend.js"></script>
+    <script src="/statics/layer/layer.js"></script>
+    <script src="/statics/layer/extend/laytpl.js"></script>
+    <script type="text/javascript">
+        //iOS Web APP中点击链接跳转到Safari 浏览器新标签页的问题 devework.com
+        //stanislav.it/how-to-prevent-ios-standalone-mode-web-apps-from-opening-links-in-safari
+        if (("standalone" in window.navigator) && window.navigator.standalone) {
+            var noddy, remotes = false;
+            document.addEventListener('click', function (event) {
+                noddy = event.target;
+                while (noddy.nodeName !== "A" && noddy.nodeName !== "HTML") {
+                    noddy = noddy.parentNode;
+                }
+                if ('href' in noddy && noddy.href.indexOf('http') !== -1 && (noddy.href.indexOf(document.location.host) !== -1 || remotes)) {
+                    event.preventDefault();
+                    document.location.href = noddy.href;
+                }
+            }, false);
+        }
+        ///获取url参数
+        function getQueryString(name, defValue) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return decodeURI(r[2]);
+            if (defValue != undefined)
+                return defValue;
+            return null;
+        }
+        //判断是否是微信
+        function is_weixn() {
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+    </script>
+
+    <script type="text/javascript">
+
+        var iscontinue = true;
+        var appId = getQueryString("appId");
+        var timeStamp = getQueryString("timeStamp");
+        var nonceStr = getQueryString("nonceStr");
+        var package1 = getQueryString("package");
+        var signType = getQueryString("signType");
+        var paySign = getQueryString("paySign");
+        var shopId = getQueryString("sid");
+        var orderId = getQueryString("orderid", "");
+
+        //// 当微信内置浏览器完成内部初始化后会触发WeixinJSBridgeReady事件。
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+            //公众号支付
+
+            //  jQuery('#getBrandWCPayRequest').click(function (e) {
+
+            if (iscontinue) {
+                if (appId == "" || timeStamp == "" || nonceStr == "" || package1 == "" || paySign == "") {
+                    location.href = "/pages/" + shopId + "/homepage.html";
+                    return;
+                }
+                var data = {
+                    "appId": appId, //公众号名称，由商户传入
+                    "timeStamp": timeStamp, //时间戳
+                    "nonceStr": nonceStr, //随机串
+                    "package": package1,//扩展包
+                    "signType": "MD5", //微信签名算法：MD5
+                    "paySign": paySign //微信签名
+                };
+                WeixinJSBridge.invoke('getBrandWCPayRequest', data, function (res) {
+                    if (res.err_msg == "get_brand_wcpay_request:ok") {
+                        layer.msg("支付成功！");
+                        if (orderId.toLocaleUpperCase().indexOf("P") == 0) {
+                            location.href = "/pages/" + shopId + "/applysuccess.html";
+                        } else if (orderId.toLocaleUpperCase().indexOf("Q") == 0) {
+                            location.href = "/pages/" + shopId + "/quickpay-success.html?o=" + orderId;
+                        } else {
+                            //同步跳转到订单列表页面
+                            location.href = "/pages/" + shopId + "/orderlist.html";
+                        }
+                    } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
+                        layer.msg("中途取消支付！");
+                        if (orderId.toLocaleUpperCase().indexOf("P") == 0) {
+                            location.href = "/pages/" + shopId + "/applysuccess.html";
+                        } else if (orderId.toLocaleUpperCase().indexOf("Q") == 0) {
+                            location.href = "/pages/" + shopId + "/quickpay.html";
+                        } else {
+                            location.href = "/pages/" + shopId + "/orderlist.html";
+                        }
+
+                    } else {
+                        layer.msg("支付失败！");
+                        if (orderId.toLocaleUpperCase().indexOf("P") == 0) {
+                            location.href = "/pages/" + shopId + "/applysuccess.html";
+                        } else if (orderId.toLocaleUpperCase().indexOf("Q") == 0) {
+                            location.href = "/pages/" + shopId + "/quickpay.html";
+                        } else {
+                            location.href = "/pages/" + shopId + "/orderlist.html";
+                        }
+
+                    }
+                });
+            }
+            //});
+            //$("#getBrandWCPayRequest").trigger("click");
+
+        }, false);
+        function isWeiXin5() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            var reg = /MicroMessenger\/[5-9]/i;
+            return reg.test(ua);
+        }
+        $(function () {
+            if (is_weixn()) {
+                if (isWeiXin5() == false) {
+                    iscontinue = false;
+                    alert("您的微信版本低于5.0，无法使用微信支付功能，请先升级或者直接下载舜凯云商APP！");
+                    location.href = "/pages/" + shopId + "/homepage.html";
+                }
+            } else {
+                iscontinue = false;
+                layer.msg("必须在微信内置浏览器中打开！");
+                location.href = "/pages/" + shopId + "/homepage.html";
+            }
+        });
+
+    </script>
+</head>
+<body>
+    <div class="jph">
+        正在发起支付...
+    </div>
+</body>
+</html>

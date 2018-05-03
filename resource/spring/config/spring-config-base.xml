@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/jee
+	http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-3.0.xsd
+	http://www.springframework.org/schema/context     
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+    
+	<bean id="HelperPropertie" class="java.util.HashMap">
+		<constructor-arg>
+			<map key-type="java.lang.String" value-type="java.lang.String">
+				<entry key="local.url" value="${local.url}" />
+				<entry key="kuaidi100.push.url" value="${kuaidi100.push.url}" />
+				<entry key="kuaidi100.callback.url" value="${kuaidi100.callback.url}" />
+				<entry key="image.upload.url" value="${image.upload.url}" />
+				<entry key="image.read.url" value="${image.read.url}" />
+				<entry key="jipinhui.logo" value="${jipinhui.logo}" />
+				<entry key="houtai.url" value="${houtai.url}" />
+				<entry key="wechat.message.url" value="${wechat.message.url}" />
+				
+				<entry key="getui.url" value="${getui.url}" />
+				<entry key="getui.aesKey" value="${getui.aesKey}" />
+				<entry key="getui.appID.business" value="${getui.appID.business}" />
+				<entry key="getui.appID" value="${getui.appID}" />
+				
+				<entry key="AES.key" value="${AES.key}" />
+				<entry key="kuaidi100.key" value="${kuaidi100.key}" />
+				<entry key="time.valid.order" value="${time.valid.order}" />
+				<entry key="time.valid.smsCode" value="${time.valid.smsCode}" />
+				<entry key="sms.template.verifyCode" value="${sms.template.verifyCode}" />
+				<entry key="sms.verifyCode.almighty" value="${sms.verifyCode.almighty}" />
+				<entry key="notice.template.paymentSuccess" value="${notice.template.paymentSuccess}" />
+				<entry key="redis.query.cache" value="${redis.query.cache}" />
+				
+			</map>
+		</constructor-arg>
+	</bean>
+	
+</beans>

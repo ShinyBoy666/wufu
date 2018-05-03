@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xinmeng.api.dao.ex.ExProductPriceDao">
+
+	<!-- 减库存  -->
+	<update id="updateSubtractActualQuantity" parameterType="map">
+		UPDATE p_product_price SET quantity=quantity - #{num,jdbcType=INTEGER} WHERE id = #{id,jdbcType=INTEGER} AND quantity >= #{num,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 加库存  -->
+	<update id="updateAddActualQuantity" parameterType="map">
+		UPDATE p_product_price SET quantity = quantity + #{num,jdbcType=INTEGER} WHERE id = #{id,jdbcType=INTEGER}
+	</update>
+  
+</mapper>

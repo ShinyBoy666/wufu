@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>意见反馈</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+</head>
+<body class="project-body" style="background-color: #fff">
+    <div class="jph">
+        <!--page head-->
+        <div id="head" class="com-fixed com-head coupon-head-bg">
+            <div>
+                <ul>
+                    <li class="display-box fl com-title-over">
+                        <div class="com-head-left">
+                            <button type="button" onclick="location.href = 'mysetting.html'" class="copon-head-button">
+                                <i class="code-ret code-ret-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="display-box fl com-title-center ct">
+                        <a class=""><span>意见反馈</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="over-head"></div>
+        <!--main-->
+        <div>
+            <div class="feedback-padding clearfix">
+                <div class="feedback-textbox">
+                    <textarea type="text" id="txtFeedback" rows="10" value="" style="width: 97%" class="feedback-text-vl" placeholder="请输入反馈信息，最多输入100字符"></textarea>
+                </div>
+                <div id="Exchange" align="center">
+                    <button type="button" onclick="exchange();" class="feedback-button bind-button-bg color-white com-font-size-16">提交</button>
+                </div>
+            </div>
+        </div>
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/feedback.js"></script>
+    </div>
+</body>
+</html>

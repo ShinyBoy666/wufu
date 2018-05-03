@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>优惠买单</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link href="/statics/style/common.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 374px)" href="/statics/style/screen/screen0-374.css" />
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 413px) and  (min-width: 375px)" href="/statics/style/screen/screen375-413.css" />
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 440px) and  (min-width: 414px)" href="/statics/style/screen/screen414-440.css" />
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 441px)" href="/statics/style/screen/screen441-max.css" />
+    <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/statics/jquery/extend/jquery-extend.js"></script>
+    <script src="/statics/layer/layer.js"></script>
+    <script src="/statics/scripts/common.js"></script>
+    <script src="/statics/layer/extend/laytpl.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="/statics/scripts/wxshare.js"></script>
+    <script src="/statics/scripts/quickpay.js?2"></script>
+    <style>
+        .icon-wifi { background: url('/statics/img/icon/wifi.png') no-repeat; -ms-background-size: 14px 14px; background-size: 14px 14px; display: inline-block; padding: 7px; }
+    </style>
+</head>
+<body id="quickpay">
+    <div class="jph">
+        <!--main-->
+        <div>
+            <div class="quickpay-shop">
+                <div class="quickpay-title" id="shopName"></div>
+                <div class="quickpay-image">
+                    <img id="shopImage" onerror="this.src = '/statics/img/image/monkey.png'"/>
+                </div>
+                <div id="shopDesc" class="quickpay-desc hide">
+                    <i class="icon-wifi"></i>
+                    <span class="wifi red"></span>
+                </div>
+            </div>
+
+            <div class="quickpay-keyboard">
+                <div class="bg-line"></div>
+                <div class="keyboard-title">请在下方输入订单金额</div>
+                <div class="keyboard-price">
+                    <span class="red">￥</span>
+                    <div id="price">0</div>
+                    <span class="clear-price" id="clearPrice">x</span>
+                </div>
+                <div style="margin: 0 15px; border-left: 1px solid #fff; overflow: hidden;">
+                    <ul class="keyboard-key clearfix">
+                        <li><button type="button">1</button></li>
+                        <li><button type="button">2</button></li>
+                        <li><button type="button">3</button></li>
+                        <li><button type="button">4</button></li>
+                        <li><button type="button">5</button></li>
+                        <li><button type="button">6</button></li>
+                        <li><button type="button">7</button></li>
+                        <li><button type="button">8</button></li>
+                        <li><button type="button">9</button></li>
+                        <li><button type="button">.</button></li>
+                        <li><button type="button">0</button></li>
+                        <li>
+                            <button type="button" id="back">
+                                <img src="/statics/img/icon/back.png"/>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-line" style="margin-top: 10px"></div>
+                <a style="padding: 10px 15px; text-align: left; color: #1eafe8; display: block" href="quickpay-description.html">
+                    <i style="float: right;" class="quick-go-detail"></i>
+                    活动说明
+                </a>
+                <div class="bg-line"></div>
+                <div style="height: 100px;"></div>
+            </div>
+        </div>
+        <!--<div style="position: fixed; top: 40px; z-index: 100; margin: 0 10%;">
+            <div id="orderTip">
+                
+            </div>
+        </div>-->
+        <div style="position: fixed;bottom: 0px;width:100%">
+            <button type="button" id="submit" class="quickpay-submit">
+                优惠买单
+            </button>
+        </div>
+    </div>
+</body>
+</html>

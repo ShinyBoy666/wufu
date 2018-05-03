@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>个人中心</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <link href="/statics/style/localResize.css" rel="stylesheet" />
+    <style>
+        [ng-src] {
+            box-shadow: 0 0 5px rgba(0,0,0,0.7);
+        }
+
+        .ng-cloak {
+        }
+
+        .pull-left {
+        }
+    </style>
+    <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/statics/layer/layer.js"></script>
+    <script src="/statics/jquery/extend/jquery-extend.js"></script>
+    <script src="/statics/scripts/common.js"></script>
+    <script src="/statics/layer/extend/laytpl.js"></script>
+    <script src="/statics/jquery/angular.js"></script>
+    <script src="/statics/jquery/localResize.angular.mobile.min.js"></script>
+    <script src="/statics/scripts/upheadimg.js"></script>
+
+</head>
+<body>
+    <div class="jph">
+        <div id="head" class="com-fixed com-head">
+            <div>
+                <ul>
+                    <li class="display-box fl com-title-over">
+                        <div class="com-head-left">
+                            <button type="button" onclick="location.href='mypage.html'" class="com-head-title">
+                                <i class="code-ret code-ret-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="display-box fl com-title-center ct">
+                        <a class="com-head-title"><span>个人资料</span></a>
+                    </li>
+                    <li class="display-box fr com-title-over rg">
+                        <span class="com-head-right" id="house-rule">
+                            <button type="button" id="btnupload" onclick="uploadhead();" class="com-head-title">
+                                <span class="com-font-size-16 color-six" style="font-weight: 400;">提交</span>
+                            </button>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class=" index-banner">
+            <div class="mymain-head-padding rg">
+                <!--<i class="mymain-icon mymain-icon-size"></i>-->
+            </div>
+            <div class="ct color-block" id="userInfo">
+                <div class=" bg_white">
+                    <p><span style="font-size: 18px;color: #d5d5d5">&nbsp;&nbsp;&nbsp; <small>:</small></span></p>
+
+                    <div ng-controller="appCtrl" class="ng-cloak" style="width: 100%;text-align: center">
+                        <div class="left" style=" width 100%">
+                            <l-r-img class="pull-left" rwidth="500" quality="0.7" success="ok" ng-model="a"></l-r-img>
+                            <img ng-src="{{a.base64}}" id="img1" alt="" style="display: none;height: 254px;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--main-->
+        <div class="clearfix project-bottom-height">
+            <div class="main-center-one"></div>
+
+            <div class="order-center"></div>
+            <div class="double-a">
+                <ul>
+                    <li onclick="shownickname();"><span>用户昵称</span><span id="spannickname" style="float: right;margin-right: 10px">kevin</span></li>
+                    <li onclick="showsex();"><span>用户性别</span><span id="spansex" style="float: right;margin-right: 10px">男</span></li>
+                    <li><span>登入账户</span><span id="spancellphone" style="float: right;margin-right: 10px"></span></li>
+                </ul>
+            </div>
+        </div>
+        <div id="divnickname" class="changeCoup">
+            <div class="Index-button-bg com-absolute" style="width: 300px">
+                <div class="forget-li-padding color-block ct">
+                    <ul>
+                        <li><input type="text" id="txtnickname" placeholder="请输入昵称" class="cash-text-close forget-inner-border" /></li>
+                        <li>
+                            <button type="button" onclick="updatenickname();" class="coupon-button bind-button-bg color-white com-font-size-16">确定</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="divsex" class="changeCoup">
+            <div class="Index-button-bg com-absolute" style="width: 300px">
+                <div class="forget-li-padding color-block ct">
+                    <ul>
+                        <li>
+                            <div class="home-wind clearfix" style="line-height:30px;margin-top:10px" onclick="choosesex(1)">
+                                <div class="display-box home-main-width fl">
+                                    <span class="confim-quan-v com-head-left">男</span>
+                                </div>
+                                <div class="display-box home-main-width fr">
+                                    <div class="rg wxy">
+                                        <i id="man" class="choose choose-icon com-head-left"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="home-wind clearfix" style="line-height:30px;margin-top:10px" onclick="choosesex(2)">
+                                <div class="display-box home-main-width fl">
+                                    <span class="confim-quan-v com-head-left">女</span>
+                                </div>
+                                <div class="display-box home-main-width fr">
+                                    <div class="rg wxy">
+                                        <i id="woman" class="choose choose-icon com-head-left"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <button type="button" onclick="updatesex();" class="coupon-button bind-button-bg color-white com-font-size-16">确定</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script>
+            var app = angular.module('app', ['localResizeIMG']);
+            app.controller('appCtrl', function ($scope) {
+                $scope.ok = function (stop, data) {
+                    data.original.size = (data.original.size / 1024).toFixed(2);
+                    $scope.$apply();
+
+                    setTimeout(function () {
+                        stop();
+                    }, 1000);
+                };
+            });
+            angular.bootstrap(document, ['app']);
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>云商城</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <link rel="stylesheet" href="/statics/style/productsearch.css" />
+    <link href="/statics/style/swiper-3.3.1.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .color-block {
+            height: 40px;
+            line-height: 20px;
+            overflow: hidden;
+        }
+
+        .product_temp .width-eight {
+            padding-left: 8px;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: #D63929 !important;
+        }
+
+        .swiper-pagination-bullet {
+            background-color: #fff;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body style="background-color: #f1f1f1">
+    <div class="jph">
+        <div class="swiper-container swiper-banner">
+            <div class="swiper-wrapper" id="bannercontent">
+                <script type="text/html" id="banner-content">
+                    <div class="swiper-slide">
+                        <a onclick="openbanner(this)" data-objectid="{{d.objectId}}" data-showtype="{{d.showType}}" data-linkurl="{{d.linkUrl}}"><img src="{{d.imageUrl}}" /></a>
+                    </div>
+                </script>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination pagination-banner" style="display: block;text-align: right"></div>
+        </div>
+        <!--main-->
+        <div class="cloud-line-one clearfix">
+            <ul>
+                <li class="fl color-peach"><i class="time time-icon"></i>热门推荐</li>
+            </ul>
+        </div>
+        <div class="project-bottom-height clearfix">
+            <!--列表循环-->
+            <div id="list_products">
+                <script type="text/html" id="tmp-list-products">
+                    <div class="product_temp" data-pid="{{d.productId}}" onclick="opendetails(this)">
+                        <div class="forget-li-bottpm">
+                            <div class="mypage-head-name clearfix" style="background-color: #fff">
+                                <div class="fl display-box com-title-over">
+                                    <a href="productdetail.html?pid={{d.productId}}"><img src="{{d.imageUrl}}" /></a>
+                                </div>
+                                <div class="fl display-box" style="padding:1px">
+                                    <ul>
+                                        <li class="color-block text-overflow-hidden"><a href="productdetail.html?pid={{d.productId}}">{{d.productName}}</a></li>
+                                        <li class="color-peach shop-bottom-img-top">￥{{d.retailPrice.toFixed(2)}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </script>
+            </div>
+        </div>
+        <div id="back-to-top">
+            <img src="/statics/img/image/pd_to_top.png" alt="置顶" />
+        </div>
+        <div class="shop-bottom">
+            <div class="shop-bottom-menu com-font-size-10 color-nine">
+                <div class="fl shop-bottom-size">
+                    <a href="homepage.html" class="color-nine">
+                        <p class="shop-bottom-icon">
+                            <i class="bottom-my bottom-my-icon"></i>
+                        </p>
+                        <p>首页</p>
+                    </a>
+                </div>
+                <div class="fl shop-bottom-size">
+                    <a href="classification.html" class="color-nine">
+                        <p class="shop-bottom-icon">
+                            <i class="bottom-lei bottom-lei-icon"></i>
+                        </p>
+                        <p>分类</p>
+                    </a>
+                </div>
+                <div class="fl shop-bottom-size">
+                    <a href="javascript:void(0)" class="color-nine">
+                        <p class="shop-bottom-icon">
+                            <i class="bottom-cart-active bottom-cart-icon"></i>
+                        </p>
+                        <p class="bottom-font-color">云商城</p>
+                    </a>
+                </div>
+                <div class="fl shop-bottom-size">
+                    <a href="cart.html" class="color-nine">
+                        <p class="shop-bottom-icon">
+                            <i class="bottom-myy bottom-myy-icon"></i>
+                        </p>
+                        <p>购物车</p>
+                    </a>
+                </div>
+                <div class="fl shop-bottom-size">
+                    <a href="mypage.html" class="color-nine">
+                        <p class="shop-bottom-icon">
+                            <i class="bottom-owo bottom-owo-icon"></i>
+                        </p>
+                        <p>我的</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/swiper-3.3.1.min.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/scripts/cloudshop.js"></script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+/**
+ * 提现的css
+ */
+.withdraw_deposit_head{
+	height: 4rem;
+	background: #EFEFEF;
+	width: 100%;
+	font-size: 1.3rem;
+	color: #888;
+}
+.withdraw_deposit_head_bottomdeposit{
+	background: #EFEFEF;
+	width: 100%;
+	font-size: 1.3rem;
+	color: #888;
+	height: 6rem;
+}
+.bank_info_head{
+	height: 4.5rem;
+	background: white;
+	width: 100%;
+	font-size: 1.3rem;
+	color: #888;
+}
+.withdraw_deposit_name{
+	float: left; margin-left: 1.1rem; margin-top: 1.5rem;
+}
+.withdraw_deposit_card{
+	float: left; margin-left: 1.1rem; margin-top: 1.3rem;
+}
+.withdraw_deposit_inputcard{
+	float: left; margin-left: 1.5rem; width: 80%;
+}
+/*
+ * 银行卡信息的css
+ */
+.bank_info_index-name{
+	float: left; margin-left: 1.1rem; margin-top: 1.5rem;
+}
+.bank_info_input-name{
+	float: left; margin-left: 4rem; margin-top: 1.4rem;
+}
+.bank_info_input-name3{
+	float: left; margin-left: 2.4rem; margin-top: 1.4rem;
+}
+.withdraw_deposit_head_bottom{
+	background: #EFEFEF;
+	width: 100%;
+	font-size: 1.3rem;
+	color: #888;
+	height: 15rem;
+}

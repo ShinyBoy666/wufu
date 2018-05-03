@@ -1,0 +1,21 @@
+<body>
+<p><b>访问统计时间：</b> $!statDate</p>
+
+<p><b>PV总量：</b> $!pvTotal</p>
+<p><b>PV分布：</b></p>
+
+#foreach($info in $pvDistribution.entrySet())
+    <p>来源($!info.key)：$!info.value</p>
+#end 
+
+<p><b>UV总量：</b> $!uvTotal</p>
+<p><b>UV分布：</b></p>
+#foreach($info in $uvDistribution.entrySet())
+    <p>来源($!info.key)：$!info.value</p>
+#end 
+
+<p><b>请求大于1秒（单位/毫秒）：</b></p>
+#foreach($info in $ReqLong.entrySet())
+    <p>code($!info.key)：$!info.value</p>
+#end 
+</body>

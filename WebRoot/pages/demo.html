@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+    <link href="/statics/style/common.css" rel="stylesheet" />
+    <link href="/statics/style/itembass.css" rel="stylesheet" />
+    <script src="/statics/scripts/common.js"></script>
+
+    <script src="/statics/jquery/angular.js"></script>
+    <script src="/statics/jquery/localResize.angular.mobile.min.js"></script>
+    <link href="/statics/style/localResize.css" rel="stylesheet" />
+    <script src="/statics/jquery/extend/jquery-extend.js"></script>
+    <script src="/statics/jquery/extend/jquery-upimg.js"></script>
+    <script src="/statics/layer/layer.js"></script>
+    <title></title>
+    <style>
+        .row { padding: 10px; border: 2px inset #ccc; margin: 10px; }
+    </style>
+</head>
+<body>
+    <div class="jph">
+
+        <div class="row">
+            <h1>radio demo 需jquery+common.js+common.css</h1>
+            <div class="radio-list clearfix">
+                <span class="radio checked" onclick="radioChecked(this)">有</span>
+                <span class="radio" onclick="radioChecked(this)">无</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <h1>上传图片 demo</h1>
+            <div class="bg_white">
+                <div ng-controller="appCtrl" class="ng-cloak" style="width: 100%; text-align: center">
+                    <div class="left" style="width: 100%">
+                        <l-r-img class="pull-left" rwidth="500" quality="0.7" success="ok" ng-model="a"></l-r-img>
+                        <img ng-src="{{a.base64}}" id="img1" alt="" style="display: none; height: 254px;" />
+                    </div>
+                </div>
+                <div onclick="upload()" style="text-align:center"> 点击上传</div>
+            </div>
+            <style>
+                [ng-src] { box-shadow: 0 0 5px rgba(0,0,0,0.7); }
+                input[type='text'] { width: 90%; }
+            </style>
+            <script>
+                function upload() {
+                    var url = $("#img1").upImg();
+                    alert(url);
+                }
+            </script>
+        </div>
+
+    </div>
+</body>
+</html>

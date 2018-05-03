@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xinmeng.api.dao.ex.ExProductInfoDao">
+
+	<sql id="ProductInfoVo_Column_List">
+		p.id as id,
+		p.product_id as productId,
+		p.product_name as productName,
+		p.market_price as marketPrice,
+		p.retail_price as retailPrice,
+		p.vip_price as vipPrice,
+		p.is_new as isNew,
+		p.hot as hot,
+		p.buy_count as buyCount,
+		p.buy_virtual_count as buyVirtualCount,
+		p.image_url as imageUrl
+	</sql>
+
+	<select id="selectProductInfoVoByModulId" parameterType="map"
+		resultType="cn.xinmeng.web.shop.entity.vo.ProductInfoVo">
+		select
+		<include refid="ProductInfoVo_Column_List" />
+		from p_product_info p
+		inner join m_homepage_setting_product m on p.product_id = m.product_id and
+		modul_id=#{modulId,jdbcType=INTEGER}
+		<!-- where p.state = 3 -->
+		order by m.sort desc,p.id desc
+	</select>
+
+	<select id="selectProductInfosByShopId" parameterType="map"
+		resultType="cn.xinmeng.web.shop.entity.vo.ProductInfoVo">
+		select
+		<include refid="ProductInfoVo_Column_List" />
+		from p_product_info p
+		where p.state = 3 and p.shop_id = #{shopId,jdbcType=INTEGER}
+		order by p.sort desc,p.id desc
+		limit 10
+	</select>
+
+	<select id="selectProductInfoList" parameterType="map"
+		resultType="cn.xinmeng.web.shop.entity.vo.ProductInfoVo">
+		select
+		<include refid="ProductInfoVo_Column_List" />
+		from p_product_info p
+		where p.state = 3 and p.shop_id = #{entity.shopId,jdbcType=INTEGER}
+		<if test="entity.keyword != null and entity.keyword != ''">
+			and p.meta_keywords like
+			CONCAT('%',#{entity.keyword,jdbcType=VARCHAR},'%')
+		</if>
+		<if
+			test="entity.categoryId != null and entity.categoryId and entity.level != null and entity.level != 0">
+			and p.category_id
+			<choose>
+				<when test="entity.level == 3">= #{entity.categoryId,jdbcType=INTEGER}</when>
+				<otherwise>
+					in (
+					select id from p_category
+					where state = 2 and level = 3 and
+					<choose>
+						<when test="entity.level == 2">second_id</when>
+						<otherwise>first_id</otherwise>
+					</choose>
+					= #{entity.categoryId,jdbcType=INTEGER}
+					)
+				</otherwise>
+			</choose>
+		</if>
+		order by
+		<choose>
+			<when test="entity.sortType == 0">(p.buy_count + p.buy_virtual_count) desc,</when>
+			<when test="entity.sortType == 1">(p.buy_count + p.buy_virtual_count),</when>
+			<when test="entity.sortType == 2">p.retail_price desc,</when>
+			<when test="entity.sortType == 3">p.retail_price,</when>
+		</choose>
+		p.sort desc,p.id desc
+	</select>
+	<select id="selectProductInfoListCount" parameterType="map"
+		resultType="java.lang.Integer">
+		select count(*) from p_product_info p
+		where p.state = 3 and p.shop_id = #{entity.shopId,jdbcType=INTEGER}
+		<if test="entity.keyword != null and entity.keyword != ''">
+			and p.meta_keywords like
+			CONCAT('%',#{entity.keyword,jdbcType=VARCHAR},'%')
+		</if>
+		<if
+			test="entity.categoryId != null and entity.categoryId and entity.level != null and entity.level != 0">
+			and p.category_id
+			<choose>
+				<when test="entity.level == 3">= #{entity.categoryId,jdbcType=INTEGER}</when>
+				<otherwise>
+					in (
+					select id from p_category
+					where state = 2 and level = 3 and
+					<choose>
+						<when test="entity.level == 2">second_id</when>
+						<otherwise>first_id</otherwise>
+					</choose>
+					= #{entity.categoryId,jdbcType=INTEGER}
+					)
+				</otherwise>
+			</choose>
+		</if>
+	</select>
+
+	<!-- 修改商品实际购买量 -->
+	<update id="updateBuyNum" parameterType="map">
+		UPDATE p_product_info SET
+		<choose>
+			<when test="type != null and type == 1">
+				view_count=view_count+1
+			</when>
+			<when test="type != null and type == 2">
+				praise_count=praise_count+1
+			</when>
+			<otherwise>
+				buy_count=buy_count+#{num,jdbcType=INTEGER}
+			</otherwise>
+		</choose>
+		WHERE product_id=#{productId,jdbcType=INTEGER}
+	</update>
+
+
+
+
+
+	<!-- 云商城列表 -->
+	<select id="selectHotProductInfoList" parameterType="map"
+		resultType="cn.xinmeng.web.shop.entity.vo.ProductInfoVo">
+		select
+		<include refid="ProductInfoVo_Column_List" />
+		from p_product_info p
+		where p.state = 3 and p.hot = 2
+		<if test="entity.keyword != null and entity.keyword != ''">
+			and p.meta_keywords like
+			CONCAT('%',#{entity.keyword,jdbcType=VARCHAR},'%')
+		</if>
+		<if
+			test="entity.categoryId != null and entity.categoryId and entity.level != null and entity.level != 0">
+			and p.category_id
+			<choose>
+				<when test="entity.level == 3">= #{entity.categoryId,jdbcType=INTEGER}</when>
+				<otherwise>
+					in (
+					select id from p_category
+					where state = 2 and level = 3 and
+					<choose>
+						<when test="entity.level == 2">second_id</when>
+						<otherwise>first_id</otherwise>
+					</choose>
+					= #{entity.categoryId,jdbcType=INTEGER}
+					)
+				</otherwise>
+			</choose>
+		</if>
+		order by
+		<choose>
+			<when test="entity.sortType == 0">(p.buy_count + p.buy_virtual_count) desc,</when>
+			<when test="entity.sortType == 1">(p.buy_count + p.buy_virtual_count),</when>
+			<when test="entity.sortType == 2">p.retail_price desc,</when>
+			<when test="entity.sortType == 3">p.retail_price,</when>
+		</choose>
+		p.sort desc,p.id desc
+	</select>
+
+	<!-- 云商城数量 -->
+	<select id="selectHotProductInfoListCount" parameterType="map"
+		resultType="java.lang.Integer">
+		select count(*) from p_product_info p
+		where p.state = 3 and p.hot = 2
+		<if test="entity.keyword != null and entity.keyword != ''">
+			and p.meta_keywords like
+			CONCAT('%',#{entity.keyword,jdbcType=VARCHAR},'%')
+		</if>
+		<if
+			test="entity.categoryId != null and entity.categoryId and entity.level != null and entity.level != 0">
+			and p.category_id
+			<choose>
+				<when test="entity.level == 3">= #{entity.categoryId,jdbcType=INTEGER}</when>
+				<otherwise>
+					in (
+					select id from p_category
+					where state = 2 and level = 3 and
+					<choose>
+						<when test="entity.level == 2">second_id</when>
+						<otherwise>first_id</otherwise>
+					</choose>
+					= #{entity.categoryId,jdbcType=INTEGER}
+					)
+				</otherwise>
+			</choose>
+		</if>
+	</select>
+
+</mapper>

@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>购物车结算</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link href="/statics/style/common.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="jph">
+        <div id="detail-info" class="hide">
+            <!--page head-->
+            <div id="head" class="com-fixed com-head">
+                <div>
+                    <ul>
+                        <li class="display-box fl com-title-over">
+                            <div class="com-head-left">
+                                <button type="button" class="com-head-title top-margin">
+                                    <!--<i class="code-ret code-ret-icon"></i>-->
+                                </button>
+                            </div>
+                        </li>
+                        <li class="display-box fl com-title-center ct">
+                            <a class="com-head-title"><span>购物车</span></a>
+                        </li>
+                        <li class="display-box fr com-title-over rg">
+                            <span class="com-head-right" id="house-rule">
+                                <!-- <button type="button" class="com-head-title" onclick="edit()">
+                                    <span id="btnEdit">编辑</span>
+                                </button> -->
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--head end-->
+            <div class="over-head"></div>
+            <!--main-->
+            <div id="list" class="project-bottom-height clearfix" style="padding-bottom: 40px">
+                <script id="tmp-list" type="text/html">
+                    <div class="shop">
+                        <!--母婴专卖-->
+                        <!--满减-->
+                        {{# for (var i = 0; i < d.shopCarts.length; i++) { var dd=d.shopCarts[i]; }}
+                        <div class="product clearfix" style="padding:15px 2.9% 0px 2.9%;background: #fff;" data-json='{{ $.jsonToString(dd) }}'>
+                                <ul style="height:100px;">
+                                    <li class="fl" onclick="shoose(this)" style="width:5.8%">
+                                        {{# if(dd.productState==1){ }}
+                                        <i class="proRadio setting coord-icon" data-default="setting" style="margin-top:39px;"></i>
+                                        {{# }else{ }}
+                                        <i class="proRadio nogoods coord-icon" data-default="nogoods"></i>
+                                        {{# } }}
+                                    </li>
+                                    <li class="fl" onclick="shoose(this)" style="border:1px solid #c6c6c6;margin-left:4%;width:26.6%;height:100px;overflow: hidden;"><img src="{{dd.imageUrl}}" style=""  width="100%"/></li>
+                                    <li class="fl setting-one-on  text-overflow-hidden" style="width:50%;margin-left:4%;">
+                                        <div onclick="goDetail(this)" style="line-height: 16px;color:#696969;height:32px;" class="com-font-size-14 text-overflow-hidden">
+                                            {{dd.productName}}
+                                        </div>
+                                        <p class="com-font-size-12" style="color: #888;line-height:12px;height:12px;margin-top:6px;overflow:hidden;">{{dd.sku=="默认"?"":"已选："+dd.sku}}</p>
+
+                                        <p style="color: #e4426f;font-size:14px;margin-top:6px;">
+                                            {{# if(dd.productState==1){ }}
+                                            ￥{{dd.retailPrice.toFixed(2)}}
+                                            {{# }else if(dd.productState==2){ }}
+                                            已下架
+                                            {{# }else{ }}
+                                            {{dd.productStateValue}}
+                                            {{# } }}
+                                        </p>										
+
+											{{# if(dd.productState==1){ }}
+                            			<div class="clearfix" style="margin-top:8px;">
+                           					<!--自动加减-->
+                                				<span><a onclick="dec(this);" title="减1" class="setting-over-add">－</a></span>
+                                				<input type="text" placeholder="1" onblur="inputNum(this)" class="setting-number" value="{{dd.productNumber }}" />
+                                				<span><a onclick="plus(this);" title="加1" class="setting-over-add">+</a></span>
+                            			</div>
+                            				{{# } }}
+                                    </li>
+									<li class="fl" onclick="del({{dd.id}})" style="margin-left:3%;width:5%" >
+										<img src="/statics/img/icon/lajitong.png" width="100%"/>
+									</li>
+                                </ul>
+						{{# if (i < d.shopCarts.length-1) {}}	
+						<hr style="height:0px;border:0px;border-bottom:#c6c6c6 solid 1px;margin-top:15px;">
+						 {{# } }}
+                        </div>
+                        {{# } }}
+                    </div>
+                </script>
+
+            </div>
+            <!--bottom-->
+            <div class="com-fixed setting-bottom-sec">
+                <div class="fl display-box serch-ttwo">
+                    <ul>
+                        <li class="fl" onclick="shooseAll(this)" style="margin:0px 15px 0px 11px;line-height:48px;">
+                            <button type="button" class="setting-buton-bg">
+                                <i class="choose choose-icon setting-buton-chose all-choose"></i><span id="btnSelectAll" style="font-size:14px;color:#696969;margin-left:10px;">全选</span>
+                            </button>
+                        </li>
+                        <li class="fl">
+                            <p style="color:#888;line-height:46px;font-size:12px;">合计:<span style="color:#e4426f;font-weight:bold;font-size:18px;">￥<span id="proTotalAmount"></span></span></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="fr display-box serch-one project-bottom-buttom ct">
+                    <button id="btnPay" onclick="pay()" type="button" class="project-bottom-buttom color-white">去结算(<span id="proCount"></span>)</button>
+                    <button id="btnDelete" onclick="del()" type="button" class="project-bottom-buttom color-white hide">删除</button>
+                </div>
+            </div>
+        </div>
+        <div id="no-data" class="hide">
+            <div class="bind-padding ct">
+                <div>
+                    <ul>
+                        <li class="shop-cart"><img src="/statics/img/icon/shopp.png" width="100%" /></li>
+                        <li class="color-nine com-font-size-14">
+                            您的购物车中没有商品，快去选购吧！
+                        </li>
+                        <li class="bind-Confirm shop-but-padding" onclick="location.href='homepage.html'">
+                            <button type="button" class="bind-button shop-buttom color-pink com-font-size-18">去逛逛</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="shop-bottom">
+            <div class="shop-bottom-menu com-font-size-10 color-nine">
+                <div class="fl shop-bottom-size">
+                    <a href="homepage.html" class="color-nine">
+                        <p class="shop-bottom-icon"><i class="bottom-my bottom-my-icon"></i></p>
+                        <p>首页</p>
+                    </a>
+                </div>
+                <div class="fl shop-bottom-size">
+                    <a href="classification.html" class="color-nine">
+                        <p class="shop-bottom-icon"><i class="bottom-lei bottom-lei-icon"></i></p>
+                        <p>分类</p>
+                    </a>
+                </div>
+                <!--<div class="fl shop-bottom-size">
+                    <a href="cloudshop.html" class="color-nine">
+                        <p class="shop-bottom-icon"><i class="bottom-cart bottom-cart-icon"></i></p>
+                        <p>云商城</p>
+                    </a>
+                </div>-->
+                <div class="fl shop-bottom-size">
+                    <a href="cart.html" class="color-nine">
+                        <p class="shop-bottom-icon"><i class="bottom-myy-active bottom-myy-icon"></i><i id="cartTotalItemNum" class="i_car_num">0</i></p>
+                        <p class="bottom-font-color">购物车</p>
+                    </a>
+                </div>
+                <div class="fl shop-bottom-size">
+                    <a href="mypage.html" class="color-nine">
+                        <p class="shop-bottom-icon"><i class="bottom-owo bottom-owo-icon"></i></p>
+                        <p>我的</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/cart.js"></script>
+    </div>
+</body>
+</html>

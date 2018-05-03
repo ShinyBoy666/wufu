@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>秒杀活动</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+</head>
+<body>
+    <div class="jph">
+        <div class="cash-li-pading" style="position: fixed;z-index: 999">
+            <i class="poject-return poject-return-icon" onclick="goback()"></i>
+        </div>
+        <div>
+            <div class="coount-page-main clearfix">
+                <img id="activityImage" class="hide" style="margin: 0; padding: 0; width: 100%;margin-bottom:-5px" />
+                <!-- 活动计时器 -->
+                <div id="time" class="slogan clearfix">
+                    <script type="text/html" id="tmp-time">
+                        {{# if(d.activityState==1){ }}
+                        <span class="slogan-left">活动即将开始，先下单先得哦</span>
+                        <div class="slogan-right timerDiv" data-isbegin="{{d.activityState}}" data-time="{{d.activityTime}}">
+                            距离开始<span class="timer">0</span>:<span class="timer">0</span>:<span class="timer">0</span>
+                        </div>
+                        {{# }else if(d.activityState==2){ }}
+                        <span class="slogan-left">抢购中，先下单先得哦</span>
+                        <div class="slogan-right timerDiv" data-isbegin="{{d.activityState}}" data-time="{{d.activityTime}}"> </div>
+                        {{# }else{ }}
+                        <span class="slogan-left">活动已经结束，下次加油哦</span>
+                        {{# } }}
+                    </script>
+                </div>
+                <!-- 商品列表 -->
+                <div>
+                    <ul id="list" class="activity-product">
+                        <script type="text/html" id="tmp-list">
+                            <li class="product-item" onclick="detail(this)" data-activityid="{{d.activityId}}"
+                                data-productid="{{d.productId}}" data-productpriceid="{{d.productPriceId}}">
+                                <div class="product-left">
+                                    <img src="{{d.imageUrl}}?400_400">
+                                </div>
+                                <div class="product-right">
+                                    <div class="product-name">
+                                        <span class="text-overflow-hidden"> {{d.productName}}</span>
+                                    </div>
+                                </div>
+                                <div class="product-right-bottom">
+                                    <div class="product-number">
+                                        {{# if(flag==2){ }}
+                                        {{# if(d.productNumber>d.soldNumber){ }}
+                                        <div class="btn btn-buy">立即抢购</div>
+                                        <div class="number-over hide">
+                                            共<span class="total-number">{{d.productNumber}}</span>,还剩
+                                            <span class="sold-number">{{d.productNumber-d.soldNumber}}</span>
+                                        </div>
+                                        {{# }else{ }}
+                                        <div class="btn btn-more" onclick="noMore(this)">原价购买</div>
+                                        <div class="number-over">{{d.productNumber}}件抢光啦</div>
+                                        {{# } }}
+                                        {{# }else if(flag==1){ }}
+                                        <div class="btn btn-ahead">即将开始</div>
+                                        {{# }else if(flag==3){ }}
+                                        <div class="btn btn-end">已经结束</div>
+                                        {{# } }}
+                                    </div>
+                                    <div class="product-price">
+                                        <div class="activity-price">￥{{d.retailPrice}}</div>
+                                        <div class="remove-price">￥{{d.marketPrice}}</div>
+                                        <div style="line-height:16px">
+                                            <span class="sold">已售</span>
+                                            <div class="bar">
+                                                <div style="width:{{d.soldNumber/(d.productNumber)*100}}%;">
+                                                    <span>{{(d.soldNumber/(d.productNumber)*100).toFixed(1)}}%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </script>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/layer/extend/laytpl.js"></script>
+        <script src="/statics/scripts/flashactivity.js"></script>
+    </div>
+</body>
+</html>

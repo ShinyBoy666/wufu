@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xinmeng.api.dao.ex.ExNoticeDao">
+
+	<!-- 查询消息列表 -->
+	<select id="searchNoticeList" resultType="cn.xinmeng.api.entity.auto.Notice">
+		select 
+			id				as id,
+			shop_id			as shopId,
+			cover_img		as coverImg,
+			title			as title,
+			description		as description,
+			notice_type		as noticeType,
+			link_type		as linkType,
+			link_url		as linkUrl,
+			read_count		as readCount,
+			receive			as receive,
+			customer_id		as customerId,
+			create_time		as createTime,
+			create_user		as createUser 
+		from s_notice where 
+		(notice_type in(1,3) or (notice_type = 2 and shop_id = #{shopId,jdbcType=INTEGER}))
+		and (receive = 1 or (receive = 2 and customer_id=#{customerId,jdbcType=INTEGER}))
+		and state = 2 
+		order by sort desc
+	</select>
+	<!-- 查询消息列表数量 -->
+	<select id="searchNoticeCount" resultType="Integer">
+		select 
+			count(*)
+		from s_notice where 
+		(notice_type in(1,3) or (notice_type = 2 and shop_id = #{shopId,jdbcType=INTEGER}))
+		and (receive = 1 or (receive = 2 and customer_id=#{customerId,jdbcType=INTEGER}))
+		and state = 2 
+	</select>
+	
+	<!-- 查询消息已读数量 -->
+	<select id="searchNoticeReadCount" resultType="Integer">
+		select count(*) from s_notice_reader
+		where notice_id in(
+			select id from s_notice where 
+			(notice_type in(1,3) or (notice_type = 2 and shop_id = #{shopId,jdbcType=INTEGER}))
+			and (receive = 1 or (receive = 2 and customer_id=#{customerId,jdbcType=INTEGER}))
+			and state = 2
+		)
+	</select>
+  
+	<!-- 消息阅读数增加 -->
+	<update id="readNotice">
+		UPDATE s_notice SET read_count = read_count + 1 WHERE id=#{id,jdbcType=INTEGER}
+	</update>
+</mapper>

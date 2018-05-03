@@ -1,0 +1,127 @@
+﻿@charset "utf-8";
+/*newpurse 我的钱包*/
+.code-money { padding: 10px 0; }
+.over-head { margin-top: 45px; }
+.pure-money-icon { width: 34px; height: 14px; background-size: 18px 18px; cursor: pointer; padding-top: 0; }
+.pure-center-bg { background-color: rgb(197,32,75); }
+.pure-center-padding { padding: 35px 0; }
+.code-main-servce { height: 44px; border-bottom: 1px solid #ccc; }
+.code-main-servce2 { border-bottom: 1px solid #ccc; }
+.code-top-border { border-top: 1px solid #ccc; height: 44px; }
+.mypage-head-name { padding: 20px 10px 20px 10px; }
+.product-button { width: 40%; }
+.width-eight { width: 75%; }
+.account-image { width: 80%; }
+.order-center { height: 7px; background: #f2f2f2; border-top: 1px solid #ddd; width: 100%; }
+.product-center { height: 7px; background: #f2f2f2; /*border-bottom: 1px solid #ccc;*/ width: 100%; }
+.right-ret { background: url(../img/jiantou.png) no-repeat center; display: inline-block; }
+.cloud-ret-icon { width: 18px; height: 15px; background-size: 3rem 5rem; cursor: pointer; vertical-align: sub; }
+.right-ret-icon { width: 12px; height: 18px; background-size: 12px 18px; cursor: pointer; padding-top: 0; }
+.pure-tixian { background: #f9b552; padding: 5px 10px; }
+.products-center { height: 7px; background: #F2F2F2; border-bottom: 1px solid #eee; border-top: 1px solid #eee; width: 100%; }
+/*我的好友主页*/
+.index-banner { margin-bottom: -4px; }
+.mypage-head { border: 2px solid #C6C6C6; border-radius: 50%; }
+.mypage-head-top { padding-top: 55px; }
+#head div ul li a { font-size: 16px; }
+.Index-button { width: 100%; height: 40px; line-height: 40px; border: 1px solid #ccc; border-radius: 3px; }
+.Index-button-bg { background: #fff; }
+/*产品详情*/
+.poject-return-icon { width: 30px; height: 30px; background-size: 30px 30px; }
+.poject-left-width { width: 90%; }
+.poject-right-width { width: 10%; }
+.poject-la { padding: 50px 10px 20px 10px; }
+.project-maegin-bottom { margin-bottom: 120px; }
+.project-bottom-height { margin-bottom: 50px; }
+.project-bottom-size { width: 25%; height: 50px; line-height: 17px; vertical-align: middle; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; }
+.share-icon { width: 24px; height: 24px; background-size: 24px 24px; }
+.project-bottom-buttom { background: #CC3333; height: 50px; }
+/*我的个人页面  mypage*/
+.mymain-head { background: url(../img/0_beijing.png) no-repeat; background-size: 100% 100%; height: 200px; }
+.mymain-icon { background: url(../img/shezhi_icon.png) no-repeat; display: inline-block; }
+.mymain-icon-size { width: 35px; height: 25px; background-size: 25px 25px; }
+.mymain-head-padding { padding: 10px 5px 0 10px; }
+.my-Diaphane ul li { width: 50%; float: left; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; background: rgba(255,255,255,0.5); text-align: center; height: 49px; line-height: 49px; }
+.mamain-li-left { border-right: 1px solid #fff; }
+.mypage-line { margin-top: 30px; }
+.main-center-one { height: 10px; border-bottom: 1px solid #eee; background: #fff; }
+.myorder { background: url(../img/1_0quanbudingdan.png) no-repeat; display: inline-block; }
+.myorder1 { background: url(../img/2_0wodeqianbao.png) no-repeat; display: inline-block; }
+.myorder2 { background: url(../img/3_0tuiguangzhongxin.png) no-repeat; display: inline-block; }
+.myorder3 { background: url(../img/4_0huodongzhongxin.png) no-repeat; display: inline-block; }
+.myorder4 { background: url(../img/5_0huzhujijin.png) no-repeat; display: inline-block; }
+.confim-main-servce { border-bottom: 1px solid #c6c6c6; }
+.myorder-icon { width: 30px; height: 30px; background-size: 30px 30px; }
+.evaluate-word { background: #CC3333; color: #fff; font-size: xx-small; border-radius: 8px; padding: 0 5px; margin-left: -3px; vertical-align: super; }
+.double-a ul li { padding: 10px 10px 5px; border-bottom: 1px solid #ddd; }
+.wallet-my-icon { width: 30px; height: 30px; background-size: 30px 30px; cursor: pointer; }
+.coupon-my-icon { width: 30px; height: 30px; background-size: 30px 30px; cursor: pointer; }
+.confim-my-icon { width: 30px; height: 30px; background-size: 30px 30px; cursor: pointer; }
+/*firstpage 首页*/
+.homefunction ul li { width: 25%; float: left; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; text-align: center; font-size: 12px; padding: 5px 0; }
+    .homefunction ul li font { color: #999; text-decoration: line-through; }
+.firstpage-text { background: rgba(255,255,255,0.5); border-radius: 3px; height: 33px; line-height: 33px; }
+.firstpage-inputtext { width: 100%; background: transparent; color: #000; }
+.firstpage-search-icon { padding-top: 12px; }
+.Fjin-icon { width: 28px; height: 28px; background-size: 28px 28px; cursor: pointer; }
+.First-margin-top { margin-bottom: 10px; }
+.first-image-top { margin-top: -3px; }
+.Recommend ul li { float: left; width: 50%; padding: 0 2px; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; margin-bottom: 4px;}
+    .Recommend ul li a p { background-color: #fff; }
+        .Recommend ul li a p img { width: 100%; }
+    .Recommend ul li div { background: #fff; border-radius: 5px; }
+.Recommend-p-pad { padding: 5px; padding-left: 4px; }
+.Recommend ul li span { color: #999; font-size: 12px; text-decoration: line-through; }
+.USERULR ul li { padding: 12px 0; border-bottom: 1px solid #ddd; }
+    .USERULR ul li span { font-size: 16px; color: #C5204B; line-height: 35px; }
+    .USERULR ul li font { color: #C5204B; margin-right: 12px; }
+    .USERULR ul li div { line-height: 20px; }
+    .USERULR ul li p { line-height: 20px; }
+/*订单详情*/
+.order-title { padding: 0 0 0 10px; }
+.order-head-inn { padding: 10px 10px 10px 0; }
+.DETAIL ul li { border-bottom: 1px solid #ddd; padding: 10px; }
+    .DETAIL ul li em { font-size: 12px; }
+    .DETAIL ul li span { color: #000; }
+.house-icon { display: inline-block; width: 25px; height: 15px; background-size: 15px 15px; vertical-align: sub; }
+.order-ret-icon { width: 20px; height: 12px; background-size: 10px 12px; vertical-align: middle; }
+.order-button { background: transparent; border: 1px solid #ccc; width: 100%; padding: 10px 0; border-radius: 3px; }
+.order-pad { padding: 15px 20px; }
+.ORDER ul li { padding: 5px 10px 5px 0; }
+.odder { padding: 15px 0 15px 15px; }
+.order-bottom { background: #f2f2f2; }
+.orderBottom ul li { width: 25%; float: left; text-align: center; }
+    .orderBottom ul li button { background: transparent; padding: 8px 10px; }
+.order-but-buttom { border: 1px solid #ddd; border-radius: 3px; }
+.order-butred-buttom { border: 1px solid #e1007f; border-radius: 3px; }
+.product-number3 { max-height: 270px; overflow: hidden; }
+/*我的订单*/
+.product-page { height: 45px; line-height: 45px; border-top: 1px solid #ccc; width: 100%; }
+.selecter { border-bottom: 2px solid #ff6699; }
+    .selecter a { color: #ff6699; }
+.ssdiv { display: none; }
+.on { display: block; }
+.order-border-bottom { border-bottom: 1px solid #ccc; }
+.jilog-icon { display: inline-block; width: 20px; height: 17px; background-size: 14px 17px; vertical-align: sub; }
+.ORDER-prouce ul li { float: left; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; width: 16.667%; text-align: center; padding: 5px; }
+    .ORDER-prouce ul li img { padding: 0 5px; }
+.order-button-new { background: transparent; padding: 5px 8px; }
+.order-seal { margin-top: -35px; right: 40px; z-index: 5; }
+/*
+ * 五福俱乐部首页新的css
+ */
+.mypage_index{
+	width: 100%; height: 100px;
+}
+.mypage_index_first{
+	width: 33%; height: 100px; float: left; text-align: center; border-right: 1px solid #C6C6C6;
+}
+.mypage_index_img{
+	height: 29px; width: 36px; margin: 20px auto 0px auto;
+}
+.mypage_index_fukuan{
+	width: 100%; font-size: 13px; color: #696969; margin: 10px auto;
+}
+.mypage_index_second{
+	width: 33%; height: 100px; float: left; text-align: center;
+}

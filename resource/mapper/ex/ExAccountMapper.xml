@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xinmeng.api.dao.ex.ExAccountDao">
+
+	<!-- 客户账户充值  -->
+	<update id="custAccountAdd">
+		UPDATE c_customer SET cash_amount = cash_amount + #{amount,jdbcType=DOUBLE} WHERE id=#{customerId,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 客户账户扣款 -->
+	<update id="custAccountSub">
+		UPDATE c_customer SET cash_amount = cash_amount - #{amount,jdbcType=DOUBLE} WHERE id=#{customerId,jdbcType=INTEGER} AND cash_amount >= #{amount,jdbcType=DOUBLE}
+	</update>
+	
+	<!-- 店主账户充值-->
+	<update id="shopAccountAdd">
+		UPDATE s_shop_info SET cash_amount = cash_amount + #{amount,jdbcType=DOUBLE} WHERE id=#{shopId,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 店主账户扣款-->
+	<update id="shopAccountSub">
+		UPDATE s_shop_info SET cash_amount = cash_amount - #{amount,jdbcType=DOUBLE} WHERE id=#{shopId,jdbcType=INTEGER} AND cash_amount >= #{amount,jdbcType=DOUBLE}
+	</update>
+	
+	<!-- 增加客户积分 -->
+  	<update id="addScore">
+		update c_customer SET score_amount = score_amount + #{score,jdbcType=INTEGER} where id=#{customerId,jdbcType=NUMERIC}
+  	</update>
+  	
+  	<!-- 减少客户积分 -->
+  	<update id="subScore">
+		update c_customer SET score_amount = score_amount - #{score,jdbcType=INTEGER} where id=#{customerId,jdbcType=NUMERIC} AND score_amount >= #{score,jdbcType=INTEGER}
+  	</update>
+  	
+  	<!-- 修改团队人数-->
+	<update id="updateTeamNumber">
+		UPDATE c_customer_report SET team_number = team_number + 1,last_update_time=now() WHERE customer_id in
+		<foreach collection="customerIds" separator="," item="id" open="(" close=")">
+			#{id,jdbcType=INTEGER}
+		</foreach>
+	</update>
+</mapper>

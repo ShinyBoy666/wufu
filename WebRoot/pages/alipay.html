@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>正在支付支付</title>
+    <meta name="description" content="舜凯云商">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/statics/jquery/extend/jquery-extend.js"></script>
+    <script src="/statics/layer/layer.js"></script>
+    <script src="/statics/layer/extend/laytpl.js"></script>
+    <style type="text/css">
+        /*遮罩层样式*/
+        .guide { height: 100%; left: 0; position: fixed; top: 0; width: 100%; z-index: 2000; }
+
+            .guide::before { background-color: #000; content: ""; display: block; height: 100%; opacity: 0.8; position: absolute; width: 100%; z-index: 1; }
+
+            .guide .icon-guide { background-image: url("/statics/img/image/guidepay.png"); background-position: center center; background-repeat: no-repeat; background-size: contain; display: block; height: 100px; position: absolute; right: 20px; top: 0; width: 178px; z-index: 2; }
+    </style>
+</head>
+<body>
+    <div class="jph">
+        <div id="J-guide" class="guide " style="display: none">
+            打开浏览器支付...
+            <i class="icon-guide"></i>
+        </div>
+
+        <script type="text/javascript">
+
+            ///获取url参数
+            function getQueryString(name, defValue) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return decodeURI(r[2]);
+                if (defValue != undefined)
+                    return defValue;
+                return null;
+            }
+
+            //判断是否是微信
+            function is_weixn() {
+                var ua = navigator.userAgent.toLowerCase();
+                if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            function gopay() {
+                var rechargeId = getQueryString("r", "");
+                if (rechargeId == "") {
+                    layer.msg("支付异常");
+                    return false;
+                }
+                var amount = getQueryString("m", "");
+                if (amount == "") {
+                    layer.msg("支付异常");
+                    return false;
+                }
+                if (is_weixn()) {
+                    $("#J-guide").show();
+                } else {
+                    var url = window.location.pathname.replace("/pages/", "");
+                    var loginShopId = url.substring(0, url.indexOf('/'));
+                    location.href = "/pay/wap/sumbit/?r=" + rechargeId + "&m=" + amount + "&s=" + loginShopId;
+                }
+                return true;
+            }
+
+            $(function () {
+                gopay();
+            });
+        </script>
+    </div>
+</body>
+
+</html>

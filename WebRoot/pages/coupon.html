@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>优惠券</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+    <link href="/statics/style/common.css" rel="stylesheet" />
+    <script src="/statics/jquery/jquery-2.1.0.min.js"></script>
+    <script src="/statics/jquery/extend/jquery-extend.js"></script>
+    <script src="/statics/layer/layer.js"></script>
+    <script src="/statics/scripts/common.js"></script>
+    <script src="/statics/layer/extend/laytpl.js"></script>
+    <script src="/statics/scripts/coupon.js"></script>
+    <style type="text/css">
+      #couponlist .conpon-shop{
+      	    color: #fff;
+		    margin-top: 10px;
+		    line-height: 30px;
+		    text-align: center;
+		    width: 100%;
+      }
+      #couponlist .conpon-range {
+		    display: inline-block;
+		    text-align: center;
+		    width: 100%;
+		    font-size: 12px;
+	  }
+	  #couponlist .conpon-item .left {
+		    float: left;
+		    background-color: #dea75d;
+		    width: 40%;
+	  }
+	  #couponlist .conpon-range .remaindes {
+	    color: #ffffff;
+	    display: inline-block;
+	    font-size: 12px;
+	    margin-top: 10px;
+	    text-align: center;
+	  }
+    </style>
+</head>
+<body class="project-body" style="background-color: #fff">
+    <div class="jph">
+        <!--page head-->
+        <div id="head" class="com-fixed com-head coupon-head-bg">
+            <div>
+                <ul>
+                    <li class="display-box fl com-title-over">
+                        <div class="com-head-left">
+                            <button type="button" onclick="location.href='mypage.html'" class="copon-head-button">
+                                <i class="code-ret code-ret-icon"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="display-box fl com-title-center ct">
+                        <a class=""><span>优惠券</span></a>
+                    </li>
+                    <li class="display-box fr com-title-over rg" style="margin-right: 10px;">
+                        <span id="house-rule">
+                            <button type="button" onclick="location.href = 'userule.html'" class="copon-head-button">
+                                <span class="com-font-size-14">使用规则</span>
+                            </button>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="over-head"></div>
+        <!--main-->
+        <div>
+            <!--兑换优惠券-->
+            <div class="coupon-head-module coupon-padding clearfix">
+                <div class="coupon-textbox fl display-box coupon-left-width">
+                    <input type="text" id="couponcode" value="" style="width: 98%;line-height: 33px;" placeholder="请输入优惠券码" class="coupon-text-vl" />
+                </div>
+                <div class="fr display-box com-title-over" id="Exchange">
+                    <button type="button" onclick="exchange();" class="coupon-button bind-button-bg color-white com-font-size-16">兑换</button>
+                </div>
+            </div>
+            <!--优惠券使用-->
+            <div class="coupon-padding" id="couponlist" style="padding: 10px 4px;">
+                <ul class="conpon-list"></ul>
+            </div>
+        </div>
+        <div id="nodata">
+            <img src="/statics/img/image/no_data.png" alt="无数据" />
+            <p>啊哦！好像没有检测到数据哟！</p>
+        </div>
+        <div id="back-to-top">
+            <img src="/statics/img/image/pd_to_top.png" alt="置顶" />
+        </div>
+        <!--pop-box-->
+        <div id="coupontip" class="changeCoup">
+            <div class="Index-button-bg com-absolute changeCoup-pop-dw">
+                <div class="forget-li-padding color-block ct">
+                    <ul>
+                        <li>优惠码兑换成功!</li>
+                        <li id="licontent">您已成功换一张50元优惠券,有效期至2016-04-02</li>
+                        <li>
+                            <button type="button" onclick="CloseForm();" class="coupon-button bind-button-bg color-white com-font-size-16">我知道了</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script type="text/html" id="tmp-list">
+            <li class="conpon-item clearfix">
+                <div class="left">
+           <!--     <div class="conpon-logo">
+                        <img src="{{d.shopBossImage}}" style="width: 100%;height: 100%;" />
+                    </div>-->
+                    <div class="conpon-shop">{{d.useShopName}}</div>
+                    <div class="conpon-range">
+                        <a class="receivecoupons" href="javascript:void(0)" data-id="{{d.id}}">{{d.couponTypeValue}}</a>
+                    </div>
+                    <div class="conpon-range"><a class="remaindes" href="javascript:void(0)">{{d.couponReceiveNumber}}人已领取</a></div>
+                </div>
+                <div class="right">
+                    <div class="red" style="padding: 6px 2px 10px 10px;line-height: 30px;height: 30px;text-align: center">
+                        <span class="conpon-money">￥{{d.couponMoney}}</span>
+                        {{# if(d.state==1){ }}
+                        <span class="member_coupon" style="color: #F5A21A">{{d.stateValue}}</span>
+
+                        {{# } else if(d.state==3){ }}
+                        <span class="member_coupon" style="color: #AEADB0">{{d.stateValue}}</span>
+                        {{# }else{ }}
+                        <span class="member_coupon" style="color: #AEADB0">{{d.stateValue}}</span>
+                        {{# } }}
+                    </div>
+                    <div class="conpon-role">{{d.description}}</div>
+                    <div class="conpon-data">{{d.startToEndTime}}</div>
+                </div>
+            </li>
+        </script>
+    </div>
+</body>
+</html>

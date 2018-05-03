@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>代理商入驻申请</title>
+    <link rel="stylesheet" href="/statics/style/itembass.css" />
+    <link rel="stylesheet" href="/statics/style/common.css" />
+</head>
+<body id="agentApply" class="font-hui apply">
+    <div class="jph">
+        <div class="logo"><span class="logo-ico">&nbsp;</span></div>
+        <div class="title font-black">舜凯云商代理商入驻申请</div>
+        <form>
+            <dl class="form-row">
+                <dt>企业名称</dt>
+                <dd><input type="text" name="enterpriseName" id="enterpriseName" /></dd>
+            </dl>
+            <dl class="form-row">
+                <dt>企业联系人</dt>
+                <dd><input type="text" name="linkman" id="linkman" /></dd>
+            </dl>
+            <dl class="form-row">
+                <dt>联系人电话</dt>
+                <dd><input type="text" name="telephone" id="telephone" /></dd>
+            </dl>
+            <dl class="form-row">
+                <dt>联系人邮箱</dt>
+                <dd><input type="text" name="email" id="email" /></dd>
+            </dl>
+            <div class="line-split clearfix">
+                <div class="line-right">
+                    <hr />
+                </div>
+                <div class="line-left">
+                    <hr />
+                </div>
+                <div class="split-title">代理商级别</div>
+            </div>
+            <div class="radio-list clearfix">
+                <span class="block4-2" onclick="gotodetail();">
+                    <span class="radio checked">49800级别</span>
+                    <span class="bg checked"></span>
+                </span>
+                <span class="block4-1" onclick="levelSelect(this)">
+                    <span class="radio">100万级别</span>
+                    <span class="bg"></span>
+                </span>
+                <span class="block4-1" onclick="levelSelect(this)">
+                    <span class="radio">200万级别</span>
+                    <span class="bg"></span>
+                </span>
+                <span class="block4-1" onclick="levelSelect(this)">
+                    <span class="radio">300万级别</span>
+                    <span class="bg"></span>
+                </span>
+            </div>
+            <div class="desc font-hui">权益说明:拥有整套系统平台定价权与代理权一年,即合作伙伴可以按照自己对市场的了解与把控自由定价，但舜凯云商享有每套系统销售50%的分利</div>
+            <div class="bottom">
+                <input onclick="apply()" class="btn-red-one" type="button" value="确认提交" />
+            </div>
+        </form>
+        <script src="/statics/jquery/jquery-1.8.2.js"></script>
+        <script src="/statics/jquery/extend/jquery-extend.js"></script>
+        <script src="/statics/layer/layer.js"></script>
+        <script src="/statics/scripts/common.js"></script>
+        <script src="/statics/scripts/agentapply.js"></script>
+    </div>
+</body>
+</html>
+

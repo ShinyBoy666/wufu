@@ -1,0 +1,39 @@
+﻿ .product_temp {
+            width: 50%;
+            float: left;
+            margin: 2px 0;
+        }
+        .com-title-over {
+            width: 100%;
+            /*height: 180px;
+            overflow: hidden;
+            max-height: 180px;*/
+        }
+        .com-title-over img {
+            width: 100%;
+        }
+        .forget-li-bottpm {
+            width: 98%;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+        .PROsearch {
+            margin-bottom: 4px;
+        }
+        .mypage-head-name {
+            padding: 0;
+        }
+
+        .color-block {
+            height: 36px;
+            line-height: 18px;
+            overflow: hidden;
+            color: #979797
+        }
+
+        .width-eight {
+            width: 100%!important;
+        }
+        .shop-bottom-img-top{
+			padding-bottom: 10px;
+		}
